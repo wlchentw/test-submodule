@@ -1,0 +1,14 @@
+# This file is used to enable sched_is_big_little sysctl
+# from user space
+[Unit]
+Description=Energy Aware Control Service
+DefaultDependencies=no
+Before=sysinit.target
+
+[Service]
+Type=oneshot
+ExecStart=-/bin/sh /usr/share/energy-aware/ea-init
+TimeoutSec=10
+
+[Install]
+WantedBy=sysinit.target

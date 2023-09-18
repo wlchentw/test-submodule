@@ -1,0 +1,59 @@
+{
+    "MTK_PLATFORM_CFG": {
+	"config_version": "V1.1.2",
+	"platform": "MT8110",
+	"project": "aud8110fpga-emmc",
+	"storage": "EMMC",
+	"boot_channel": "MSDC_0",
+	"block_size": "0x20000",
+	"skip_pmt_operate": true
+    },
+    "MBR": {
+	"boundary_check": true,
+	"is_download": true,
+	"file_name": "MBR",
+	"is_reserved": false,
+	"partition_name": "MBR",
+	"partition_size": 524288,
+	"physical_start_addr": 0,
+	"linear_start_addr": 0,
+	"region": "EMMC_USER",
+	"storage": "HW_STORAGE_EMMC",
+	"operation_type": "UPDATE",
+	"type": "NORMAL_ROM",
+	"reserve": 0
+    },
+    "bl2": {
+	"file_name": "lk.bin"
+    },
+    "SCPSYS": {
+	"file_name": "scp.img"
+    },
+    "boot_a": {
+	"boundary_check": true,
+	"is_download": true,
+	"file_name": "boot.img",
+	"is_reserved": false,
+	"partition_name": "boot_a",
+	"region": "EMMC_USER",
+	"storage": "HW_STORAGE_EMMC",
+	"operation_type": "UPDATE",
+	"type": "NORMAL_ROM",
+	"reserve": 0
+    },
+    "tee_a": {
+	"file_name": "tee.img"
+    },
+    "system_a": {
+	"boundary_check": true,
+	"is_download": true,
+	"file_name": "rootfs.img",
+	"is_reserved": false,
+	"partition_name": "system_a",
+	"region": "EMMC_USER",
+	"storage": "HW_STORAGE_EMMC",
+	"operation_type": "UPDATE",
+	"type": "NORMAL_ROM",
+	"reserve": 0
+    },
+}

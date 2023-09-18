@@ -1,0 +1,120 @@
+#!/bin/sh
+
+# TODO enable the lines below once we have support for getprop
+# retrieve the product info from Android
+# manufacturer=$(getprop ro.product.manufacturer Android)
+# model=$(getprop ro.product.model Android)
+# serial=$(getprop ro.serialno 0123456789ABCDEF)
+
+#manufacturer="$(cat /system/build.prop | grep -o 'ro.product.manufacturer=.*' | cut -d'=' -f 2)"
+#model="$(cat /system/build.prop | grep -o 'ro.product.model=.*' | cut -d'=' -f 2)"
+# get the device serial number from /proc/cmdline directly(since we have no getprop on
+# GNU/Linux)
+#serialnumber="$(cat /proc/cmdline | sed 's/.*androidboot.serialno=//' | sed 's/ .*//' | tr -d '\n')"
+
+#cat /proc/cmdline | sed 's/.*androidboot.serialno=//' | sed 's/ .*//' | tr -d '\n' > /sys/class/android_usb/android0/iSerial
+#echo -n $manufacturer > /sys/class/android_usb/android0/iManufacturer
+#echo -n $model > /sys/class/android_usb/android0/iProduct
+
+serialnumber="0123456789ABCDEF"
+manufacturer="Mediatek Inc."
+
+if [ "$1" == "adb" ]; then
+	mount -t configfs none /sys/kernel/config
+	mkdir /sys/kernel/config/usb_gadget/g1
+	echo -n "0x0E8D" > /sys/kernel/config/usb_gadget/g1/idVendor
+	echo -n "0x201C" > /sys/kernel/config/usb_gadget/g1/idProduct
+	mkdir /sys/kernel/config/usb_gadget/g1/strings/0x409
+	echo -n $serialnumber > /sys/kernel/config/usb_gadget/g1/strings/0x409/serialnumber
+	echo -n $manufacturer > /sys/kernel/config/usb_gadget/g1/strings/0x409/manufacturer
+	echo -n "adb" > /sys/kernel/config/usb_gadget/g1/strings/0x409/product
+
+	mkdir /sys/kernel/config/usb_gadget/g1/configs/c.1
+	mkdir /sys/kernel/config/usb_gadget/g1/configs/c.1/strings/0x409
+	echo -n "Conf 1" > /sys/kernel/config/usb_gadget/g1/configs/c.1/strings/0x409/configuration
+	echo -n 400 > /sys/kernel/config/usb_gadget/g1/configs/c.1/MaxPower
+
+	mkdir /sys/kernel/config/usb_gadget/g1/functions/ffs.adb
+	mkdir /sys/kernel/config/usb_gadget/g1/functions/acm.gs0
+	mkdir /sys/kernel/config/usb_gadget/g1/functions/acm.gs1
+	mkdir /sys/kernel/config/usb_gadget/g1/functions/acm.gs2
+
+	mkdir /dev/usb-ffs
+	chmod 775 /dev/usb-ffs -R
+	mkdir /dev/usb-ffs/adb
+	chmod 775 /dev/usb-ffs/adb -R
+
+	mount -o uid=2000,gid=2000 -t functionfs adb /dev/usb-ffs/adb
+	ln -s /sys/kernel/config/usb_gadget/g1/functions/ffs.adb  /sys/kernel/config/usb_gadget/g1/configs/c.1
+
+	sleep 1
+elif [ "$1" == "rndis_adb" ];then
+	mount -t configfs none /sys/kernel/config
+	mkdir /sys/kernel/config/usb_gadget/g1
+	echo -n "0x0E8D" > /sys/kernel/config/usb_gadget/g1/idVendor
+	echo -n "0x2005" > /sys/kernel/config/usb_gadget/g1/idProduct
+	mkdir /sys/kernel/config/usb_gadget/g1/strings/0x409
+	echo -n $serialnumber > /sys/kernel/config/usb_gadget/g1/strings/0x409/serialnumber
+	echo -n $manufacturer > /sys/kernel/config/usb_gadget/g1/strings/0x409/manufacturer
+	echo -n "rndis_adb" > /sys/kernel/config/usb_gadget/g1/strings/0x409/product
+
+	mkdir /sys/kernel/config/usb_gadget/g1/configs/c.1
+	mkdir /sys/kernel/config/usb_gadget/g1/configs/c.1/strings/0x409
+	echo -n "rndis_adb" > /sys/kernel/config/usb_gadget/g1/configs/c.1/strings/0x409/configuration
+	echo -n 400 > /sys/kernel/config/usb_gadget/g1/configs/c.1/MaxPower
+
+	mkdir /sys/kernel/config/usb_gadget/g1/functions/ffs.adb
+
+	mkdir /dev/usb-ffs
+	chmod 775 /dev/usb-ffs -R
+	mkdir /dev/usb-ffs/adb
+	chmod 775 /dev/usb-ffs/adb -R
+
+	mount -o uid=2000,gid=2000 -t functionfs adb /dev/usb-ffs/adb
+	mkdir /sys/kernel/config/usb_gadget/g1/functions/rndis.gs4
+	mkdir /sys/kernel/config/usb_gadget/g1/functions/acm.gs0
+	mkdir /sys/kernel/config/usb_gadget/g1/functions/acm.gs1
+	mkdir /sys/kernel/config/usb_gadget/g1/functions/acm.gs2
+	ln -s /sys/kernel/config/usb_gadget/g1/functions/rndis.gs4 /sys/kernel/config/usb_gadget/g1/configs/c.1/f1
+	ln -s /sys/kernel/config/usb_gadget/g1/functions/ffs.adb  /sys/kernel/config/usb_gadget/g1/configs/c.1/f2
+
+	sleep 1
+elif [ "$1" == "rndis_adb_acm" ];then
+	mount -t configfs none /sys/kernel/config
+	mkdir /sys/kernel/config/usb_gadget/g1
+	echo -n "0x0E8D" > /sys/kernel/config/usb_gadget/g1/idVendor
+	echo -n "0x2010" > /sys/kernel/config/usb_gadget/g1/idProduct
+	mkdir /sys/kernel/config/usb_gadget/g1/strings/0x409
+	echo -n $serialnumber > /sys/kernel/config/usb_gadget/g1/strings/0x409/serialnumber
+	echo -n $manufacturer > /sys/kernel/config/usb_gadget/g1/strings/0x409/manufacturer
+	echo -n "rndis_adb_acm" > /sys/kernel/config/usb_gadget/g1/strings/0x409/product
+
+	mkdir /sys/kernel/config/usb_gadget/g1/configs/c.1
+	mkdir /sys/kernel/config/usb_gadget/g1/configs/c.1/strings/0x409
+	echo -n "rndis_adb_acm" > /sys/kernel/config/usb_gadget/g1/configs/c.1/strings/0x409/configuration
+	echo -n 400 > /sys/kernel/config/usb_gadget/g1/configs/c.1/MaxPower
+
+	mkdir /sys/kernel/config/usb_gadget/g1/functions/ffs.adb
+
+	mkdir /dev/usb-ffs
+	chmod 775 /dev/usb-ffs -R
+	mkdir /dev/usb-ffs/adb
+	chmod 775 /dev/usb-ffs/adb -R
+
+	mount -o uid=2000,gid=2000 -t functionfs adb /dev/usb-ffs/adb
+	mkdir /sys/kernel/config/usb_gadget/g1/functions/rndis.gs4
+	mkdir /sys/kernel/config/usb_gadget/g1/functions/acm.gs0
+	ln -s /sys/kernel/config/usb_gadget/g1/functions/rndis.gs4 /sys/kernel/config/usb_gadget/g1/configs/c.1/f1
+	ln -s /sys/kernel/config/usb_gadget/g1/functions/ffs.adb /sys/kernel/config/usb_gadget/g1/configs/c.1/f2
+	ln -s /sys/kernel/config/usb_gadget/g1/functions/acm.gs0 /sys/kernel/config/usb_gadget/g1/configs/c.1/f3
+
+	sleep 1
+elif [ "$1" == "post" ];then
+	sleep 1
+	ls /sys/class/udc/ > /sys/kernel/config/usb_gadget/g1/UDC
+elif [ "$1" == "none" ];then
+	sleep 1
+	echo -n "none" > /sys/kernel/config/usb_gadget/g1/UDC
+	rm /sys/kernel/config/usb_gadget/g1/configs/c.1/f*
+fi
+

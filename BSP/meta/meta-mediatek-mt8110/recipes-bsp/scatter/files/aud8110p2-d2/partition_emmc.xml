@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<partition lba="30535680">
+	<entry type="{0FC63DAF-8483-4772-8E79-3D69D8477DE4}" start="1024" end="2047" name="bl2" />
+	<entry type="{0FC63DAF-8483-4772-8E79-3D69D8477DE4}" start="2048" end="4095" name="UBOOT" />
+	<entry type="{0FC63DAF-8483-4772-8E79-3D69D8477DE4}" start="4096" end="36863" name="SCPSYS" />
+	<entry type="{0FC63DAF-8483-4772-8E79-3D69D8477DE4}" start="36864" end="38911" name="nvram" />
+	<entry type="{0FC63DAF-8483-4772-8E79-3D69D8477DE4}" start="38912" end="104447" name="boot_a" />
+	<entry type="{0FC63DAF-8483-4772-8E79-3D69D8477DE4}" start="104448" end="112639" name="tee_a" />
+	<entry type="{0FC63DAF-8483-4772-8E79-3D69D8477DE4}" uuid="936e1662-2b63-435d-859d-1b9e5a838335" start="112640" end="2734079" name="system_a" />
+	<entry type="{0FC63DAF-8483-4772-8E79-3D69D8477DE4}" start="2734080" end="2735103" name="boot_para" />
+	<entry type="{0FC63DAF-8483-4772-8E79-3D69D8477DE4}" uuid="208d03eb-1dd2-11b2-8000-080027b246c3" start="2735104" end="6926336" name="userdata" />
+</partition>

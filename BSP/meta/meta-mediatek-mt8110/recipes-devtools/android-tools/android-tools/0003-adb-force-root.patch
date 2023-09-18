@@ -1,0 +1,21 @@
+diff --git a/system/core/adb/adb.c b/system/core/adb/adb.c
+index 10a1e0d..c805df3 100644
+--- a/system/core/adb/adb.c
++++ b/system/core/adb/adb.c
+@@ -1261,6 +1261,8 @@ static void drop_capabilities_bounding_set_if_needed() {
+ }
+ 
+ static int should_drop_privileges() {
++    return 0;
++#if 0
+ #ifndef ALLOW_ADBD_ROOT
+     return 1;
+ #else /* ALLOW_ADBD_ROOT */
+@@ -1290,6 +1292,7 @@ static int should_drop_privileges() {
+     }
+     return secure;
+ #endif /* ALLOW_ADBD_ROOT */
++#endif /* if 0 */
+ }
+ #endif /* !ADB_HOST */
+ 

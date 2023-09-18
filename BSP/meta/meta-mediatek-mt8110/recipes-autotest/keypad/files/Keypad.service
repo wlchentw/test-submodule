@@ -1,0 +1,12 @@
+[Unit]
+Description=Keypad
+
+[Service]
+ExecStart=/usr/bin/keypad.sh >ttyS0
+Type=simple
+StandardOutput=tty
+StandardError=tty
+TimeoutSec=10
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,53 @@
+From ab9a3f576e1bcf5abc842b20c48436791d8141d0 Mon Sep 17 00:00:00 2001
+From: Yong Wu <yong.wu@mediatek.com>
+Date: Tue, 4 Sep 2018 13:30:08 +0800
+Subject: [PATCH 3/3] libion: fix MUSL libc build error
+
+Fix the MUSL build error:
+===================================
+| In file included from ion.c:32:
+| ./include/ion/ion.h:27:1: error: unknown type name '__BEGIN_DECLS'
+| __BEGIN_DECLS
+| ^
+| ./include/ion/ion.h:29:1: error: expected identifier or '('
+| struct ion_handle;
+| ^
+| ./include/ion/ion.h:44:1: error: unknown type name '__END_DECLS'
+| __END_DECLS
+===================================
+
+Signed-off-by: Yong Wu <yong.wu@mediatek.com>
+---
+ libion/include/ion/ion.h | 10 ++++++++--
+ 1 file changed, 8 insertions(+), 2 deletions(-)
+
+diff --git a/libion/include/ion/ion.h b/libion/include/ion/ion.h
+index f47793d27e..e1f55f68e2 100644
+--- a/libion/include/ion/ion.h
++++ b/libion/include/ion/ion.h
+@@ -24,7 +24,10 @@
+ #include <sys/types.h>
+ #include <linux/ion.h>
+ 
+-__BEGIN_DECLS
++/* __BEGIN_DECLS */
++#ifdef __cplusplus
++extern "C" {
++#endif
+ 
+ struct ion_handle;
+ 
+@@ -41,6 +44,9 @@ int ion_map(int fd, ion_user_handle_t handle, size_t length, int prot,
+ int ion_share(int fd, ion_user_handle_t handle, int *share_fd);
+ int ion_import(int fd, int share_fd, ion_user_handle_t *handle);
+ 
+-__END_DECLS
++#ifdef __cplusplus
++}
++#endif
++/* __END_DECLS */
+ 
+ #endif /* __SYS_CORE_ION_H */
+-- 
+2.12.5
+

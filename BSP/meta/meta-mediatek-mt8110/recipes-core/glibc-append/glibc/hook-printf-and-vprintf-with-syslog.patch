@@ -1,0 +1,56 @@
+From 5c932c0f220484735532608fee5294e74bb32b87 Mon Sep 17 00:00:00 2001
+From: mingming lee <mingming.lee@mediatek.com>
+Date: Wed, 27 Nov 2019 17:56:15 +0800
+Subject: [PATCH] hook printf and vprintf with syslog
+
+---
+ stdio-common/printf.c  | 5 +++++
+ stdio-common/vprintf.c | 2 ++
+ 2 files changed, 7 insertions(+)
+
+diff --git a/stdio-common/printf.c b/stdio-common/printf.c
+index 9bf28949cb0..92fa066f56f 100644
+--- a/stdio-common/printf.c
++++ b/stdio-common/printf.c
+@@ -18,6 +18,7 @@
+ #include <libioP.h>
+ #include <stdarg.h>
+ #include <stdio.h>
++#include <syslog.h>
+ 
+ #undef printf
+ 
+@@ -33,6 +34,10 @@ __printf (const char *format, ...)
+   done = vfprintf (stdout, format, arg);
+   va_end (arg);
+ 
++  va_start (arg, format);
++   __vsyslog_chk(LOG_WARNING, -1, format, arg);
++  va_end (arg);
++
+   return done;
+ }
+ 
+diff --git a/stdio-common/vprintf.c b/stdio-common/vprintf.c
+index 367adfcb6ef..45594ed8e59 100644
+--- a/stdio-common/vprintf.c
++++ b/stdio-common/vprintf.c
+@@ -19,6 +19,7 @@
+ #undef	__OPTIMIZE__	/* Avoid inline `vprintf' function.  */
+ #include <stdio.h>
+ #include <libioP.h>
++#include <syslog.h>
+ 
+ #undef	vprintf
+ 
+@@ -27,6 +28,7 @@
+ int
+ __vprintf (const char *format, __gnuc_va_list arg)
+ {
++  __vsyslog_chk(LOG_WARNING, -1, format, arg);
+   return vfprintf (stdout, format, arg);
+ }
+ 
+-- 
+2.24.0
+

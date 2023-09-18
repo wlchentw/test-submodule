@@ -1,0 +1,97 @@
+{
+    "MTK_PLATFORM_CFG": {
+	"config_version": "V1.1.2",
+	"platform": "MT8512",
+	"project": "aud8110p2-d2",
+	"storage": "EMMC",
+	"boot_channel": "MSDC_0",
+	"block_size": "0x20000",
+	"skip_pmt_operate": false
+    },
+    "PRELOADER": {
+	"boundary_check": true,
+	"is_download": true,
+	"file_name": "bl2.img",
+	"is_reserved": false,
+	"partition_name": "lk",
+	"partition_size": 1048576,
+	"physical_start_addr": 0,
+	"linear_start_addr": 0,
+	"region": "EMMC_BOOT1_BOOT2",
+	"storage": "HW_STORAGE_EMMC",
+	"operation_type": "BOOTLOADERS",
+	"type": "SV5_BL_BIN",
+	"reserve": 0
+    },
+    "MBR": {
+	"boundary_check": true,
+	"is_download": true,
+	"file_name": "MBR_EMMC",
+	"is_reserved": false,
+	"partition_name": "MBR",
+	"partition_size": 524288,
+	"physical_start_addr": 0,
+	"linear_start_addr": 0,
+	"region": "EMMC_USER",
+	"storage": "HW_STORAGE_EMMC",
+	"operation_type": "UPDATE",
+	"type": "NORMAL_ROM",
+	"reserve": 0
+    },
+    "bl2": {
+	"file_name": "u-boot-mtk-fit.bin"
+    },
+    "SCPSYS": {
+	"is_download": false,
+	"file_name": "scp.img",
+	"reserve": 0
+    },
+    "boot_a": {
+	"boundary_check": true,
+	"is_download": true,
+	"file_name": "boot.img",
+	"is_reserved": false,
+	"partition_name": "boot_a",
+	"region": "EMMC_USER",
+	"storage": "HW_STORAGE_EMMC",
+	"operation_type": "UPDATE",
+	"type": "NORMAL_ROM",
+	"reserve": 0
+    },
+    "nvram": {
+	"operation_type": "INVISIBLE",
+	"type": "EXT4_IMG",
+	"reserve": 0
+    },
+    "tee_a": {
+	"file_name": "tee.img"
+    },
+    "system_a": {
+	"boundary_check": true,
+	"is_download": true,
+	"file_name": "rootfs.img",
+	"is_reserved": false,
+	"partition_name": "system_a",
+	"region": "EMMC_USER",
+	"storage": "HW_STORAGE_EMMC",
+	"operation_type": "UPDATE",
+	"type": "NORMAL_ROM",
+	"reserve": 0
+    },
+    "boot_para": {
+	"operation_type": "INVISIBLE",
+	"reserve": 0
+    },
+    "userdata": {
+	"partition_name": "userdata",
+	"file_name": "rootfs.img",
+	"is_download": true,
+	"type": "EXT4_IMG",
+	"region": "EMMC_USER",
+	"storage": "HW_STORAGE_EMMC",
+	"boundary_check": true,
+	"is_reserved": false,
+	"operation_type": "UPDATE",
+	"reserve": 0
+    }
+}

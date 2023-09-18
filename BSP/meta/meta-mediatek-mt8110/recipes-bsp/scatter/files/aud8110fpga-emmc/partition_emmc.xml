@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<partition lba="30535680">
+	<entry type="{0FC63DAF-8483-4772-8E79-3D69D8477DE4}" start="1024" end="58367" name="boot_a" />
+	<entry type="{0FC63DAF-8483-4772-8E79-3D69D8477DE4}" start="58368" end="64511" name="tee_a" />
+	<entry type="{0FC63DAF-8483-4772-8E79-3D69D8477DE4}" start="68608" end="2690048" name="system_a" />
+</partition>

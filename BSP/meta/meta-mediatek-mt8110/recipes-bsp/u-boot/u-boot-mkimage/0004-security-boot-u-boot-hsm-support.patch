@@ -1,0 +1,174 @@
+From 72b1424a983338f490c2eb00039f107970d7cda5 Mon Sep 17 00:00:00 2001
+From: Yang Xu <yang.xu@mediatek.com>
+Date: Tue, 27 Mar 2018 09:24:43 +0800
+Subject: [PATCH] security boot: u-boot hsm support
+
+add u-boot support hsm_sign_tool
+
+Test: OK
+
+Signed-off-by: Yang Xu <Yang.Xu@mediatek.com>
+CR-Id: AUTO00000778
+---
+ lib/rsa/rsa-sign.c | 132 +++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 132 insertions(+)
+
+diff --git a/lib/rsa/rsa-sign.c b/lib/rsa/rsa-sign.c
+index f7bdb54..cf832a1 100644
+--- a/lib/rsa/rsa-sign.c
++++ b/lib/rsa/rsa-sign.c
+@@ -249,12 +249,139 @@ err_set:
+ 	return ret;
+ }
+ 
++int rsa_sign_with_hsm(struct image_sign_info *info,
++	     const struct image_region region[], int region_count,
++	     uint8_t **sigp, uint *sig_len)
++{
++	/* prepare temp file*/
++	char tmpfile[] = "/tmp/hsm_content_XXXXXX";
++	char cmd[1024];
++	char sig[512];
++	int fd;
++	int i,ret,siglen;
++	char* hsm_sign_tool;
++	char* key_name;
++
++	memset(cmd,0,1024);
++	memset(sig,0,512);
++	if((fd = mkstemp(tmpfile))<0)
++	{
++		fprintf(stderr, "Failure to create tmp file\n");
++		return -1;
++	}
++
++	for (i = 0; i < region_count; i++) {
++		ret = write(fd,region[i].data, region[i].size);
++		if(ret != region[i].size)
++		{
++			fprintf(stderr, "Failure to write to tmp file\n");
++			return -1;
++		}
++	}
++
++	close(fd);
++
++	hsm_sign_tool = getenv("HSM_SIGN_TOOL");
++	key_name = getenv("HSM_KEY_NAME");
++	sprintf(cmd,"%s %s %s pkcs1 %s",hsm_sign_tool,key_name,info->algo->checksum->name,tmpfile);
++	ret = system(cmd);
++
++	if(ret != 0)
++	{
++		fprintf(stderr, "hsm sign failed\n");
++		return -1;
++	}
++
++	fd = open(tmpfile,O_RDONLY);
++	if(fd < 0)
++	{
++		fprintf(stderr, "open temp file %s fail\n",cmd);
++		return -1;
++	}
++
++	siglen = read(fd,sig,512);
++	close(fd);
++
++	*sigp = (uint8_t*)malloc(siglen);
++	memcpy(*sigp,sig,siglen);
++
++	*sig_len = siglen;
++
++	return 0;
++}
++
++int rsassa_pss_sign_with_hsm(struct image_sign_info *info,
++	     const struct image_region region[], int region_count,
++	     uint8_t **sigp, uint *sig_len)
++{
++	/* prepare temp file*/
++	char tmpfile[] = "/tmp/hsm_content_XXXXXX";
++	char cmd[1024];
++	char sig[512];
++	int fd;
++	int i,ret,siglen;
++	char* hsm_sign_tool;
++	char* key_name;
++
++	memset(cmd,0,1024);
++	memset(sig,0,512);
++	if((fd = mkstemp(tmpfile))<0)
++	{
++		fprintf(stderr, "Failure to create tmp file\n");
++		return -1;
++	}
++
++	for (i = 0; i < region_count; i++) {
++		ret = write(fd,region[i].data, region[i].size);
++		if(ret != region[i].size)
++		{
++			fprintf(stderr, "Failure to write to tmp file\n");
++			return -1;
++		}
++	}
++
++	close(fd);
++
++	hsm_sign_tool = getenv("HSM_SIGN_TOOL");
++	key_name = getenv("HSM_KEY_NAME");
++	sprintf(cmd,"%s %s %s pss %s",hsm_sign_tool,key_name,info->algo->checksum->name,tmpfile);
++	ret = system(cmd);
++
++	if(ret != 0)
++	{
++		fprintf(stderr, "hsm sign failed\n");
++		return -1;
++	}
++
++	fd = open(tmpfile,O_RDONLY);
++	if(fd < 0)
++	{
++		fprintf(stderr, "open temp file %s fail\n",cmd);
++		return -1;
++	}
++
++	siglen = read(fd,sig,512);
++	close(fd);
++
++	*sigp = (uint8_t*)malloc(siglen);
++	memcpy(*sigp,sig,siglen);
++
++	*sig_len = siglen;
++
++	return 0;
++}
++
+ int rsa_sign(struct image_sign_info *info,
+ 	     const struct image_region region[], int region_count,
+ 	     uint8_t **sigp, uint *sig_len)
+ {
+ 	RSA *rsa;
+ 	int ret;
++	char* hsm_support;
++
++	hsm_support = getenv("HSM_SUPPORT");
++	if( hsm_support && !strcmp(hsm_support,"yes"))
++		return rsa_sign_with_hsm(info,region,region_count,sigp,sig_len);
+ 
+ 	ret = rsa_init();
+ 	if (ret)
+@@ -286,6 +413,11 @@ int rsassa_pss_sign(struct image_sign_info *info,
+ {
+ 	RSA *rsa;
+ 	int ret;
++	char* hsm_support;
++
++	hsm_support = getenv("HSM_SUPPORT");
++	if( hsm_support && !strcmp(hsm_support,"yes"))
++		return rsassa_pss_sign_with_hsm(info,region,region_count,sigp,sig_len);
+ 
+ 	ret = rsa_init();
+ 	if (ret)
+-- 
+1.9.1
+

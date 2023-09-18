@@ -1,0 +1,38 @@
+diff --git a/system/core/adb/services.c b/system/core/adb/services.c
+index 21b08dc..7dde38c 100644
+--- a/system/core/adb/services.c
++++ b/system/core/adb/services.c
+@@ -114,6 +114,8 @@ void restart_usb_service(int fd, void *cookie)
+ 
+ void reboot_service(int fd, void *arg)
+ {
++#if 0 /* android sequence */
++
+     char buf[100];
+     char property_val[PROPERTY_VALUE_MAX];
+     int ret;
+@@ -136,6 +138,24 @@ void reboot_service(int fd, void *arg)
+     // Don't return early. Give the reboot command time to take effect
+     // to avoid messing up scripts which do "adb reboot && adb wait-for-device"
+     while(1) { pause(); }
++#else /* yocto sequence */
++
++    char buf[100];
++    int ret;
++
++    sync();
++
++    ret = execl("/sbin/reboot", "reboot", "-f", (char*)arg, NULL);
++    if (ret < 0) {
++        snprintf(buf, sizeof(buf), "reboot failed: %d\n", ret);
++        writex(fd, buf, strlen(buf));
++        goto cleanup;
++    }
++    // Don't return early. Give the reboot command time to take effect
++    // to avoid messing up scripts which do "adb reboot && adb wait-for-device"
++    while(1) { pause(); }
++#endif
++
+ cleanup:
+     free(arg);
+     adb_close(fd);

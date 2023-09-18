@@ -1,0 +1,34 @@
+From 9bf2c532a8ec521ad6c03dcb9525121f09586223 Mon Sep 17 00:00:00 2001
+From: mingming lee <mingming.lee@mediatek.com>
+Date: Wed, 27 Nov 2019 17:24:14 +0800
+Subject: [PATCH] change default config file path
+
+---
+ sysklogd/syslogd.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/sysklogd/syslogd.c b/sysklogd/syslogd.c
+index a6a4ff2..1c1f400 100644
+--- a/sysklogd/syslogd.c
++++ b/sysklogd/syslogd.c
+@@ -291,7 +291,7 @@ static void parse_syslogdcfg(const char *file)
+ 	char *tok[3];
+ 	parser_t *parser;
+ 
+-	parser = config_open2(file ? file : "/etc/syslog.conf",
++	parser = config_open2(file ? file : "/data/syslog.conf",
+ 				file ? xfopen_for_read : fopen_for_read);
+ 	if (!parser)
+ 		/* didn't find default /etc/syslog.conf */
+@@ -433,7 +433,7 @@ static void parse_syslogdcfg(const char *file)
+ 
+  cfgerr:
+ 	bb_error_msg_and_die("error in '%s' at line %d",
+-			file ? file : "/etc/syslog.conf",
++			file ? file : "/data/syslog.conf",
+ 			parser->lineno);
+ }
+ #endif
+-- 
+2.24.0
+

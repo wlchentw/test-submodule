@@ -1,0 +1,227 @@
+From f30d0041711c919f6ea8435cbbc3c411801ef953 Mon Sep 17 00:00:00 2001
+From: HC Yen <hc.yen@mediatek.com>
+Date: Tue, 13 Dec 2016 12:56:49 +0800
+Subject: [PATCH 2/3] rsa: add sha{256,384,512},rsassa-pss{2048,3072,4096}
+ algorithms
+
+Add support for "sha256,rsassa-pss2048", "sha256,rsassa-pss3072",
+"sha384,rsassa-pss2048", "sha384,rsassa-pss3072",
+"sha384,rsassa-pss4096", "sha512,rsassa-pss2048",
+"sha512,rsassa-pss3072", and "sha512,rsassa-pss4096" signatures in
+u-boot.
+---
+ common/image-sig.c   | 63 ++++++++++++++++++++++++++++++++++++++++++++++++++++
+ include/u-boot/rsa.h | 11 +++++++++
+ lib/rsa/rsa-sign.c   | 60 ++++++++++++++++++++++++++++++++++++++++++++-----
+ 3 files changed, 129 insertions(+), 5 deletions(-)
+
+diff --git a/common/image-sig.c b/common/image-sig.c
+index 57eab9f..f0ee8b3 100644
+--- a/common/image-sig.c
++++ b/common/image-sig.c
+@@ -204,6 +204,69 @@ struct image_sig_algo image_sig_algos[] = {
+ 		rsa_add_verify_data,
+ 		rsa_verify,
+ 		&checksum_algos[9],
++	},
++	{
++		"sha256,rsassa-pss2048",
++		rsassa_pss_sign,
++		rsa_add_verify_data,
++		rsa_verify,
++		&checksum_algos[1],
++	},
++	{
++		"sha256,rsassa-pss3072",
++		rsassa_pss_sign,
++		rsa_add_verify_data,
++		rsa_verify,
++		&checksum_algos[2],
++	},
++	{
++		"sha256,rsassa-pss4096",
++		rsassa_pss_sign,
++		rsa_add_verify_data,
++		rsa_verify,
++		&checksum_algos[3],
++	},
++	{
++		"sha384,rsassa-pss2048",
++		rsassa_pss_sign,
++		rsa_add_verify_data,
++		rsa_verify,
++		&checksum_algos[4],
++	},
++	{
++		"sha384,rsassa-pss3072",
++		rsassa_pss_sign,
++		rsa_add_verify_data,
++		rsa_verify,
++		&checksum_algos[5],
++	},
++	{
++		"sha384,rsassa-pss4096",
++		rsassa_pss_sign,
++		rsa_add_verify_data,
++		rsa_verify,
++		&checksum_algos[6],
++	},
++	{
++		"sha512,rsassa-pss2048",
++		rsassa_pss_sign,
++		rsa_add_verify_data,
++		rsa_verify,
++		&checksum_algos[7],
++	},
++	{
++		"sha512,rsassa-pss3072",
++		rsassa_pss_sign,
++		rsa_add_verify_data,
++		rsa_verify,
++		&checksum_algos[8],
++	},
++	{
++		"sha512,rsassa-pss4096",
++		rsassa_pss_sign,
++		rsa_add_verify_data,
++		rsa_verify,
++		&checksum_algos[9],
+ 	}
+ 
+ };
+diff --git a/include/u-boot/rsa.h b/include/u-boot/rsa.h
+index 3921250..cccc1aa 100644
+--- a/include/u-boot/rsa.h
++++ b/include/u-boot/rsa.h
+@@ -54,6 +54,10 @@ int rsa_sign(struct image_sign_info *info,
+ 	     const struct image_region region[],
+ 	     int region_count, uint8_t **sigp, uint *sig_len);
+ 
++int rsassa_pss_sign(struct image_sign_info *info,
++		    const struct image_region region[],
++		    int region_count, uint8_t **sigp, uint *sig_len);
++
+ /**
+  * add_verify_data() - Add verification information to FDT
+  *
+@@ -75,6 +79,13 @@ static inline int rsa_sign(struct image_sign_info *info,
+ 	return -ENXIO;
+ }
+ 
++static inline int rsassa_pss_sign(struct image_sign_info *info,
++		const struct image_region region[], int region_count,
++		uint8_t **sigp, uint *sig_len)
++{
++	return -ENXIO;
++}
++
+ static inline int rsa_add_verify_data(struct image_sign_info *info,
+ 				      void *keydest)
+ {
+diff --git a/lib/rsa/rsa-sign.c b/lib/rsa/rsa-sign.c
+index c26f741..1f04938 100644
+--- a/lib/rsa/rsa-sign.c
++++ b/lib/rsa/rsa-sign.c
+@@ -162,9 +162,10 @@ static void rsa_remove(void)
+ 
+ static int rsa_sign_with_key(RSA *rsa, struct checksum_algo *checksum_algo,
+ 		const struct image_region region[], int region_count,
+-		uint8_t **sigp, uint *sig_size)
++		uint8_t **sigp, uint *sig_size, int pad)
+ {
+ 	EVP_PKEY *key;
++	EVP_PKEY_CTX *keyctx;
+ 	EVP_MD_CTX *context;
+ 	int size, ret = 0;
+ 	uint8_t *sig;
+@@ -179,6 +180,12 @@ static int rsa_sign_with_key(RSA *rsa, struct checksum_algo *checksum_algo,
+ 		goto err_set;
+ 	}
+ 
++	keyctx = EVP_PKEY_CTX_new(key, NULL);
++	if (!keyctx) {
++		ret = rsa_err("EVP_PKEY_CTX object creation failed");
++		goto err_set;
++	}
++
+ 	size = EVP_PKEY_size(key);
+ 	sig = malloc(size);
+ 	if (!sig) {
+@@ -194,19 +201,31 @@ static int rsa_sign_with_key(RSA *rsa, struct checksum_algo *checksum_algo,
+ 		goto err_create;
+ 	}
+ 	EVP_MD_CTX_init(context);
+-	if (!EVP_SignInit(context, checksum_algo->calculate_sign())) {
++	if (!EVP_DigestSignInit(context, &keyctx, checksum_algo->calculate_sign(), NULL, key)) {
+ 		ret = rsa_err("Signer setup failed");
+ 		goto err_sign;
+ 	}
+ 
++	if (pad == RSA_PKCS1_PSS_PADDING) {
++		if (!EVP_PKEY_CTX_set_rsa_padding(keyctx, RSA_PKCS1_PSS_PADDING)) {
++			ret = rsa_err("EVP key setup padding failed");
++			goto err_set;
++		}
++
++		if (!EVP_PKEY_CTX_set_rsa_pss_saltlen(keyctx, -1)) {
++			ret = rsa_err("EVP key setup saltlen failed");
++			goto err_set;
++		}
++	}
++
+ 	for (i = 0; i < region_count; i++) {
+-		if (!EVP_SignUpdate(context, region[i].data, region[i].size)) {
++		if (!EVP_DigestSignUpdate(context, region[i].data, region[i].size)) {
+ 			ret = rsa_err("Signing data failed");
+ 			goto err_sign;
+ 		}
+ 	}
+ 
+-	if (!EVP_SignFinal(context, sig, sig_size, key)) {
++	if (!EVP_DigestSignFinal(context, sig, (size_t *)sig_size)) {
+ 		ret = rsa_err("Could not obtain signature");
+ 		goto err_sign;
+ 	}
+@@ -245,7 +264,38 @@ int rsa_sign(struct image_sign_info *info,
+ 	if (ret)
+ 		goto err_priv;
+ 	ret = rsa_sign_with_key(rsa, info->algo->checksum, region,
+-				region_count, sigp, sig_len);
++				region_count, sigp, sig_len, RSA_PKCS1_PADDING);
++	if (ret)
++		goto err_sign;
++
++	RSA_free(rsa);
++	rsa_remove();
++
++	return ret;
++
++err_sign:
++	RSA_free(rsa);
++err_priv:
++	rsa_remove();
++	return ret;
++}
++
++int rsassa_pss_sign(struct image_sign_info *info,
++		    const struct image_region region[], int region_count,
++		    uint8_t **sigp, uint *sig_len)
++{
++	RSA *rsa;
++	int ret;
++
++	ret = rsa_init();
++	if (ret)
++		return ret;
++
++	ret = rsa_get_priv_key(info->keydir, info->keyname, &rsa);
++	if (ret)
++		goto err_priv;
++	ret = rsa_sign_with_key(rsa, info->algo->checksum, region,
++				region_count, sigp, sig_len, RSA_PKCS1_PSS_PADDING);
+ 	if (ret)
+ 		goto err_sign;
+ 
+-- 
+1.9.1
+

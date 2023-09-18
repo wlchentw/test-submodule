@@ -1,0 +1,13 @@
+[Unit]
+Description=Android Debug Bridge
+
+[Service]
+Type=simple
+Restart=on-failure
+ExecStartPre=/usr/bin/android-gadget-setup adb
+ExecStart=/usr/bin/adbd
+ExecStartPost=/usr/bin/android-gadget-setup post
+StandardOutput=null
+
+[Install]
+WantedBy=basic.target

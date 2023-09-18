@@ -1,0 +1,9 @@
+# expand the filesystem to the whole partition
+
+ACTION!="add", GOTO="expand_fs_end"
+SUBSYSTEM!="block", GOTO="expand_fs_end"
+KERNEL!="mmcblk*p*", GOTO="expand_fs_end"
+# USRDATA partiton
+ENV{ID_PART_TABLE_TYPE}=="gpt", ENV{PARTNAME}=="userdata", RUN+="/sbin/resize2fs -f /dev/$kernel"
+
+LABEL="expand_fs_end"

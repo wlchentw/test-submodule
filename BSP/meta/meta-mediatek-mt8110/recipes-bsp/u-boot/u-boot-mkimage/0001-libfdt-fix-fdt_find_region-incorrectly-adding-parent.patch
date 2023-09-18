@@ -1,0 +1,31 @@
+From 5f4e6392561efdd6ccda9d37d6677313e539eb3e Mon Sep 17 00:00:00 2001
+From: Jimmy Huang <jimmy.huang@mediatek.com>
+Date: Thu, 19 Jan 2017 16:29:20 +0800
+Subject: [PATCH] libfdt: fix fdt_find_region incorrectly adding parent's end
+ node
+
+This patch fix fdt_find_region incorrectly adding parent's end node to
+regions when it shouldn't. For example, when finding regions for
+/signature/key-dev, the end node of its parent, /signature, will
+also be included which is incorrect behavior.
+
+Change-Id: I4a5de815b1534f6b682e3ed8f2cd8154506c27f9
+---
+ lib/libfdt/fdt_wip.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/lib/libfdt/fdt_wip.c b/lib/libfdt/fdt_wip.c
+index 45fb964..37be286 100644
+--- a/lib/libfdt/fdt_wip.c
++++ b/lib/libfdt/fdt_wip.c
+@@ -180,6 +180,7 @@ int fdt_find_regions(const void *fdt, char * const inc[], int inc_count,
+ 
+ 		case FDT_END_NODE:
+ 			include = want;
++			stop_at = offset;
+ 			want = stack[depth--];
+ 			while (end > path && *--end != '/')
+ 				;
+-- 
+1.9.1
+

@@ -1,0 +1,80 @@
+From cfe52aadfa9a5c5c2446c989e0089a630c480c88 Mon Sep 17 00:00:00 2001
+From: Scott Wang <scott.wang@mediatek.com>
+Date: Thu, 20 Dec 2018 16:42:06 +0800
+Subject: [PATCH 4/4] libion: sync struct defination
+
+[Detail]
+sync struct defination
+Test: Build pass
+
+Feature: multimedia
+Signed-off-by: Scott Wang <scott.wang@mediatek.com>
+---
+ libion/kernel-headers/linux/ion_mtk.h | 32 ++++++++++++++++++++++++---
+ 1 file changed, 29 insertions(+), 3 deletions(-)
+
+diff --git a/libion/kernel-headers/linux/ion_mtk.h b/libion/kernel-headers/linux/ion_mtk.h
+index 045c26be26..a585f362ca 100644
+--- a/libion/kernel-headers/linux/ion_mtk.h
++++ b/libion/kernel-headers/linux/ion_mtk.h
+@@ -48,7 +48,11 @@ enum ION_MM_CMDS {
+ 	ION_MM_GET_DEBUG_INFO,
+ 	ION_MM_SET_SF_BUF_INFO,
+ 	ION_MM_GET_SF_BUF_INFO,
+-	ION_MM_CONFIG_BUFFER_EXT
++	ION_MM_CONFIG_BUFFER_EXT,
++	ION_MM_ACQ_CACHE_POOL,
++	ION_MM_QRY_CACHE_POOL,
++	ION_MM_GET_IOVA,
++	ION_MM_GET_IOVA_EXT,
+ };
+ 
+ enum ION_SYS_CMDS {
+@@ -128,7 +132,7 @@ struct ion_sys_get_phys_param {
+ 	unsigned long len;
+ };
+ 
+-#define ION_MM_DBG_NAME_LEN 16
++#define ION_MM_DBG_NAME_LEN 48
+ #define ION_MM_SF_BUF_INFO_LEN 16
+ 
+ struct ion_sys_client_name {
+@@ -246,12 +250,34 @@ struct ion_mm_sf_buf_info {
+ 	unsigned int info[ION_MM_SF_BUF_INFO_LEN];
+ };
+ 
++struct ion_mm_cache_pool_info {
++	size_t len;
++	size_t align;
++	unsigned int heap_id_mask;
++	unsigned int flags;
++	unsigned int ret;
++};
++struct ion_mm_get_iova_param {
++	union {
++		ion_user_handle_t handle;
++		void *kernel_handle;
++	};
++	enum mtk_ion_module_id module_id;
++	unsigned int security;
++	unsigned int coherent;
++	unsigned int reserve_iova_start;
++	unsigned int reserve_iova_end;
++	unsigned long long phy_addr;
++	unsigned long len;
++};
++
+ struct ion_mm_data {
+ 	enum ION_MM_CMDS mm_cmd;
+ 	union {
+ 		struct ion_mm_config_buffer_param config_buffer_param;
+ 		struct ion_mm_buf_debug_info buf_debug_info_param;
+-		struct ion_mm_sf_buf_info sf_buf_info_param;
++		struct ion_mm_cache_pool_info cache_pool_info_param;
++		struct ion_mm_get_iova_param get_phys_param;
+ 	};
+ };
+ 
+-- 
+2.19.1
+

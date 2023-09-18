@@ -1,0 +1,117 @@
+From 1cbf181a80d4e4fb9bfdcf41bd686afd3e7dea83 Mon Sep 17 00:00:00 2001
+From: HC Yen <hc.yen@mediatek.com>
+Date: Wed, 21 Dec 2016 11:12:24 +0800
+Subject: [PATCH 3/3] rsa: extend bits of n0-inverse
+
+Extend "rsa,n0-inverse" property to 64 bits.
+---
+ lib/rsa/rsa-sign.c | 39 +++++++++++++++++++++------------------
+ 1 file changed, 21 insertions(+), 18 deletions(-)
+
+diff --git a/lib/rsa/rsa-sign.c b/lib/rsa/rsa-sign.c
+index 1f04938..f7bdb54 100644
+--- a/lib/rsa/rsa-sign.c
++++ b/lib/rsa/rsa-sign.c
+@@ -361,25 +361,26 @@ cleanup:
+ /*
+  * rsa_get_params(): - Get the important parameters of an RSA public key
+  */
+-int rsa_get_params(RSA *key, uint64_t *exponent, uint32_t *n0_invp,
++int rsa_get_params(RSA *key, uint64_t *exponent, BIGNUM **n0_invp,
+ 		   BIGNUM **modulusp, BIGNUM **r_squaredp)
+ {
+-	BIGNUM *big1, *big2, *big32, *big2_32;
+-	BIGNUM *n, *r, *r_squared, *tmp;
++	BIGNUM *big1, *big2, *big64, *big2_64;
++	BIGNUM *n0, *n, *r, *r_squared, *tmp;
+ 	BN_CTX *bn_ctx = BN_CTX_new();
+ 	int ret = 0;
+ 
+ 	/* Initialize BIGNUMs */
+ 	big1 = BN_new();
+ 	big2 = BN_new();
+-	big32 = BN_new();
++	big64 = BN_new();
+ 	r = BN_new();
+ 	r_squared = BN_new();
+ 	tmp = BN_new();
+-	big2_32 = BN_new();
++	big2_64 = BN_new();
++	n0 = BN_new();
+ 	n = BN_new();
+-	if (!big1 || !big2 || !big32 || !r || !r_squared || !tmp || !big2_32 ||
+-	    !n) {
++	if (!big1 || !big2 || !big64 || !r || !r_squared || !tmp || !big2_64 ||
++	    !n0 || !n) {
+ 		fprintf(stderr, "Out of memory (bignum)\n");
+ 		return -ENOMEM;
+ 	}
+@@ -388,18 +389,18 @@ int rsa_get_params(RSA *key, uint64_t *exponent, uint32_t *n0_invp,
+ 		ret = -1;
+ 
+ 	if (!BN_copy(n, key->n) || !BN_set_word(big1, 1L) ||
+-	    !BN_set_word(big2, 2L) || !BN_set_word(big32, 32L))
++	    !BN_set_word(big2, 2L) || !BN_set_word(big64, 64L))
+ 		ret = -1;
+ 
+-	/* big2_32 = 2^32 */
+-	if (!BN_exp(big2_32, big2, big32, bn_ctx))
++	/* big2_64 = 2^64 */
++	if (!BN_exp(big2_64, big2, big64, bn_ctx))
+ 		ret = -1;
+ 
+-	/* Calculate n0_inv = -1 / n[0] mod 2^32 */
+-	if (!BN_mod_inverse(tmp, n, big2_32, bn_ctx) ||
+-	    !BN_sub(tmp, big2_32, tmp))
++	/* Calculate n0_inv = -1 / n[0] mod 2^64 */
++	if (!BN_mod_inverse(n0, n, big2_64, bn_ctx) ||
++	    !BN_sub(n0, big2_64, n0))
+ 		ret = -1;
+-	*n0_invp = BN_get_word(tmp);
++	*n0_invp = n0;
+ 
+ 	/* Calculate R = 2^(# of key bits) */
+ 	if (!BN_set_word(tmp, BN_num_bits(n)) ||
+@@ -417,10 +418,10 @@ int rsa_get_params(RSA *key, uint64_t *exponent, uint32_t *n0_invp,
+ 
+ 	BN_free(big1);
+ 	BN_free(big2);
+-	BN_free(big32);
++	BN_free(big64);
+ 	BN_free(r);
+ 	BN_free(tmp);
+-	BN_free(big2_32);
++	BN_free(big2_64);
+ 	if (ret) {
+ 		fprintf(stderr, "Bignum operations failed\n");
+ 		return -ENOMEM;
+@@ -490,7 +491,7 @@ int rsa_add_verify_data(struct image_sign_info *info, void *keydest)
+ {
+ 	BIGNUM *modulus, *r_squared;
+ 	uint64_t exponent;
+-	uint32_t n0_inv;
++	BIGNUM *n0_inv;
+ 	int parent, node;
+ 	char name[100];
+ 	int ret;
+@@ -544,7 +545,8 @@ int rsa_add_verify_data(struct image_sign_info *info, void *keydest)
+ 	if (!ret)
+ 		ret = fdt_setprop_u32(keydest, node, "rsa,num-bits", bits);
+ 	if (!ret)
+-		ret = fdt_setprop_u32(keydest, node, "rsa,n0-inverse", n0_inv);
++		ret = fdt_add_bignum(keydest, node, "rsa,n0-inverse", n0_inv,
++				     64);
+ 	if (!ret) {
+ 		ret = fdt_setprop_u64(keydest, node, "rsa,exponent", exponent);
+ 	}
+@@ -567,6 +569,7 @@ int rsa_add_verify_data(struct image_sign_info *info, void *keydest)
+ done:
+ 	BN_free(modulus);
+ 	BN_free(r_squared);
++	BN_free(n0_inv);
+ 	if (ret)
+ 		return ret == -FDT_ERR_NOSPACE ? -ENOSPC : -EIO;
+ 
+-- 
+1.9.1
+

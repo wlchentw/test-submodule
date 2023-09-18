@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<partition lba="31268536320">
+	<entry type="{0FC63DAF-8483-4772-8E79-3D69D8477DE4}" start="1024" end="2047" name="bl2" />
+	<entry type="{0FC63DAF-8483-4772-8E79-3D69D8477DE4}" start="2048" end="4095" name="UBOOT" />
+	<entry type="{0FC63DAF-8483-4772-8E79-3D69D8477DE4}" start="36864" end="38911" name="nvram" />
+	<entry type="{0FC63DAF-8483-4772-8E79-3D69D8477DE4}" start="38912" end="137215" name="boot_a" />
+	<entry type="{0FC63DAF-8483-4772-8E79-3D69D8477DE4}" start="137216" end="145407" name="tee_a" />
+	<entry type="{0FC63DAF-8483-4772-8E79-3D69D8477DE4}" start="145408" end="147455" name="hwcfg" />
+	<entry type="{0FC63DAF-8483-4772-8E79-3D69D8477DE4}" start="147456" end="149503" name="ntxfw" />
+	<entry type="{0FC63DAF-8483-4772-8E79-3D69D8477DE4}" start="149504" end="169983" name="waveform" />
+	<entry type="{0FC63DAF-8483-4772-8E79-3D69D8477DE4}" start="169984" end="268287" name="vendor" />
+	<entry type="{0FC63DAF-8483-4772-8E79-3D69D8477DE4}" uuid="936e1662-2b63-435d-859d-1b9e5a838335" start="288768" end="903167" name="system_a" />
+	<entry type="{0FC63DAF-8483-4772-8E79-3D69D8477DE4}" uuid="936e1662-2b63-435d-859d-1b9e5a838336" start="903168" end="1517567" name="recovery" />
+	<entry type="{0FC63DAF-8483-4772-8E79-3D69D8477DE4}" uuid="208d03eb-1dd2-11b2-8000-080027b246c3" start="1517568" end="3145761757" name="userdata" />
+</partition>
+

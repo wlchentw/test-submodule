@@ -1,0 +1,37 @@
+#! /bin/bash
+if [ -e "/sys/kernel/rcu_expedited" ]; then
+    echo "common scheduler: To boost synchronize_rcu, set rcu_expedited as 1"
+    echo 1 > /sys/kernel/rcu_expedited
+fi
+
+if [ -e "/proc/sys/kernel/sched_is_big_little" ]; then
+    echo "energy-aware: set sched_is_big_little"
+    echo 1 > /proc/sys/kernel/sched_is_big_little
+fi
+
+if [ -e "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor" ]; then
+    nr_cpu=$(cat /proc/cpuinfo | grep processor | wc -l)
+    nr_cpu=$(($nr_cpu-1))
+
+    if [ $nr_cpu -lt 0 ]; then
+        nr_cpu=0
+    fi
+
+    sg=$(cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_available_governors | grep -oh "\w*schedplus\w*")
+
+    if [-z "$sg"]; then
+        echo "energy-aware: set schedutil as dvfs policy"
+
+       for i in `seq 0 $nr_cpu`;
+        do
+            echo schedutil > /sys/devices/system/cpu/cpu${i}/cpufreq/scaling_governor
+        done
+    else
+        echo "energy-aware: set schedplus as dvfs policy"
+
+        for i in `seq 0 $nr_cpu`;
+        do
+            echo schedplus > /sys/devices/system/cpu/cpu${i}/cpufreq/scaling_governor
+        done
+    fi
+fi
