@@ -1,0 +1,284 @@
+Control Agent started successfully CA Build: 20161025.10
+new event 
+accept new connection
+new event 
+status,RUNNING
+
+message ca_get_version 
+ nbytes:17, slen:17
+last 0 last-1  0 last-2 0 last-3 0
+truncaked message ca_get_version
+
+Inside the CLI huck block 
+
+After File open 
+
+Outside the new block 
+cmdName:ca_get_version
+start xcCmdProcGetVersion ...
+sent to DUT
+new event 
+received from DUT
+tag 1 
+new event 
+status,RUNNING
+
+message device_get_info 
+ nbytes:18, slen:18
+last 0 last-1  0 last-2 0 last-3 0
+truncaked message device_get_info
+
+Inside the CLI huck block 
+
+After File open 
+
+Outside the new block 
+cmdName:device_get_info
+entering device get info
+sent to DUT
+new event 
+received from DUT
+tag 28 
+status,COMPLETE,firmware,
+
+new event 
+status,RUNNING
+
+message device_list_interfaces,interfaceType,802.11 
+ nbytes:46, slen:46
+last 0 last-1  0 last-2 0 last-3 0
+truncaked message device_list_interfaces,interfaceType,802.11
+
+Inside the CLI huck block 
+
+After File open 
+
+Outside the new block 
+cmdName:device_list_interfaces
+interface type 1
+sent to DUT
+new event 
+received from DUT
+tag 29 
+status,COMPLETE,interfaceType,802.11,interfaceID
+wlan0
+status,COMPLETE,interfaceType,802.11,interfaceID,wlan0
+
+new event 
+status,RUNNING
+
+message sta_preset_testparameters,interface,wlan0,supplicant,Default 
+ nbytes:63, slen:63
+last 0 last-1  0 last-2 0 last-3 0
+truncaked message sta_preset_testparameters,interface,wlan0,supplicant,Default
+
+Inside the CLI huck block 
+
+After File open 
+
+Outside the new block 
+cmdName:sta_preset_testparameters
+sent to DUT
+new event 
+received from DUT
+tag 37 
+status,COMPLETE
+ status,COMPLETE
+
+new event 
+status,RUNNING
+
+message sta_get_info,interface,wlan0 
+ nbytes:31, slen:31
+last 0 last-1  0 last-2 0 last-3 0
+truncaked message sta_get_info,interface,wlan0
+
+Inside the CLI huck block 
+
+After File open 
+
+Outside the new block 
+cmdName:sta_get_info
+interface wlan0
+sent to DUT
+new event 
+received from DUT
+tag 27 
+info: interface,wlan0,vendor, MediaTek inc. ,cardtype,802.11a/b/g/n
+new event 
+status,RUNNING
+
+message sta_set_psk,interface,wlan0,ssid,wpa2wpa2,passphrase,wpa2wpa2,encpType,aes-ccmp,keymgmttype,wpa2 
+ nbytes:99, slen:99
+last 0 last-1  0 last-2 0 last-3 0
+truncaked message sta_set_psk,interface,wlan0,ssid,wpa2wpa2,passphrase,wpa2wpa2,encpType,aes-ccmp,keymgmttype,wpa2
+
+Inside the CLI huck block 
+
+After File open 
+
+Outside the new block 
+cmdName:sta_set_psk
+ssid wpa2wpa2
+sent to DUT
+new event 
+received from DUT
+tag 19 
+status,COMPLETE
+ status,COMPLETE
+
+new event 
+status,RUNNING
+
+message sta_set_ip_config,interface,wlan0,dhcp,0,ip,192.165.100.102,mask,255.255.0.0 
+ nbytes:79, slen:79
+last 77 last-1  1f last-2 fffffffa last-3 4a
+truncaked message sta_set_ip_config,interface,wlan0,dhcp,0,ip,192.165.100.102,mask,255.255.0.0
+
+Inside the CLI huck block 
+
+After File open 
+
+Outside the new block 
+cmdName:sta_set_ip_config
+interface wlan0
+dhcp 0
+ip 192.165.100.102
+mask 255.255.0.0
+sent to DUT
+new event 
+received from DUT
+tag 11 
+status,COMPLETE
+ status,COMPLETE
+
+new event 
+status,RUNNING
+
+message sta_associate,interface,wlan0,ssid,wpa2wpa2 
+ nbytes:46, slen:46
+last 0 last-1  0 last-2 0 last-3 0
+truncaked message sta_associate,interface,wlan0,ssid,wpa2wpa2
+
+Inside the CLI huck block 
+
+After File open 
+
+Outside the new block 
+cmdName:sta_associate
+interface wlan0
+ssid wpa2wpa2
+sent to DUT
+new event 
+received from DUT
+tag 22 
+status,COMPLETE
+ status,COMPLETE
+
+new event 
+status,RUNNING
+
+message sta_is_connected,interface,wlan0 
+ nbytes:35, slen:35
+last 0 last-1  0 last-2 0 last-3 0
+truncaked message sta_is_connected,interface,wlan0
+
+Inside the CLI huck block 
+
+After File open 
+
+Outside the new block 
+cmdName:sta_is_connected
+Entering xcCmdProcStaIsConnected
+sent to DUT
+new event 
+received from DUT
+tag 14 
+Entering wfaStaIsConnectedResp ...
+new event 
+status,RUNNING
+
+message sta_get_bssid,interface,wlan0 
+ nbytes:32, slen:32
+last 0 last-1  0 last-2 0 last-3 0
+truncaked message sta_get_bssid,interface,wlan0
+
+Inside the CLI huck block 
+
+After File open 
+
+Outside the new block 
+cmdName:sta_get_bssid
+Entering xcCmdProcStaGetBSSID ...
+sent to DUT
+new event 
+received from DUT
+tag 16 
+Entering wfaStaGetMacAddressResp ...
+status,COMPLETE,bssid,ce:2d:83:5f:ba:68
+new event 
+status,RUNNING
+
+message sta_get_ip_config,interface,wlan0 
+ nbytes:36, slen:36
+last 0 last-1  0 last-2 0 last-3 0
+truncaked message sta_get_ip_config,interface,wlan0
+
+Inside the CLI huck block 
+
+After File open 
+
+Outside the new block 
+cmdName:sta_get_ip_config
+Entering xcCmdProcStaGetIpConfig ...
+sent to DUT
+new event 
+received from DUT
+tag 10 
+Entering wfaStaGetIpConfigResp ...
+new event 
+status,RUNNING
+
+message traffic_send_ping,destination,192.165.100.1,framesize,1000,frameRate,3,duration,10 
+ nbytes:85, slen:85
+last ffffffc7 last-1  60 last-2 61 last-3 b
+truncaked message traffic_send_ping,destination,192.165.100.1,framesize,1000,frameRate,3,duration,10
+
+Inside the CLI huck block 
+
+After File open 
+
+Outside the new block 
+cmdName:traffic_send_ping
+destination 192.165.100.1
+framesize 1000
+framerate 0.000000
+duration 10
+sent to DUT
+new event 
+received from DUT
+tag 2 
+Entering wfaTrafficAgentPingStartResp ...
+ status,COMPLETE,streamID,1
+
+new event 
+status,RUNNING
+
+message traffic_stop_ping,streamID,1 
+ nbytes:31, slen:31
+last 0 last-1  0 last-2 0 last-3 0
+truncaked message traffic_stop_ping,streamID,1
+
+Inside the CLI huck block 
+
+After File open 
+
+Outside the new block 
+cmdName:traffic_stop_ping
+sent to DUT
+new event 
+received from DUT
+tag 3 
+status,COMPLETE,sent,0,replies,0
+
+new event 

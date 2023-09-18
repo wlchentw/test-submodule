@@ -1,0 +1,517 @@
+.:
+total 72
+-rw-rw-r-- 1 mtk80758 WCNSE 1106 Nov  2 14:17 Android.mk
+-rw-rw-r-- 1 mtk80758 WCNSE 1106 Nov  2 14:17 Android.mk.bak
+-rwxr-xr-x 1 mtk80758 WCNSE  208 Oct 16 10:23 buildEssentials.sh
+drwxr-xr-x 2 mtk80758 WCNSE 4096 Nov  2 14:17 ca
+-rwxr-xr-x 1 mtk80758 WCNSE  194 Oct 16 10:23 changenotes.txt
+drwxr-xr-x 2 mtk80758 WCNSE 4096 Oct 31 16:08 dut
+-rw-r--r-- 1 mtk80758 WCNSE    0 Nov  2 14:26 file_list.txt
+drwxr-xr-x 2 mtk80758 WCNSE 4096 Nov  2 14:19 inc
+drwxr-xr-x 2 mtk80758 WCNSE 4096 Nov  2 13:40 lib
+-rwxr-xr-x 1 mtk80758 WCNSE  213 Oct 16 10:23 Makefile
+-rw-rw-r-- 1 mtk80758 WCNSE 1905 Oct 31 16:18 Makefile.inc
+-rwxr-xr-x 1 mtk80758 WCNSE 7595 Oct 16 10:23 readme
+-rwxr-xr-x 1 mtk80758 WCNSE 7262 Oct 16 10:23 README.txt
+drwxr-xr-x 3 mtk80758 WCNSE 4096 Oct 31 15:45 Release
+drwxr-xr-x 2 mtk80758 WCNSE 4096 Oct 30 14:23 ReleaseNotes
+drwxr-xr-x 2 mtk80758 WCNSE 4096 Oct 30 14:32 si
+-rwxr-xr-x 1 mtk80758 WCNSE   36 Oct 16 10:23 wfa_cli.txt
+drwxr-xr-x 2 mtk80758 WCNSE 4096 Oct 30 14:23 WTGService
+
+./ca:
+total 468
+-rw-r--r-- 1 mtk80758 WCNSE    570 Oct 16 10:23 Android.mk
+-rw-r--r-- 1 mtk80758 WCNSE    164 Oct 16 10:23 Makefile
+-rw-r--r-- 1 mtk80758 WCNSE  14114 Oct 30 15:12 wfa_ca.c
+-rw-r--r-- 1 mtk80758 WCNSE 417433 Oct 31 16:18 wfa_ca.exe
+-rw-r--r-- 1 mtk80758 WCNSE  27106 Oct 31 16:18 wfa_ca.o
+
+./dut:
+total 196
+-rwxr-xr-x 1 mtk80758 WCNSE    790 Oct 31 15:46 Android.mk
+-rwxr-xr-x 1 mtk80758 WCNSE    275 Oct 16 10:23 Makefile
+-rwxr-xr-x 1 mtk80758 WCNSE 156744 Oct 31 15:41 wfa_dut
+-rwxr-xr-x 1 mtk80758 WCNSE  13623 Oct 30 15:15 wfa_dut.c
+-rwxr-xr-x 1 mtk80758 WCNSE   2630 Oct 16 10:23 wfa_dut.h
+-rwxr-xr-x 1 mtk80758 WCNSE   5359 Oct 16 10:23 wfa_dut_init.c
+
+./inc:
+total 176
+-rwxr-xr-x 1 mtk80758 WCNSE  3499 Oct 16 10:23 wfa_agtctrl.h
+-rwxr-xr-x 1 mtk80758 WCNSE  3285 Oct 16 10:23 wfa_agt.h
+-rwxr-xr-x 1 mtk80758 WCNSE 10311 Oct 16 10:23 wfa_ca.h
+-rwxr-xr-x 1 mtk80758 WCNSE  6428 Oct 16 10:23 wfa_ca_resp.h
+-rwxr-xr-x 1 mtk80758 WCNSE 23353 Oct 16 10:23 wfa_cmds.h
+-rwxr-xr-x 1 mtk80758 WCNSE  3995 Oct 16 10:23 wfa_debug.h
+-rwxr-xr-x 1 mtk80758 WCNSE  4263 Oct 16 10:23 wfa_main.h
+-rwxr-xr-x 1 mtk80758 WCNSE  3689 Oct 16 10:23 wfa_miscs.h
+-rw-rw-r-- 1 mtk80758 WCNSE  4894 Oct 31 15:52 wfa_portall.h
+-rwxr-xr-x 1 mtk80758 WCNSE  6202 Oct 31 15:10 wfa_rsp.h
+-rwxr-xr-x 1 mtk80758 WCNSE  5089 Oct 16 10:23 wfa_sock.h
+-rwxr-xr-x 1 mtk80758 WCNSE   688 Oct 16 10:23 wfa_stdincs.h
+-rw-rw-r-- 1 mtk80758 WCNSE 10371 Oct 31 15:59 wfa_tg.h
+-rwxr-xr-x 1 mtk80758 WCNSE 13534 Oct 16 10:23 wfa_tlv.h
+-rwxr-xr-x 1 mtk80758 WCNSE 14000 Oct 16 10:23 wfa_tlv_old.h
+-rwxr-xr-x 1 mtk80758 WCNSE  4883 Oct 16 10:23 wfa_types.h
+-rwxr-xr-x 1 mtk80758 WCNSE  3252 Oct 16 10:23 wfa_utils.h
+-rwxr-xr-x 1 mtk80758 WCNSE  4468 Oct 31 15:37 wfa_ver.h
+-rwxr-xr-x 1 mtk80758 WCNSE  8607 Oct 16 10:23 wfa_wmmps.h
+
+./lib:
+total 1680
+-rwxr-xr-x 1 mtk80758 WCNSE   1457 Oct 16 10:23 Android.mk
+-rw-rw-r-- 1 mtk80758 WCNSE 439608 Oct 31 16:18 libwfa_ca.a
+-rwxr-xr-x 1 mtk80758 WCNSE    998 Oct 16 10:23 Makefile
+-rwxr-xr-x 1 mtk80758 WCNSE  39777 Oct 31 15:39 wfa_ca_resp.c
+-rw-rw-r-- 1 mtk80758 WCNSE  69399 Oct 31 16:18 wfa_ca_resp.o
+-rwxr-xr-x 1 mtk80758 WCNSE 174600 Oct 16 10:23 wfa_cmdproc.c
+-rw-rw-r-- 1 mtk80758 WCNSE 319362 Oct 31 16:09 wfa_cmdproc.o
+-rwxr-xr-x 1 mtk80758 WCNSE  12653 Oct 16 10:23 wfa_cmdtbl.c
+-rwxr-xr-x 1 mtk80758 WCNSE 227360 Nov  2 12:55 wfa_cs.c
+-rwxr-xr-x 1 mtk80758 WCNSE 150348 Oct 16 10:23 wfa_cs.c.bak
+-rwxr-xr-x 1 mtk80758 WCNSE   7284 Oct 16 10:23 wfa_miscs.c
+-rw-rw-r-- 1 mtk80758 WCNSE   6316 Oct 31 16:09 wfa_miscs.o
+-rwxr-xr-x 1 mtk80758 WCNSE  14019 Oct 31 15:23 wfa_sock.c
+-rw-rw-r-- 1 mtk80758 WCNSE  19550 Oct 31 16:09 wfa_sock.o
+-rwxr-xr-x 1 mtk80758 WCNSE  41236 Oct 30 18:14 wfa_tg.c
+-rwxr-xr-x 1 mtk80758 WCNSE  35083 Oct 16 10:23 wfa_thr.c
+-rwxr-xr-x 1 mtk80758 WCNSE   6917 Oct 16 10:23 wfa_tlv.c
+-rw-rw-r-- 1 mtk80758 WCNSE   8525 Oct 31 16:09 wfa_tlv.o
+-rwxr-xr-x 1 mtk80758 WCNSE  16641 Oct 16 10:23 wfa_typestr.c
+-rw-rw-r-- 1 mtk80758 WCNSE  12020 Oct 31 16:09 wfa_typestr.o
+-rwxr-xr-x 1 mtk80758 WCNSE  34881 Oct 16 10:23 wfa_wmmps.c
+
+./Release:
+total 4
+drwxr-xr-x 5 mtk80758 WCNSE 4096 Nov  2 14:16 scripts
+
+./Release/scripts:
+total 16
+-rw-rw-r-- 1 mtk80758 WCNSE  279 Apr  9  2015 readme.txt
+drwxrwxr-x 4 mtk80758 WCNSE 4096 Nov  2 14:15 Sigma
+drwxrwxr-x 5 mtk80758 WCNSE 4096 Nov  2 14:16 Tool
+drwxrwxr-x 3 mtk80758 WCNSE 4096 Nov  2 14:16 Update_Software
+
+./Release/scripts/Sigma:
+total 3876
+-rw-rw-r-- 1 mtk80758 WCNSE    1388 Mar 11  2014 95_enable.bat
+drwxrwxr-x 2 mtk80758 WCNSE    4096 Nov  2 14:15 bin
+-rw-rw-r-- 1 mtk80758 WCNSE 3480254 Aug  3 18:49 cygwin1.dll
+-rw-rw-r-- 1 mtk80758 WCNSE     470 Mar 15  2012 debug_dut.bat
+-rw-rw-r-- 1 mtk80758 WCNSE     182 Mar 15  2012 get_log.bat
+-rw-rw-r-- 1 mtk80758 WCNSE    7901 Aug 21  2013 index.html
+drwxrwxr-x 2 mtk80758 WCNSE    4096 Nov  2 14:14 log
+-rw-rw-r-- 1 mtk80758 WCNSE     450 Mar 20  2014 STEP1_sigma_start.bat
+-rw-rw-r-- 1 mtk80758 WCNSE     320 Nov  2 13:35 STEP2_start_dut.bat
+-rw-rw-r-- 1 mtk80758 WCNSE     496 Nov  2 14:07 STEP3_start_ca.bat
+-rw-rw-r-- 1 mtk80758 WCNSE     466 Nov  2 13:46 STEP3_start_ca.bat.bak
+-rw-rw-r-- 1 mtk80758 WCNSE  417433 Oct 31 16:18 wfa_ca.exe
+-rw-rw-r-- 1 mtk80758 WCNSE     172 Nov  2 14:07 wfa_ca.txt
+-rw-rw-r-- 1 mtk80758 WCNSE       8 Apr 17  2014 wifi.cfg
+
+./Release/scripts/Sigma/bin:
+total 8936
+-rw-rw-r-- 1 mtk80758 WCNSE  944128 Oct 24 19:05 adb.exe
+-rw-rw-r-- 1 mtk80758 WCNSE   96256 Jun  7  2010 AdbWinApi.dll
+-rw-rw-r-- 1 mtk80758 WCNSE   60928 Jun  7  2010 AdbWinUsbApi.dll
+-rw-rw-r-- 1 mtk80758 WCNSE   80910 Oct 26  2011 cyggcc_s-1.dll
+-rw-rw-r-- 1 mtk80758 WCNSE  459278 May 20  2011 cyggcrypt-11.dll
+-rw-rw-r-- 1 mtk80758 WCNSE  628238 Oct 19  2011 cyggnutls-26.dll
+-rw-rw-r-- 1 mtk80758 WCNSE   14350 May 20  2011 cyggpg-error-0.dll
+-rw-rw-r-- 1 mtk80758 WCNSE 1008654 Oct 17  2011 cygiconv-2.dll
+-rw-rw-r-- 1 mtk80758 WCNSE  197646 May 16  2010 cygidn-11.dll
+-rw-rw-r-- 1 mtk80758 WCNSE   35342 Oct 16  2011 cygintl-8.dll
+-rw-rw-r-- 1 mtk80758 WCNSE  249870 Jan  3  2010 cygncursesw-10.dll
+-rw-rw-r-- 1 mtk80758 WCNSE  167438 Jan 26  2011 cygreadline7.dll
+-rw-rw-r-- 1 mtk80758 WCNSE   59406 Oct 19  2011 cygtasn1-3.dll
+-rw-rw-r-- 1 mtk80758 WCNSE 2858355 Oct 19  2012 cygwin1.dll
+-rw-rw-r-- 1 mtk80758 WCNSE 1096206 Jun  7  2011 cygxml2-2.dll
+-rw-rw-r-- 1 mtk80758 WCNSE   77838 Aug  2  2010 cygz.dll
+-rw-rw-r-- 1 mtk80758 WCNSE  128526 Oct 28  2011 ls.exe
+-rw-rw-r-- 1 mtk80758 WCNSE  536078 Feb 26  2011 sh.exe
+-rw-rw-r-- 1 mtk80758 WCNSE  327182 Oct 18  2011 wget.exe
+
+./Release/scripts/Sigma/log:
+total 0
+
+./Release/scripts/Tool:
+total 36
+-rw-rw-r-- 1 mtk80758 WCNSE  566 May 29  2012 Add_5_4_C_1Credential.bat
+-rw-rw-r-- 1 mtk80758 WCNSE  494 May 29  2012 Add_5_4_C_2Credential.bat
+-rw-rw-r-- 1 mtk80758 WCNSE  702 May 29  2012 Add_5_4_D_1Profile.bat
+-rw-rw-r-- 1 mtk80758 WCNSE  494 May 29  2012 Add_5_4_D_2Credential.bat
+drwxrwxr-x 5 mtk80758 WCNSE 4096 Nov  2 14:16 bin
+-rw-rw-r-- 1 mtk80758 WCNSE  209 May 28  2012 Clear_All_Profiles.bat
+drwxrwxr-x 3 mtk80758 WCNSE 4096 Nov  2 14:16 cmds
+drwxrwxr-x 3 mtk80758 WCNSE 4096 Nov  2 14:16 Install_Certificate
+-rw-rw-r-- 1 mtk80758 WCNSE    0 Feb  7  2012 result.html
+-rw-rw-r-- 1 mtk80758 WCNSE    0 Feb  7  2012 TestResults
+-rw-rw-r-- 1 mtk80758 WCNSE  116 Mar 23  2012 Verify.bat
+
+./Release/scripts/Tool/bin:
+total 5436
+-rw-rw-r-- 1 mtk80758 WCNSE     429 Jun 16  2011 11n_AP_CAPI_compliance_Test_Embedded.bat
+-rw-rw-r-- 1 mtk80758 WCNSE     424 Jun 16  2011 11n_AP_CAPI_compliance_Test_TCL.bat
+-rw-rw-r-- 1 mtk80758 WCNSE    2044 Jun 16  2011 11nQualTest.bat
+-rw-rw-r-- 1 mtk80758 WCNSE     424 Jun 16  2011 11n_STA_CAPI_compliance_Test.bat
+-rw-rw-r-- 1 mtk80758 WCNSE    2093 Jun 22  2011 11nTest.bat
+-rw-rw-r-- 1 mtk80758 WCNSE     484 Jun 16  2011 2-P2P_STA_CAPI_compliance_Test.bat
+drwxrwxr-x 3 mtk80758 WCNSE    4096 Nov  2 14:15 build
+-rw-rw-r-- 1 mtk80758 WCNSE   77824 Apr 18  2007 bz2.pyd
+-rw-rw-r-- 1 mtk80758 WCNSE   81920 Apr 18  2007 _ctypes.pyd
+-rw-rw-r-- 1 mtk80758 WCNSE      74 Nov 16  2011 DownloadLogs.bat
+drwxrwxr-x 2 mtk80758 WCNSE    4096 Nov  2 14:16 init
+-rw-rw-r-- 1 mtk80758 WCNSE   11823 Nov 16  2011 InitEnvLog.log
+-rw-rw-r-- 1 mtk80758 WCNSE 1093184 Jun 22  2011 library.zip
+drwxrwxr-x 2 mtk80758 WCNSE    4096 Oct 21 15:53 log
+-rw-rw-r-- 1 mtk80758 WCNSE  348160 Jul 11  2006 MSVCR71.dll
+-rw-rw-r-- 1 mtk80758 WCNSE      45 Sep  2  2013 p
+-rw-rw-r-- 1 mtk80758 WCNSE     500 Jun 16  2011 P2P_STA_CAPI_compliance_Test.bat
+-rw-rw-r-- 1 mtk80758 WCNSE    1969 Jun 16  2011 P2PTest.bat
+-rw-rw-r-- 1 mtk80758 WCNSE 2113536 Apr 18  2007 python25.dll
+-rw-rw-r-- 1 mtk80758 WCNSE  131584 Sep  2  2013 result.html
+-rw-rw-r-- 1 mtk80758 WCNSE     880 Jun 16  2011 RunAll-ABG.bat
+-rw-rw-r-- 1 mtk80758 WCNSE     878 Jun 16  2011 RunAll-B.bat
+-rw-rw-r-- 1 mtk80758 WCNSE     879 Jun 16  2011 RunAll-BG.bat
+-rw-rw-r-- 1 mtk80758 WCNSE     401 Jun 16  2011 RunBB-S1-Calib.bat
+-rw-rw-r-- 1 mtk80758 WCNSE    7680 Apr 18  2007 select.pyd
+-rw-rw-r-- 1 mtk80758 WCNSE   10197 Jun 16  2011 Sigma-11n
+-rw-rw-r-- 1 mtk80758 WCNSE    2175 Jun 16  2011 Sigma-P2P
+-rw-rw-r-- 1 mtk80758 WCNSE     366 Jun 16  2011 Sigma-P2P-Debug
+-rw-rw-r-- 1 mtk80758 WCNSE    2425 Jun 16  2011 Sigma-WMM
+-rw-rw-r-- 1 mtk80758 WCNSE    2429 Jun 16  2011 Sigma-WMM-BB
+-rw-rw-r-- 1 mtk80758 WCNSE    2432 Jun 16  2011 Sigma-WPA2
+-rw-rw-r-- 1 mtk80758 WCNSE   53248 Apr 18  2007 _socket.pyd
+-rw-rw-r-- 1 mtk80758 WCNSE  655360 Apr 18  2007 _ssl.pyd
+-rw-rw-r-- 1 mtk80758 WCNSE       0 Nov 16  2011 TestResults
+-rw-rw-r-- 1 mtk80758 WCNSE  475136 Apr 18  2007 unicodedata.pyd
+-rw-rw-r-- 1 mtk80758 WCNSE  158208 Oct  3  2014 w9xpopen.exe
+-rw-rw-r-- 1 mtk80758 WCNSE  172032 Oct  3  2014 wfa_ucc.exe
+-rw-rw-r-- 1 mtk80758 WCNSE     797 Jun 16  2011 WMM_BB-Phone.bat
+-rw-rw-r-- 1 mtk80758 WCNSE     839 Jun 16  2011 wmmTest-ABG.bat
+-rw-rw-r-- 1 mtk80758 WCNSE     858 Jun 16  2011 wmmTest.bat
+-rw-rw-r-- 1 mtk80758 WCNSE     840 Jun 16  2011 wmmTest-BG.bat
+-rw-rw-r-- 1 mtk80758 WCNSE     839 Jun 16  2011 wmmTest-B-Only.bat
+-rw-rw-r-- 1 mtk80758 WCNSE    1976 Nov 16  2011 WPA2Test.bat
+
+./Release/scripts/Tool/bin/build:
+total 4
+drwxrwxr-x 3 mtk80758 WCNSE 4096 Nov  2 14:15 bdist.win32
+
+./Release/scripts/Tool/bin/build/bdist.win32:
+total 4
+drwxrwxr-x 4 mtk80758 WCNSE 4096 Nov  2 14:16 winexe
+
+./Release/scripts/Tool/bin/build/bdist.win32/winexe:
+total 12
+drwxrwxr-x 5 mtk80758 WCNSE 8192 Nov  2 14:16 collect-2.5
+drwxrwxr-x 2 mtk80758 WCNSE 4096 Nov  2 14:16 temp
+
+./Release/scripts/Tool/bin/build/bdist.win32/winexe/collect-2.5:
+total 736
+-rw-rw-r-- 1 mtk80758 WCNSE  2034 Jun 22  2011 atexit.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 10685 Jun 22  2011 base64.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE   536 Jun 22  2011 bz2.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 26572 Jun 22  2011 calendar.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 32391 Jun 22  2011 codecs.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 10967 Jun 22  2011 copy.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE  4926 Jun 22  2011 copy_reg.pyc
+drwxrwxr-x 2 mtk80758 WCNSE  4096 Nov  2 14:15 ctypes
+-rw-rw-r-- 1 mtk80758 WCNSE   548 Jun 22  2011 _ctypes.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE  1373 Jun 22  2011 dummy_threading.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE  5252 Jun 22  2011 dummy_thread.pyc
+drwxrwxr-x 2 mtk80758 WCNSE 12288 Nov  2 14:16 encodings
+-rw-rw-r-- 1 mtk80758 WCNSE  3843 Jun 22  2011 __future__.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE  6527 Jun 22  2011 getopt.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 14971 Jun 22  2011 gettext.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 11536 Jun 22  2011 HTML.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE  3151 Jun 22  2011 linecache.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 43433 Jun 22  2011 locale.pyc
+drwxrwxr-x 2 mtk80758 WCNSE  4096 Nov  2 14:16 logging
+-rw-rw-r-- 1 mtk80758 WCNSE  9293 Jun 22  2011 macpath.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 42453 Jun 22  2011 myutils.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 11567 Jun 22  2011 ntpath.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 50757 Jun 22  2011 optparse.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 10094 Jun 22  2011 os2emxpath.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 23807 Jun 22  2011 os.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE  9697 Jun 22  2011 popen2.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 11809 Jun 22  2011 posixpath.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE  7432 Jun 22  2011 Queue.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE  6460 Jun 22  2011 quopri.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 23137 Jun 22  2011 random.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE  4875 Jun 22  2011 repr.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 12020 Jun 22  2011 re.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE   545 Jun 22  2011 select.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE   548 Jun 22  2011 _socket.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 12524 Jun 22  2011 socket.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 11196 Jun 22  2011 sre_compile.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE  6045 Jun 22  2011 sre_constants.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 19134 Jun 22  2011 sre_parse.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE   499 Jun 22  2011 sre.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE   539 Jun 22  2011 _ssl.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE  2244 Jun 22  2011 stat.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 11122 Jun 22  2011 StringIO.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 15438 Jun 22  2011 stringprep.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 16402 Jun 22  2011 string.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 14446 Jun 22  2011 _strptime.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE  3558 Jun 22  2011 struct.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 10700 Jun 22  2011 textwrap.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE  6221 Jun 22  2011 _threading_local.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 23556 Jun 22  2011 threading.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 11299 Jun 22  2011 tokenize.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE  3732 Jun 22  2011 token.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 11098 Jun 22  2011 traceback.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE  2598 Jun 22  2011 types.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE   560 Jun 22  2011 unicodedata.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE  7962 Jun 22  2011 UserDict.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE  7839 Jun 22  2011 warnings.pyc
+
+./Release/scripts/Tool/bin/build/bdist.win32/winexe/collect-2.5/ctypes:
+total 24
+-rw-rw-r-- 1 mtk80758 WCNSE  2169 Jun 22  2011 _endian.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 17838 Jun 22  2011 __init__.pyc
+
+./Release/scripts/Tool/bin/build/bdist.win32/winexe/collect-2.5/encodings:
+total 640
+-rw-rw-r-- 1 mtk80758 WCNSE 9082 Jun 22  2011 aliases.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 2081 Jun 22  2011 ascii.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 3576 Jun 22  2011 base64_codec.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 1670 Jun 22  2011 big5hkscs.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 1630 Jun 22  2011 big5.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 4406 Jun 22  2011 bz2_codec.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 3203 Jun 22  2011 charmap.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 2639 Jun 22  2011 cp037.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 2725 Jun 22  2011 cp1006.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 2653 Jun 22  2011 cp1026.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 2639 Jun 22  2011 cp1140.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 2676 Jun 22  2011 cp1250.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 2673 Jun 22  2011 cp1251.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 2676 Jun 22  2011 cp1252.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 2689 Jun 22  2011 cp1253.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 2678 Jun 22  2011 cp1254.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 2697 Jun 22  2011 cp1255.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 2675 Jun 22  2011 cp1256.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 2683 Jun 22  2011 cp1257.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 2681 Jun 22  2011 cp1258.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 2669 Jun 22  2011 cp424.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 8642 Jun 22  2011 cp437.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 2639 Jun 22  2011 cp500.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 8870 Jun 22  2011 cp737.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 8656 Jun 22  2011 cp775.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 8389 Jun 22  2011 cp850.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 8658 Jun 22  2011 cp852.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 8839 Jun 22  2011 cp855.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 2701 Jun 22  2011 cp856.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 8371 Jun 22  2011 cp857.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 8625 Jun 22  2011 cp860.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 8636 Jun 22  2011 cp861.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 8771 Jun 22  2011 cp862.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 8636 Jun 22  2011 cp863.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 8751 Jun 22  2011 cp864.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 8636 Jun 22  2011 cp865.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 8871 Jun 22  2011 cp866.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 8665 Jun 22  2011 cp869.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 2767 Jun 22  2011 cp874.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 2636 Jun 22  2011 cp875.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 1638 Jun 22  2011 cp932.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 1638 Jun 22  2011 cp949.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 1638 Jun 22  2011 cp950.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 1694 Jun 22  2011 euc_jis_2004.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 1694 Jun 22  2011 euc_jisx0213.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 1646 Jun 22  2011 euc_jp.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 1646 Jun 22  2011 euc_kr.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 1654 Jun 22  2011 gb18030.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 1646 Jun 22  2011 gb2312.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 1622 Jun 22  2011 gbk.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 3528 Jun 22  2011 hex_codec.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 4112 Jun 22  2011 hp_roman8.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 1614 Jun 22  2011 hz.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 6254 Jun 22  2011 idna.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 4318 Jun 22  2011 __init__.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 1699 Jun 22  2011 iso2022_jp_1.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 1723 Jun 22  2011 iso2022_jp_2004.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 1699 Jun 22  2011 iso2022_jp_2.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 1699 Jun 22  2011 iso2022_jp_3.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 1715 Jun 22  2011 iso2022_jp_ext.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 1683 Jun 22  2011 iso2022_jp.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 1683 Jun 22  2011 iso2022_kr.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 2693 Jun 22  2011 iso8859_10.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 2787 Jun 22  2011 iso8859_11.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 2696 Jun 22  2011 iso8859_13.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 2714 Jun 22  2011 iso8859_14.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 2693 Jun 22  2011 iso8859_15.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 2695 Jun 22  2011 iso8859_16.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 2678 Jun 22  2011 iso8859_1.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 2678 Jun 22  2011 iso8859_2.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 2685 Jun 22  2011 iso8859_3.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 2678 Jun 22  2011 iso8859_4.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 2679 Jun 22  2011 iso8859_5.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 2723 Jun 22  2011 iso8859_6.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 2686 Jun 22  2011 iso8859_7.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 2717 Jun 22  2011 iso8859_8.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 2678 Jun 22  2011 iso8859_9.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 1638 Jun 22  2011 johab.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 2700 Jun 22  2011 koi8_r.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 2686 Jun 22  2011 koi8_u.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 2111 Jun 22  2011 latin_1.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 8592 Jun 22  2011 mac_arabic.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 2747 Jun 22  2011 mac_centeuro.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 2755 Jun 22  2011 mac_croatian.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 2745 Jun 22  2011 mac_cyrillic.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 2659 Jun 22  2011 mac_farsi.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 2699 Jun 22  2011 mac_greek.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 2738 Jun 22  2011 mac_iceland.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 4969 Jun 22  2011 mac_latin2.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 2756 Jun 22  2011 mac_romanian.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 2716 Jun 22  2011 mac_roman.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 2739 Jun 22  2011 mac_turkish.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 1883 Jun 22  2011 mbcs.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 2932 Jun 22  2011 palmos.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 4936 Jun 22  2011 ptcp154.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 7653 Jun 22  2011 punycode.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 3346 Jun 22  2011 quopri_codec.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 2048 Jun 22  2011 raw_unicode_escape.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 3519 Jun 22  2011 rot_13.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 1710 Jun 22  2011 shift_jis_2004.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 1670 Jun 22  2011 shift_jis.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 1710 Jun 22  2011 shift_jisx0213.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 1907 Jun 22  2011 string_escape.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 2748 Jun 22  2011 tis_620.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 2399 Jun 22  2011 undefined.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 1996 Jun 22  2011 unicode_escape.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 2022 Jun 22  2011 unicode_internal.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 1854 Jun 22  2011 utf_16_be.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 1854 Jun 22  2011 utf_16_le.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 4257 Jun 22  2011 utf_16.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 1853 Jun 22  2011 utf_7.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 1806 Jun 22  2011 utf_8.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 4233 Jun 22  2011 utf_8_sig.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 4638 Jun 22  2011 uu_codec.pyc
+-rw-rw-r-- 1 mtk80758 WCNSE 4326 Jun 22  2011 zlib_codec.pyc
+
+./Release/scripts/Tool/bin/build/bdist.win32/winexe/collect-2.5/logging:
+total 48
+-rw-rw-r-- 1 mtk80758 WCNSE 44721 Jun 22  2011 __init__.pyc
+
+./Release/scripts/Tool/bin/build/bdist.win32/winexe/temp:
+total 24
+-rw-rw-r-- 1 mtk80758 WCNSE 353 Jun 22  2011 bz2.py
+-rw-rw-r-- 1 mtk80758 WCNSE 357 Jun 22  2011 _ctypes.py
+-rw-rw-r-- 1 mtk80758 WCNSE 356 Jun 22  2011 select.py
+-rw-rw-r-- 1 mtk80758 WCNSE 357 Jun 22  2011 _socket.py
+-rw-rw-r-- 1 mtk80758 WCNSE 354 Jun 22  2011 _ssl.py
+-rw-rw-r-- 1 mtk80758 WCNSE 361 Jun 22  2011 unicodedata.py
+
+./Release/scripts/Tool/bin/init:
+total 6248
+-rw-rw-r-- 1 mtk80758 WCNSE   77824 Apr 18  2007 bz2.pyd
+-rw-rw-r-- 1 mtk80758 WCNSE   81920 Apr 18  2007 _ctypes.pyd
+-rw-rw-r-- 1 mtk80758 WCNSE  323584 Apr 18  2007 _hashlib.pyd
+-rw-rw-r-- 1 mtk80758 WCNSE  199680 Oct  3  2014 InitTestEnv.exe
+-rw-rw-r-- 1 mtk80758 WCNSE 1701343 Jun 22  2011 library.zip
+-rw-rw-r-- 1 mtk80758 WCNSE  348160 Jul 11  2006 MSVCR71.dll
+-rw-rw-r-- 1 mtk80758 WCNSE  135168 Apr 18  2007 pyexpat.pyd
+-rw-rw-r-- 1 mtk80758 WCNSE 2113536 Apr 18  2007 python25.dll
+-rw-rw-r-- 1 mtk80758 WCNSE    7680 Apr 18  2007 select.pyd
+-rw-rw-r-- 1 mtk80758 WCNSE   53248 Apr 18  2007 _socket.pyd
+-rw-rw-r-- 1 mtk80758 WCNSE  655360 Apr 18  2007 _ssl.pyd
+-rw-rw-r-- 1 mtk80758 WCNSE  475136 Apr 18  2007 unicodedata.pyd
+-rw-rw-r-- 1 mtk80758 WCNSE  158208 Oct  3  2014 w9xpopen.exe
+
+./Release/scripts/Tool/bin/log:
+total 0
+
+./Release/scripts/Tool/cmds:
+total 4
+drwxrwxr-x 2 mtk80758 WCNSE 4096 Nov  2 14:16 Sigma-HS2
+
+./Release/scripts/Tool/cmds/Sigma-HS2:
+total 36
+-rw-rw-r-- 1 mtk80758 WCNSE  274 Mar 13  2012 init_HS2.txt
+-rw-rw-r-- 1 mtk80758 WCNSE  516 Mar 23  2012 MTK_HS2_Add_Certificate_Credential.txt
+-rw-rw-r-- 1 mtk80758 WCNSE  467 Mar 23  2012 MTK_HS2_Add_SIM_Credential.txt
+-rw-rw-r-- 1 mtk80758 WCNSE  530 Mar 23  2012 MTK_HS2_Add_Uname_Pwd_Credential.txt
+-rw-rw-r-- 1 mtk80758 WCNSE  437 Mar 23  2012 MTK_HS2_Set_PSK_Profile.txt
+-rw-rw-r-- 1 mtk80758 WCNSE  487 Mar 23  2012 MTK_HS2_Set_TTLS_Profile.txt
+-rw-rw-r-- 1 mtk80758 WCNSE 2620 Sep  2  2013 MTK_HS2_Verify.txt
+-rw-rw-r-- 1 mtk80758 WCNSE 5106 Mar 13  2012 temp.txt
+
+./Release/scripts/Tool/Install_Certificate:
+total 936
+-rw-rw-r-- 1 mtk80758 WCNSE 944128 Oct 24 19:05 adb.exe
+-rw-rw-r-- 1 mtk80758 WCNSE    337 Oct 19 21:42 Install_Certificate.bat
+drwxrwxr-x 2 mtk80758 WCNSE   4096 Nov  2 14:16 Put_Your_Certificate_Here
+
+./Release/scripts/Tool/Install_Certificate/Put_Your_Certificate_Here:
+total 20
+-rw-rw-r-- 1 mtk80758 WCNSE 6523 Sep  4  2013 cas.pem
+-rw-rw-r-- 1 mtk80758 WCNSE 1675 Sep  4  2013 wifiuser.key
+-rw-rw-r-- 1 mtk80758 WCNSE 6523 Sep  4  2013 wifiuser.pem
+
+./Release/scripts/Update_Software:
+total 940
+-rw-rw-r-- 1 mtk80758 WCNSE 944128 Oct 24 19:05 adb.exe
+-rw-rw-r-- 1 mtk80758 WCNSE   4053 Oct 31 18:05 install.bat
+-rw-rw-r-- 1 mtk80758 WCNSE   4054 Oct 31 18:05 install.bat.bak
+drwxrwxr-x 2 mtk80758 WCNSE   4096 Nov  2 14:16 sw
+
+./Release/scripts/Update_Software/sw:
+total 1972
+-rw-rw-r-- 1 mtk80758 WCNSE  623536 Dec 23  2011 busybox
+-rw-rw-r-- 1 mtk80758 WCNSE 1085140 Dec 22  2011 busybox-full
+-rw-rw-r-- 1 mtk80758 WCNSE    3166 Nov  9  2011 getipconfig.sh
+-rw-rw-r-- 1 mtk80758 WCNSE    2789 Nov  9  2011 getpid.sh
+-rw-rw-r-- 1 mtk80758 WCNSE    2865 Nov  9  2011 getpstats.sh
+-rw-rw-r-- 1 mtk80758 WCNSE    2975 Nov  9  2011 gpstats.sh
+-rw-rw-r-- 1 mtk80758 WCNSE     182 Nov  9  2011 ipconfig.txt
+-rw-rw-r-- 1 mtk80758 WCNSE   48376 Oct 29  2013 iperf
+-rw-rw-r-- 1 mtk80758 WCNSE   18024 Oct 29  2013 iwpriv
+-rw-rw-r-- 1 mtk80758 WCNSE    3446 Nov 21  2011 mtk_ac_getipconfig.sh
+-rw-rw-r-- 1 mtk80758 WCNSE     152 Nov  9  2011 mtk_p2p_formation_get_event.sh
+-rw-rw-r-- 1 mtk80758 WCNSE    3328 Nov  9  2011 mtk_p2p_getipconfig.sh
+-rw-rw-r-- 1 mtk80758 WCNSE    5516 Dec 16  2011 ndsend
+-rw-rw-r-- 1 mtk80758 WCNSE    2841 Mar 21  2014 start_wifi.sh
+-rw-rw-r-- 1 mtk80758 WCNSE    2752 Nov  9  2011 stoping.sh
+-rw-rw-r-- 1 mtk80758 WCNSE      56 Jan 14  2014 stop_wifi.sh
+-rw-rw-r-- 1 mtk80758 WCNSE    2807 Nov  9  2011 updatepid.sh
+-rwxr-xr-x 1 mtk80758 WCNSE  152648 Nov  2 14:18 wfa_dut
+-rw-rw-r-- 1 mtk80758 WCNSE    2723 Nov  9  2011 wfaping.sh
+-rw-rw-r-- 1 mtk80758 WCNSE      65 Jan 30  2012 wfav6ping.sh
+
+./ReleaseNotes:
+total 36
+-r--r--r-- 1 mtk80758 WCNSE 2504 Oct 16 10:23 ReleaseNotes-0200.txt
+-r--r--r-- 1 mtk80758 WCNSE 4477 Oct 16 10:23 ReleaseNotes-0210.txt
+-r--r--r-- 1 mtk80758 WCNSE 1485 Oct 16 10:23 ReleaseNotes-0230.txt
+-r--r--r-- 1 mtk80758 WCNSE 1002 Oct 16 10:23 ReleaseNotes-0232.txt
+-r--r--r-- 1 mtk80758 WCNSE  677 Oct 16 10:23 ReleaseNotes-0234.txt
+-r--r--r-- 1 mtk80758 WCNSE 3026 Oct 16 10:23 ReleaseNotes-0240.txt
+-r--r--r-- 1 mtk80758 WCNSE 2323 Oct 16 10:23 ReleaseNotes-0241.txt
+-r--r--r-- 1 mtk80758 WCNSE  456 Oct 16 10:23 ReleaseNotes-030102.txt
+
+./si:
+total 868
+-rw-rw-r-- 1 mtk80758 WCNSE 241664 Oct 31 17:20 TGac-pmf-sigma.IAB
+-rw-rw-r-- 1 mtk80758 WCNSE   2688 Oct 31 17:20 TGac-pmf-sigma.IAD
+-rw-rw-r-- 1 mtk80758 WCNSE  57344 Oct 31 17:20 TGac-pmf-sigma.IMB
+-rw-rw-r-- 1 mtk80758 WCNSE    888 Oct 31 17:20 TGac-pmf-sigma.IMD
+-rw-rw-r-- 1 mtk80758 WCNSE    196 Oct 31 17:12 TGac-pmf-sigma.PFI
+-rw-rw-r-- 1 mtk80758 WCNSE    776 Oct 31 17:12 TGac-pmf-sigma.PO
+-rw-rw-r-- 1 mtk80758 WCNSE  15800 Oct 31 17:20 TGac-pmf-sigma.PR
+-rw-rw-r-- 1 mtk80758 WCNSE  99688 Oct 31 17:20 TGac-pmf-sigma.PRI
+-rw-rw-r-- 1 mtk80758 WCNSE 429136 Oct 31 17:12 TGac-pmf-sigma.PS
+-rw-rw-r-- 1 mtk80758 WCNSE   7979 Oct 31 17:20 TGac-pmf-sigma.WK3
+
+./WTGService:
+total 56
+-r--r--r-- 1 mtk80758 WCNSE   264 Oct 16 10:23 installSigmaWTG.sh
+-r--r--r-- 1 mtk80758 WCNSE   182 Oct 16 10:23 Makefile
+-r--r--r-- 1 mtk80758 WCNSE   150 Oct 16 10:23 README.txt
+-r--r--r-- 1 mtk80758 WCNSE 10268 Oct 16 10:23 SigmaWTG.c
+-r--r--r-- 1 mtk80758 WCNSE   426 Oct 16 10:23 SigmaWTG.conf
+-r--r--r-- 1 mtk80758 WCNSE  3702 Oct 16 10:23 SigmaWTG.h
+-r--r--r-- 1 mtk80758 WCNSE  4190 Oct 16 10:23 SigmaWTGService.sh
+-r--r--r-- 1 mtk80758 WCNSE  4193 Oct 16 10:23 SigmaWTGService_VE.sh
+-r--r--r-- 1 mtk80758 WCNSE   287 Oct 16 10:23 startPCE_VE.sh
+-r--r--r-- 1 mtk80758 WCNSE   197 Oct 16 10:23 uninstallSigmaWTG.sh

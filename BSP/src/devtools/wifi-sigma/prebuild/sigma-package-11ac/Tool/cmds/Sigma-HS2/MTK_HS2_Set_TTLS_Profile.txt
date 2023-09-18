@@ -1,0 +1,12 @@
+### Add TTLS Profile
+
+info!Add TTLS Profile!
+
+define!$DUT_IF!wlan0!
+define!$SSID!Enter_Your_SSID!
+define!$TTLSUserName!Enter_User_Name!
+define!$TTLSPassword!Enter_User_Password!
+define!$trustedRootCACertName!Enter_CACert_Name!
+define!$TTLSprefer!Must_Be_0_or_1!
+
+wfa_control_agent_dut!sta_set_eapttls,interface,$DUT_IF,ssid,$SSID,username,$TTLSUserName,password,$TTLSPassword,trustedRootCA,$trustedRootCACertName,encpType,aes-ccmp,keymgmttype,wpa2,prefer,$TTLSprefer!DEFAULT

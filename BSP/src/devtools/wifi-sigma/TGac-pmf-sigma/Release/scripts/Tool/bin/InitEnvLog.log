@@ -1,0 +1,323 @@
+
+ 00-35-55_Nov-16-11 - Read DUT Info Function
+ 00-35-55_Nov-16-11 - ReadMapFile ------- ..\cmds\Sigma-WPA2\DUTInfo.txt-DUTType-!
+ 00-35-55_Nov-16-11 - ReadMapFile ------- ..\cmds\Sigma-WPA2\DUTInfo.txt-DUTBand-!
+ 00-35-55_Nov-16-11 - ReadMapFile ------- ..\cmds\Sigma-WPA2\DUTInfo.txt-DUTCategory-!
+ 00-35-55_Nov-16-11 - ReadMapFile ------- ..\cmds\Sigma-WPA2\DUTInfo.txt-WEP-!
+ 00-35-55_Nov-16-11 - ReadMapFile ------- ..\cmds\Sigma-WPA2\DUTInfo.txt-PreAuth-!
+ 00-35-55_Nov-16-11 - ReadMapFile ------- ..\cmds\Sigma-WPA2\DUTInfo.txt-11h-!
+ 00-35-55_Nov-16-11 - ReadMapFile ------- ..\cmds\Sigma-WPA2\DUTInfo.txt-SupportedChannelWidth-!
+ 00-35-55_Nov-16-11 - ReadMapFile ------- ..\cmds\Sigma-WPA2\DUTInfo.txt-Streams-!
+ 00-35-55_Nov-16-11 - ReadMapFile ------- ..\cmds\Sigma-WPA2\DUTInfo.txt-Greenfield-!
+ 00-35-55_Nov-16-11 - ReadMapFile ------- ..\cmds\Sigma-WPA2\DUTInfo.txt-SGI20-!
+ 00-35-55_Nov-16-11 - ReadMapFile ------- ..\cmds\Sigma-WPA2\DUTInfo.txt-SGI40-!
+ 00-35-55_Nov-16-11 - ReadMapFile ------- ..\cmds\Sigma-WPA2\DUTInfo.txt-RIFS_TX-!
+ 00-35-55_Nov-16-11 - ReadMapFile ------- ..\cmds\Sigma-WPA2\DUTInfo.txt-Coexistence_2040-!
+ 00-35-55_Nov-16-11 - ReadMapFile ------- ..\cmds\Sigma-WPA2\DUTInfo.txt-STBC_RX-!
+ 00-35-55_Nov-16-11 - ReadMapFile ------- ..\cmds\Sigma-WPA2\DUTInfo.txt-STBC_TX-!
+ 00-35-55_Nov-16-11 - ReadMapFile ------- ..\cmds\Sigma-WPA2\DUTInfo.txt-MCS32-!
+ 00-35-55_Nov-16-11 - ReadMapFile ------- ..\cmds\Sigma-WPA2\DUTInfo.txt-Sigma_ControlAgent_Support-!
+ 00-35-55_Nov-16-11 - ReadMapFile ------- ..\cmds\Sigma-WPA2\DUTInfo.txt-OBSS-!
+ 00-35-55_Nov-16-11 - ReadMapFile ------- ..\cmds\Sigma-WPA2\DUTInfo.txt-AMPDU_TX-!
+ 00-35-55_Nov-16-11 - ReadMapFile ------- ..\cmds\Sigma-WPA2\DUTInfo.txt-AP_Concurrent-!
+ 00-35-55_Nov-16-11 - ReadMapFile ------- ..\cmds\Sigma-WPA2\DUTInfo.txt-TLS-!
+ 00-35-55_Nov-16-11 - Input Files - 
+ MasterTestInfo = \MasterTestInfo.xml 
+ DUTInfoFile =\DUTInfo.txt 
+
+ 00-35-55_Nov-16-11 - WEP is supported by DUT 
+ 00-35-55_Nov-16-11 - 
+|
+|
+| Searching for Node init_WPA2.txt-WEP
+ 00-35-55_Nov-16-11 -  Match for init_WPA2.txt-WEP = 0
+ 00-35-55_Nov-16-11 - ----Test ID = init_WPA2.txt-------
+ 00-35-55_Nov-16-11 - 
+|
+|
+| Searching Testbed File for TestID init_WPA2.txt
+ 00-35-55_Nov-16-11 - 
+|
+|
+| Found Testbed File --
+ 00-35-55_Nov-16-11 - 
+|
+|
+| Searching DUT File for TestID init_WPA2.txt
+ 00-35-55_Nov-16-11 - 
+|
+|
+| Found DUT File --
+ 00-35-55_Nov-16-11 - 
+|
+|
+| Searching DUT File for TestID init_WPA2.txt
+ 00-35-55_Nov-16-11 - 
+|
+|
+| Found DUT File --
+ 00-35-55_Nov-16-11 - Read Testbed Device Info Function
+ 00-35-55_Nov-16-11 - 
+|
+|
+| Searching Band for TestID init_WPA2.txt
+ 00-35-55_Nov-16-11 - 
+|
+|
+| Found Band = 
+ 00-35-55_Nov-16-11 - Invalid band information 
+ 00-35-55_Nov-16-11 - 
+|
+|
+| Searching Channel for TestID init_WPA2.txt
+ 00-35-55_Nov-16-11 - 
+|
+|
+| Found Channel = 
+ 00-35-55_Nov-16-11 - Test execution in -1 Band and Channel -1
+ 00-35-55_Nov-16-11 - 
+|
+|
+| Searching AP for TestID init_WPA2.txt
+ 00-35-55_Nov-16-11 - 
+|
+|
+| Found AP = 
+ 00-35-55_Nov-16-11 - ReadMapFile ------- ..\cmds\Sigma-WPA2\WPA2-Testbed-APs.txt-Atheros11nAPPowerSwitchPort-!
+ 00-35-55_Nov-16-11 - ReadMapFile ------- ..\cmds\Sigma-WPA2\WPA2-Testbed-APs.txt-Atheros11nAPIPAddress-!
+ 00-35-55_Nov-16-11 - ReadMapFile ------- ..\cmds\Sigma-WPA2\WPA2-Testbed-APs.txt-Atheros11nAPIPAddress-!
+ 00-35-55_Nov-16-11 - AP Name = Atheros11n | AP Number = 1 | AP Powerswitch Port = 3 | AP IP Address = 192.165.112.1 | AP State = off
+ 00-35-55_Nov-16-11 - ReadMapFile ------- ..\cmds\Sigma-WPA2\WPA2-Testbed-APs.txt-Marvell11nAPPowerSwitchPort-!
+ 00-35-55_Nov-16-11 - ReadMapFile ------- ..\cmds\Sigma-WPA2\WPA2-Testbed-APs.txt-Marvell11nAPIPAddress-!
+ 00-35-55_Nov-16-11 - ReadMapFile ------- ..\cmds\Sigma-WPA2\WPA2-Testbed-APs.txt-Marvell11nAPIPAddress-!
+ 00-35-55_Nov-16-11 - AP Name = Marvell11n | AP Number = 2 | AP Powerswitch Port = 6 | AP IP Address = 192.165.142.1 | AP State = off
+ 00-35-55_Nov-16-11 - ReadMapFile ------- ..\cmds\Sigma-WPA2\WPA2-Testbed-APs.txt-CiscoAPPowerSwitchPort-!
+ 00-35-55_Nov-16-11 - ReadMapFile ------- ..\cmds\Sigma-WPA2\WPA2-Testbed-APs.txt-CiscoAPIPAddress-!
+ 00-35-55_Nov-16-11 - ReadMapFile ------- ..\cmds\Sigma-WPA2\WPA2-Testbed-APs.txt-CiscoAPIPAddress-!
+ 00-35-55_Nov-16-11 - AP Name = Cisco | AP Number = 3 | AP Powerswitch Port = 16 | AP IP Address = 192.165.130.1 | AP State = off
+ 00-35-55_Nov-16-11 - ReadMapFile ------- ..\cmds\Sigma-WPA2\WPA2-Testbed-APs.txt-RalinkAPPowerSwitchPort-!
+ 00-35-55_Nov-16-11 - ReadMapFile ------- ..\cmds\Sigma-WPA2\WPA2-Testbed-APs.txt-RalinkAPIPAddress-!
+ 00-35-55_Nov-16-11 - ReadMapFile ------- ..\cmds\Sigma-WPA2\WPA2-Testbed-APs.txt-RalinkAPIPAddress-!
+ 00-35-55_Nov-16-11 - AP Name = Ralink | AP Number = 4 | AP Powerswitch Port = 1 | AP IP Address = 192.165.152.1 | AP State = off
+ 00-35-55_Nov-16-11 - ReadMapFile ------- ..\cmds\Sigma-WPA2\WPA2-Testbed-APs.txt-Broadcom11nAPPowerSwitchPort-!
+ 00-35-55_Nov-16-11 - ReadMapFile ------- ..\cmds\Sigma-WPA2\WPA2-Testbed-APs.txt-Broadcom11nAPIPAddress-!
+ 00-35-55_Nov-16-11 - ReadMapFile ------- ..\cmds\Sigma-WPA2\WPA2-Testbed-APs.txt-Broadcom11nAPIPAddress-!
+ 00-35-55_Nov-16-11 - AP Name = Broadcom11n | AP Number = 5 | AP Powerswitch Port = 8 | AP IP Address = 192.165.122.1 | AP State = off
+ 00-35-55_Nov-16-11 - 
+|
+|
+| Searching STA for TestID init_WPA2.txt
+ 00-35-55_Nov-16-11 - 
+|
+|
+| Found STA = 
+ 00-35-55_Nov-16-11 - ReadMapFile ------- ..\cmds\Sigma-WPA2\init_WPA2.txt-_sta_wireless_ip-!
+ 00-35-55_Nov-16-11 - 
+|
+|
+| Searching SSID for TestID init_WPA2.txt
+ 00-35-55_Nov-16-11 - 
+|
+|
+| Found SSID = 
+ 00-35-55_Nov-16-11 - 
+|
+|
+| Searching Band for TestID init_WPA2.txt
+ 00-35-55_Nov-16-11 - 
+|
+|
+| Found Band = 
+ 00-35-55_Nov-16-11 - Invalid band information 
+ 00-35-55_Nov-16-11 - 
+|
+|
+| Searching Channel for TestID init_WPA2.txt
+ 00-35-55_Nov-16-11 - 
+|
+|
+| Found Channel = 
+ 00-35-55_Nov-16-11 - Test execution in -1 Band and Channel -1
+ 00-35-55_Nov-16-11 - 
+|
+|
+| Searching Server for TestID init_WPA2.txt
+ 00-35-55_Nov-16-11 - 
+|
+|
+| Found server File --
+ 00-35-55_Nov-16-11 - 
+|
+|
+| Searching Supplicant for TestID init_WPA2.txt
+ 00-35-55_Nov-16-11 - 
+|
+|
+| Found Supplicant --
+ 00-35-55_Nov-16-11 - 
+|
+|
+| Searching Supplicant for TestID init_WPA2.txt
+ 00-35-55_Nov-16-11 - 
+|
+|
+| Found Supplicant --
+ 00-35-55_Nov-16-11 - ReadMapFile ------- ..\cmds\Sigma-WPA2\RADIUS-Servers.txt-IPAddress-!
+ 00-35-55_Nov-16-11 - ReadMapFile ------- ..\cmds\Sigma-WPA2\RADIUS-Servers.txt-Port-!
+ 00-35-55_Nov-16-11 - ReadMapFile ------- ..\cmds\Sigma-WPA2\RADIUS-Servers.txt-SharedSecret-!
+ 00-35-55_Nov-16-11 - RADIUS Name =  | RADIUS IP  = -1 | RADIUS  Port = -1 | RADIUS Shared Secret = -1 | Supplicant =  | Testbed STA Supplicant = 
+ 00-35-55_Nov-16-11 - ReadMapFile ------- ..\cmds\Sigma-WPA2\init_WPA2.txt-sniffer_enable-!
+ 00-35-55_Nov-16-11 - Type = WPA2-Enterprise    Category = c1    Band = ABG   EAP = TLS TestCase = init_WPA2.txt WEP =1 PreAuth = 1 11h = 1 Sigma Support =-1
+ 00-35-55_Nov-16-11 - Channel = -1 | Band = -1 | SSID =  | STA1 -    STA2 -    STA3 -  Testbed File -  DUTConfig File -  STAConfig File - 
+ 00-35-55_Nov-16-11 - 
+|
+|
+| Searching Throughput values for TestID init_WPA2.txt
+ 00-35-55_Nov-16-11 - 
+|
+|
+| Found Throughput values --
+ 00-35-55_Nov-16-11 - 
+|
+|
+| Searching APChannelWidth for TestID init_WPA2.txt
+ 00-35-55_Nov-16-11 - 
+|
+|
+| Found APChannelWidth = 
+ 00-35-55_Nov-16-11 - Channel Width = 
+ 00-35-55_Nov-16-11 - 
+|
+|
+| Searching QualCombinationInfo for TestID init_WPA2.txt
+ 00-35-55_Nov-16-11 - 
+|
+|
+| Found QualCombinationInfo = 
+ 00-35-55_Nov-16-11 - Combination Info = 
+ 00-35-55_Nov-16-11 - 
+|
+|
+| Searching CheckFlag11n for TestID init_WPA2.txt
+ 00-35-55_Nov-16-11 - 
+|
+|
+| Found CheckFlag11n = 
+ 00-35-55_Nov-16-11 -  is check flag
+ 00-35-55_Nov-16-11 - Options Check for 11n not required for test case init_WPA2.txt
+ 00-35-55_Nov-16-11 - 
+|
+|
+| Searching ConditionalStep-Aonly-40 for TestID init_WPA2.txt
+ 00-35-55_Nov-16-11 - 
+|
+|
+| Found ConditionalStep-Aonly-40 = 
+ 00-35-55_Nov-16-11 - 
+|
+|
+| Searching ConditionalStep-2SS for TestID init_WPA2.txt
+ 00-35-55_Nov-16-11 - 
+|
+|
+| Found ConditionalStep-2SS = 
+ 00-35-55_Nov-16-11 - 
+|
+|
+| Searching ConditionalStep-3SS for TestID init_WPA2.txt
+ 00-35-55_Nov-16-11 - 
+|
+|
+| Found ConditionalStep-3SS = 
+ 00-35-55_Nov-16-11 - 
+|
+|
+| Searching TX-SS for TestID init_WPA2.txt
+ 00-35-55_Nov-16-11 - 
+|
+|
+| Found TX-SS = 
+ 00-35-55_Nov-16-11 - 
+|
+|
+| Searching RX-SS for TestID init_WPA2.txt
+ 00-35-55_Nov-16-11 - 
+|
+|
+| Found RX-SS = 
+ 00-35-55_Nov-16-11 - 
+|
+|
+| Searching STA_Frag for TestID init_WPA2.txt
+ 00-35-55_Nov-16-11 - 
+|
+|
+| Found STA_Frag = 
+ 00-35-55_Nov-16-11 - 
+|
+|
+| Searching STA_Legacy_PS for TestID init_WPA2.txt
+ 00-35-55_Nov-16-11 - 
+|
+|
+| Found STA_Legacy_PS = 
+ 00-35-55_Nov-16-11 - 
+|
+|
+| Searching STA2_Legacy_PS for TestID init_WPA2.txt
+ 00-35-55_Nov-16-11 - 
+|
+|
+| Found STA2_Legacy_PS = 
+ 00-35-55_Nov-16-11 - 
+|
+|
+| Searching HTFlag for TestID init_WPA2.txt
+ 00-35-55_Nov-16-11 - 
+|
+|
+| Found HTFlag = 
+ 00-35-55_Nov-16-11 - 
+|
+|
+| Searching WMMFlag for TestID init_WPA2.txt
+ 00-35-55_Nov-16-11 - 
+|
+|
+| Found WMMFlag = 
+ 00-35-55_Nov-16-11 - 
+|
+|
+| Searching CheckFlag11n for TestID init_WPA2.txt
+ 00-35-55_Nov-16-11 - 
+|
+|
+| Found CheckFlag11n = 
+ 00-35-55_Nov-16-11 - 
+|
+|
+| Searching WMM Stream Thrshold values for TestID init_WPA2.txt
+ 00-35-55_Nov-16-11 - 
+|
+|
+| Found Throughput values --
+ 00-35-55_Nov-16-11 - Init file created --- > ..\cmds\Sigma-WPA2\InitEnv.txt
+ 00-35-55_Nov-16-11 - ReadMapFile ------- ..\cmds\Sigma-WPA2\WPA2-Testbed-APs.txt-Atheros11nAPPowerSwitchPort-!
+ 00-35-55_Nov-16-11 - ReadMapFile ------- ..\cmds\Sigma-WPA2\WPA2-Testbed-APs.txt-Atheros11nAPIPAddress-!
+ 00-35-55_Nov-16-11 - ReadMapFile ------- ..\cmds\Sigma-WPA2\WPA2-Testbed-APs.txt-Atheros11nAPIPAddress-!
+ 00-35-55_Nov-16-11 - ReadMapFile ------- ..\cmds\Sigma-WPA2\WPA2-Testbed-APs.txt-Marvell11nAPPowerSwitchPort-!
+ 00-35-55_Nov-16-11 - ReadMapFile ------- ..\cmds\Sigma-WPA2\WPA2-Testbed-APs.txt-Marvell11nAPIPAddress-!
+ 00-35-55_Nov-16-11 - ReadMapFile ------- ..\cmds\Sigma-WPA2\WPA2-Testbed-APs.txt-Marvell11nAPIPAddress-!
+ 00-35-55_Nov-16-11 - ReadMapFile ------- ..\cmds\Sigma-WPA2\WPA2-Testbed-APs.txt-CiscoAPPowerSwitchPort-!
+ 00-35-55_Nov-16-11 - ReadMapFile ------- ..\cmds\Sigma-WPA2\WPA2-Testbed-APs.txt-CiscoAPIPAddress-!
+ 00-35-55_Nov-16-11 - ReadMapFile ------- ..\cmds\Sigma-WPA2\WPA2-Testbed-APs.txt-CiscoAPIPAddress-!
+ 00-35-55_Nov-16-11 - ReadMapFile ------- ..\cmds\Sigma-WPA2\WPA2-Testbed-APs.txt-RalinkAPPowerSwitchPort-!
+ 00-35-55_Nov-16-11 - ReadMapFile ------- ..\cmds\Sigma-WPA2\WPA2-Testbed-APs.txt-RalinkAPIPAddress-!
+ 00-35-55_Nov-16-11 - ReadMapFile ------- ..\cmds\Sigma-WPA2\WPA2-Testbed-APs.txt-RalinkAPIPAddress-!
+ 00-35-55_Nov-16-11 - ReadMapFile ------- ..\cmds\Sigma-WPA2\WPA2-Testbed-APs.txt-Broadcom11nAPPowerSwitchPort-!
+ 00-35-55_Nov-16-11 - ReadMapFile ------- ..\cmds\Sigma-WPA2\WPA2-Testbed-APs.txt-Broadcom11nAPIPAddress-!
+ 00-35-55_Nov-16-11 - ReadMapFile ------- ..\cmds\Sigma-WPA2\WPA2-Testbed-APs.txt-Broadcom11nAPIPAddress-!
+ 00-35-55_Nov-16-11 - ReadMapFile ------- ..\cmds\Sigma-WPA2\init_WPA2.txt-sniffer_enable-!
+ 00-35-55_Nov-16-11 - ReadMapFile ------- ..\cmds\Sigma-WPA2\init_WPA2.txt-wfa_console_tg-!
+ 00-35-55_Nov-16-11 - ============================= Init File -..\cmds\Sigma-WPA2\init_WPA2.txt-  Sniffer Flag--1-  Sniffer IP --1--
+ 00-35-55_Nov-16-11 - ReadMapFile ------- ..\cmds\Sigma-WPA2\init_WPA2.txt-sniffer_enable-!

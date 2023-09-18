@@ -1,0 +1,21 @@
+#!/bin/sh
+cd "$1"
+
+if [ "$(git status -s |grep ".[MDTAC][[:blank:]]")" ];then
+	stat="M$(date +%m%d%H%M%S)"
+else
+	stat="B$(date +%m%d%H%M%S)"
+fi
+rev_string="$(git log -1 --pretty=format:%h-%cI)"
+rev_and_date="$(echo "${rev_string}"|sed -e "s/T.*$//")"
+rev_times="$(echo "${rev_string}"|sed -e "s/^.*T//"|sed -e s/+.*$//)"
+rev="$(echo "${rev_and_date}"|awk -F- '{print $1}')"
+rev_year="$(echo "${rev_and_date}"|awk -F- '{print $2}')"
+rev_month="$(echo "${rev_and_date}"|awk -F- '{print $3}')"
+rev_day="$(echo "${rev_and_date}"|awk -F- '{print $4}')"
+rev_hour="$(echo "${rev_times}"|awk -F: '{print $1}')"
+rev_min="$(echo "${rev_times}"|awk -F: '{print $2}')"
+rev_sec="$(echo "${rev_times}"|awk -F: '{print $3}')"
+ver="\"${rev}-${rev_year}${rev_month}${rev_day}T${rev_hour}${rev_min}${rev_sec}-${stat}\""
+echo "$ver"
+

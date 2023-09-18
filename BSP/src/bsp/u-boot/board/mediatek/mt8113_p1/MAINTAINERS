@@ -1,0 +1,6 @@
+MT8110_P1
+M:	Wenmin Tu <wenmin.tu@mediatek.com>
+S:	Maintained
+F:	board/mediatek/mt8113_p1
+F:	include/configs/mt8113_p1.h
+F:	configs/mt8113_p1_emmc_defconfig

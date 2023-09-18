@@ -1,0 +1,4 @@
+Attention: use SPACE to input next parameter
+name interface pagesize(B) cycle sparesize(B) pageperblock total_blocks ecc_strength
+MX30LF4G18AC 0x100 2048 5 64 64 4096 12
+TC58NVG2S0HTA00 0x100 4096 5 256 64 2048 24

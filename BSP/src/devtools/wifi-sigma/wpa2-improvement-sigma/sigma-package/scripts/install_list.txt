@@ -1,0 +1,9 @@
+wfa_dut
+iwpriv
+busybox-full
+getpid.sh
+getpstats.sh
+mtk_setipconfig.sh
+stoping.sh
+updatepid.sh
+wfaping.sh

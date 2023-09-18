@@ -1,0 +1,40 @@
+PREFIX = ../install
+CROSS = arm-linux-
+CROSS_COMPILER = $(CROSS:%-=%)
+ROOT = ../install/$(CROSS_COMPILER)
+DEP_LIBS = 
+INSTALL = _install
+CLEAN = _clean
+NAME = nvram
+CONFIG =  -Ilibfile_op
+ifeq ($(strip $(CROSS)), arm-linux-)
+    OFLAGS = -O2 $(THUMB)
+else
+    OFLAGS = -O2
+endif
+CFLAGS = $(DEF_CFLAGS) $(OFLAGS) -fPIC
+
+LIB = lib$(NAME).a lib$(NAME).so
+VPATH = lib$(NAME)
+LOBJ = $(patsubst %.S,%.o, \
+       $(patsubst %.s,%.o, \
+       $(patsubst %.c,%.o, \
+       $(patsubst %.cpp, %.o, \
+       $(notdir $(foreach DIR,$(VPATH),\
+       $(wildcard $(DIR)/*.S)  \
+       $(wildcard $(DIR)/*.s)  \
+       $(wildcard $(DIR)/*.c)  \
+       $(wildcard $(DIR)/*.cpp)))))))
+
+ALL = $(LIB)
+
+include bin/Makefile.config
+include bin/Makefile.template
+
+_install:
+	mkdir -p $(ROOT)/include/$(NAME)
+	cp -f lib$(NAME)/*.h $(ROOT)/include/$(NAME)
+
+_clean:
+	rm -rf $(ROOT)/include/$(NAME)
+

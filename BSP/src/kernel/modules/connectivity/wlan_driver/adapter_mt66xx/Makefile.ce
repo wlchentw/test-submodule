@@ -1,0 +1,28 @@
+# Makefile for MT66xx wifi adapter driver
+
+##############################################################
+# Compile settings
+##############################################################
+
+ifneq (,$(wildcard ${TOPDIR}/tmp/work/${PACKAGE_ARCH}${TARGET_VENDOR}-${TARGET_OS}/mt66xx-wmt-drv/1.0-r0/mt66xx-wmt-drv-1.0/Module.symvers))
+EXTRA_SYMBOLS = ${TOPDIR}/tmp/work/${PACKAGE_ARCH}${TARGET_VENDOR}-${TARGET_OS}/mt66xx-wmt-drv/1.0-r0/mt66xx-wmt-drv-1.0/Module.symvers
+else
+EXTRA_SYMBOLS = ${TOPDIR}/tmp/work/${PACKAGE_ARCH}${TARGET_VENDOR}-${TARGET_OS}/mt66xx-wmt-drv/1.0-r0/git/Module.symvers
+endif
+
+all: driver
+
+driver:
+	+cd $(DRIVER_DIR) && make -C $(LINUX_SRC) V=1 M=$(DRIVER_DIR) MODULE_NAME=$(MODULE_NAME) PLATFORM_FLAGS="$(PLATFORM_FLAGS)"  KBUILD_EXTRA_SYMBOLS="$(EXTRA_SYMBOLS)" modules
+
+#common:
+#	+cd $(COMMON_DIR) && make -C $(LINUX_SRC) M=$(COMMON_DIR) modules
+# @cat ${TOPDIR}/build/tmp/work/cortexa7hf-neon-vfpv4-poky-linux-gnueabi/mt66xx-wmt-drv/1.0-r0/mt66xx-wmt-drv-1.0/Module.symvers >> ${TOPDIR}/build/tmp/work/cortexa7hf-neon-vfpv4-poky-linux-gnueabi/mt66xx-wmt-cdev-wifi/1.0-r0/mt66xx-wmt-cdev-wifi-1.0/Module.symvers
+clean: driver_clean
+
+driver_clean:
+	cd $(DRIVER_DIR) && make -C $(LINUX_SRC) M=$(DRIVER_DIR) MODULE_NAME=$(MODULE_NAME) PLATFORM_FLAGS="$(PLATFORM_FLAGS)"  KBUILD_EXTRA_SYMBOLS="$(EXTRA_SYMBOLS)" clean
+	if [ -e $(DRIVER_DIR)/$(MODULE_NAME).ko ]; then rm $(DRIVER_DIR)/$(MODULE_NAME).ko; fi;
+
+.PHONY: all clean driver driver_clean
+

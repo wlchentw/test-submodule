@@ -1,0 +1,12 @@
+
+#
+# Netronix platform support 
+#
+config NTX_PLATFORM
+	bool "Netronix platform support"
+	---help---
+	  Enable support for Netronix platform .
+
+	  Say Y when you have netronix platform environment.
+
+

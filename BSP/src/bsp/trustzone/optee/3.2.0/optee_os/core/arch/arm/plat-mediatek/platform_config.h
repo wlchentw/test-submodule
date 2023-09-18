@@ -1,0 +1,100 @@
+/* SPDX-License-Identifier: BSD-2-Clause */
+/*
+ * Copyright (c) 2015, Linaro Limited
+ */
+
+#ifndef PLATFORM_CONFIG_H
+#define PLATFORM_CONFIG_H
+
+#include <mm/generic_ram_layout.h>
+
+/* Make stacks aligned to data cache line length */
+#define STACK_ALIGNMENT		64
+
+#ifdef ARM64
+#ifdef CFG_WITH_PAGER
+#error "Pager not supported for ARM64"
+#endif
+#endif /*ARM64*/
+
+#if defined(PLATFORM_FLAVOR_mt8173)
+
+#define GIC_BASE		0x10220000
+#define GICC_OFFSET		0x2000
+#define GICD_OFFSET		0x1000
+#define GICC_SIZE		0x1000
+#define GICD_SIZE		0x1000
+#define GICC_BASE		(GIC_BASE+GICC_OFFSET)
+#define GICD_BASE		(GIC_BASE+GICD_OFFSET)
+
+#define UART0_BASE		0x11002000
+#define UART1_BASE		0x11003000
+#define UART2_BASE		0x11004000
+#define UART3_BASE		0x11005000
+
+#define CONSOLE_UART_BASE	UART0_BASE
+#define CONSOLE_BAUDRATE	921600
+#define CONSOLE_UART_CLK_IN_HZ	26000000
+
+#define DRAM0_BASE		0x40000000
+#define DRAM0_SIZE		0x80000000
+
+#elif defined(PLATFORM_FLAVOR_mt8512)
+/* gic-500, v3 */
+#define GIC_BASE		0x0C000000
+#define GICC_OFFSET		0x400000
+#define GICD_OFFSET		0x0
+#define GICC_BASE		(GIC_BASE+GICC_OFFSET)
+#define GICD_BASE		(GIC_BASE+GICD_OFFSET)
+#define GICC_SIZE		CORE_MMU_DEVICE_SIZE
+#define GICD_SIZE		CORE_MMU_DEVICE_SIZE
+
+#define UART0_BASE		0x11002000
+#define UART1_BASE		0x11003000
+#define UART2_BASE		0x11004000
+#define UART3_BASE		0x11005000
+
+#define CONSOLE_UART_BASE	UART0_BASE
+#define CONSOLE_BAUDRATE	921600
+#define SYSIRQ_BASE		0xf0200a80
+#ifdef CFG_FPGA
+#define CONSOLE_UART_CLK_IN_HZ	12000000
+#else
+#define CONSOLE_UART_CLK_IN_HZ	26000000
+#endif
+
+#elif defined(PLATFORM_FLAVOR_mt8532)
+/* gic-500, v3 */
+#define GIC_BASE		0x0C000000
+#define GICC_OFFSET		0x400000
+#define GICD_OFFSET		0x0
+#define GICC_BASE		(GIC_BASE+GICC_OFFSET)
+#define GICD_BASE		(GIC_BASE+GICD_OFFSET)
+#define GICC_SIZE		CORE_MMU_DEVICE_SIZE
+#define GICD_SIZE		CORE_MMU_DEVICE_SIZE
+
+#define UART0_BASE		0x11002000
+#define UART1_BASE		0x11002400
+#define UART2_BASE		0x11002800
+
+#define CONSOLE_UART_BASE	UART1_BASE
+#define CONSOLE_BAUDRATE	921600
+
+#ifdef CFG_FPGA
+#define CONSOLE_UART_CLK_IN_HZ 12000000
+#else
+#define CONSOLE_UART_CLK_IN_HZ 26000000
+#endif
+
+#define DRAM0_BASE		0x40000000
+#define DRAM0_SIZE		0x200000000
+
+#else
+#error "Unknown platform flavor"
+#endif
+
+#ifdef CFG_WITH_LPAE
+#define MAX_XLAT_TABLES		8
+#endif
+
+#endif /*PLATFORM_CONFIG_H*/

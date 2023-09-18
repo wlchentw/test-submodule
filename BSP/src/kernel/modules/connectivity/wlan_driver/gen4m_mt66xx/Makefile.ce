@@ -1,0 +1,38 @@
+# Makefile for MT66xx wifi driver
+
+##############################################################
+# Common settings
+##############################################################
+
+
+##############################################################
+# Platform specific
+##############################################################
+
+
+##############################################################
+# Compile settings
+##############################################################
+
+ifneq (,$(wildcard ${TOPDIR}/tmp/work/${PACKAGE_ARCH}-poky-${TARGET_OS}/mt66xx-wmt-cdev-wifi/1.0-r0/mt66xx-wmt-cdev-wifi-1.0/Module.symvers))
+EXTRA_SYMBOLS = ${TOPDIR}/tmp/work/${PACKAGE_ARCH}-poky-${TARGET_OS}/mt66xx-wmt-cdev-wifi/1.0-r0/mt66xx-wmt-cdev-wifi-1.0/Module.symvers
+else
+EXTRA_SYMBOLS = ${TOPDIR}/tmp/work/${PACKAGE_ARCH}-poky-${TARGET_OS}/mt66xx-wmt-cdev-wifi/1.0-r0/git/Module.symvers
+endif
+
+all: driver
+
+driver:
+	+cd $(DRIVER_DIR) && make -C $(LINUX_SRC) M=$(DRIVER_DIR) MODULE_NAME=$(MODULE_NAME) PLATFORM_FLAGS="$(PLATFORM_FLAGS)"  KBUILD_EXTRA_SYMBOLS="$(EXTRA_SYMBOLS)" modules
+
+
+clean: driver_clean
+
+
+driver_clean:
+	cd $(DRIVER_DIR) && make -C $(LINUX_SRC) M=$(DRIVER_DIR) MODULE_NAME=$(MODULE_NAME) clean
+	if [ -e $(DRIVER_DIR)/$(MODULE_NAME).ko ]; then rm $(DRIVER_DIR)/$(MODULE_NAME).ko; fi;
+
+
+.PHONY: all clean driver driver_clean
+

@@ -1,0 +1,17 @@
+0. put the sigma tool on UCC PC and use a usb cable to connect the DUT and UCC PC
+=========The following steps descripts how to first run WPA3 sigma tool====
+1. Doubleclick to run script of "0_rndis_interface.bat"
+2. Doubleclick to run script of "1_wts_update.bat", when this script let you choose test type, please choose "wpa".
+   This script will push sigma tools to the directory of "/data/wts"
+3. Doubleclick to run script of "2_wts_setup.bat", when this script let you choose test type, please choose "wpa".
+   After this step, you will see the rndis0 interface of the DUT has been up and has been assigned the ip address 192.168.250.29
+   After this step, you will see the RNDIS type Ethernet interface on UCC PC, you should manully assign it a static ip address be 192.168.250.xx (for example, 192.168.250.99)
+4. enter adb shell of DUT, manully input and run the cmds in "run_sigma_wpa.sh" one by one. Cmds like "echo xxx" no need to run.
+   after this, you should run cmd of "ps | grep wfa" to confirm the wfa_dut and wfa_ca have been successfully started.
+   Please ensure not to close this adb shell window forever.
+   
+   
+=========The following steps descripts how to re-run WPA3 sigma tool=======
+1. exit and close all adb shell windows of DUT
+2. open a new adb shell window and run adb shell cmd "rm -rf /data/wts" on DUT to delete all the sigma tools on DUT
+3. follow the steps of "first run WPA3 sigma tool" 

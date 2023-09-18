@@ -1,0 +1,13 @@
+[Unit]
+Description=66xx launcher Daemon
+After=wmtd.service
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/wmt_launcher -p /lib/firmware > ttyS0
+StandardOutput=tty
+StandardError=tty
+
+[Install]
+Alias=launcherd
+WantedBy=multi-user.target

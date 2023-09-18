@@ -1,0 +1,393 @@
+--- Starting bitbake server pid 66940 at 2019-05-21 03:18:35.511202 ---
+Started bitbake server pid 66940
+DEBUG: Found bblayers.conf (/worktmp/codebase/8133/build/conf/bblayers.conf)
+DEBUG: Adding layer /worktmp/codebase/8133/meta/poky/meta
+DEBUG: Adding layer /worktmp/codebase/8133/meta/poky/meta-poky
+DEBUG: Adding layer /worktmp/codebase/8133/meta/poky/meta-yocto-bsp
+DEBUG: Adding layer /worktmp/codebase/8133/meta/poky/../meta-gplv2
+DEBUG: Adding layer /worktmp/codebase/8133/meta/poky/../meta-openembedded/meta-filesystems
+DEBUG: Adding layer /worktmp/codebase/8133/meta/poky/../meta-openembedded/meta-python
+DEBUG: Adding layer /worktmp/codebase/8133/meta/poky/../meta-openembedded/meta-networking
+DEBUG: Adding layer /worktmp/codebase/8133/meta/poky/../meta-openembedded/meta-oe
+DEBUG: Adding layer /worktmp/codebase/8133/meta/poky/../meta-mediatek
+DEBUG: Adding layer /worktmp/codebase/8133/meta/poky/../meta-mediatek-gpl
+DEBUG: Adding layer /worktmp/codebase/8133/meta/poky/../meta-mediatek-mt8133
+DEBUG: Adding layer /worktmp/codebase/8133/meta/poky/../meta-mediatek-mt8133-gpl
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/meta/conf/bitbake.conf:741: including conf/abi_version.conf
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/meta/conf/bitbake.conf:742: including conf/site.conf
+DEBUG: CONF file 'conf/site.conf' not found
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/meta/conf/bitbake.conf:743: including conf/auto.conf
+DEBUG: CONF file 'conf/auto.conf' not found
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/meta/conf/bitbake.conf:744: including conf/local.conf
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/meta/conf/bitbake.conf:745: including conf/multiconfig/default.conf
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/meta/conf/bitbake.conf:746: including conf/machine/aiv8168m1-rtos.conf
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/../meta-mediatek-mt8133/conf/machine/aiv8168m1-rtos.conf:7: including /worktmp/codebase/8133/build/../meta/meta-mediatek/conf/machine/arch-arm64-tune-cortexa7-multilib.inc
+DEBUG: CONF /worktmp/codebase/8133/build/../meta/meta-mediatek/conf/machine/arch-arm64-tune-cortexa7-multilib.inc:3: including conf/machine/include/tune-cortexa7.inc
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/meta/conf/machine/include/tune-cortexa7.inc:3: including conf/machine/include/arm/arch-armv7ve.inc
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/meta/conf/machine/include/arm/arch-armv7ve.inc:8: including conf/machine/include/arm/arch-armv7a.inc
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/meta/conf/machine/include/arm/arch-armv7a.inc:8: including conf/machine/include/arm/arch-armv6.inc
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/meta/conf/machine/include/arm/arch-armv6.inc:8: including conf/machine/include/arm/arch-armv5-dsp.inc
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/meta/conf/machine/include/arm/arch-armv5-dsp.inc:4: including conf/machine/include/arm/arch-armv5.inc
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/meta/conf/machine/include/arm/arch-armv5.inc:8: including conf/machine/include/arm/arch-armv4.inc
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/meta/conf/machine/include/arm/arch-armv4.inc:15: including conf/machine/include/arm/arch-arm.inc
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/meta/conf/machine/include/arm/arch-armv4.inc:16: including conf/machine/include/arm/feature-arm-thumb.inc
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/meta/conf/machine/include/arm/arch-armv5.inc:9: including conf/machine/include/arm/feature-arm-vfp.inc
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/meta/conf/machine/include/arm/arch-armv7a.inc:9: including conf/machine/include/arm/feature-arm-neon.inc
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/../meta-mediatek-mt8133/conf/machine/aiv8168m1-rtos.conf:9: including conf/multilib.conf
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/meta/conf/bitbake.conf:747: including conf/machine-sdk/x86_64.conf
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/meta/conf/bitbake.conf:748: including conf/distro/poky-basic-systemd.conf
+Entering server connection loop
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/../meta-mediatek-gpl/conf/distro/poky-basic-systemd.conf:13: including conf/distro/include/default-providers-basic.inc
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/meta/conf/bitbake.conf:749: including conf/distro/defaultsetup.conf
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/meta/conf/distro/defaultsetup.conf:1: including conf/distro/include/default-providers.inc
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/meta/conf/distro/defaultsetup.conf:2: including conf/distro/include/default-versions.inc
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/meta/conf/distro/defaultsetup.conf:3: including conf/distro/include/default-distrovars.inc
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/meta/conf/distro/defaultsetup.conf:4: including conf/distro/include/world-broken.inc
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/meta/conf/distro/defaultsetup.conf:7: including conf/distro/include/tcmode-default.inc
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/meta/conf/distro/include/tcmode-default.inc:71: including conf/distro/include/as-needed.inc
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/meta/conf/distro/defaultsetup.conf:10: including conf/distro/include/tclibc-glibc.inc
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/meta/conf/distro/defaultsetup.conf:12: including conf/distro/include/uninative-flags.inc
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/meta/conf/bitbake.conf:750: including conf/documentation.conf
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/meta/conf/bitbake.conf:751: including conf/licenses.conf
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/meta/conf/bitbake.conf:752: including conf/sanity.conf
+DEBUG: Inheriting /worktmp/codebase/8133/meta/poky/meta/classes/base.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /worktmp/codebase/8133/meta/poky/meta/classes/patch.bbclass (from /worktmp/codebase/8133/meta/poky/meta/classes/base.bbclass:4)
+DEBUG: Inheriting /worktmp/codebase/8133/meta/poky/meta/classes/terminal.bbclass (from /worktmp/codebase/8133/meta/poky/meta/classes/patch.bbclass:11)
+DEBUG: Inheriting /worktmp/codebase/8133/meta/poky/meta/classes/staging.bbclass (from /worktmp/codebase/8133/meta/poky/meta/classes/base.bbclass:5)
+DEBUG: Inheriting /worktmp/codebase/8133/meta/poky/meta/classes/mirrors.bbclass (from /worktmp/codebase/8133/meta/poky/meta/classes/base.bbclass:7)
+DEBUG: Inheriting /worktmp/codebase/8133/meta/poky/meta/classes/utils.bbclass (from /worktmp/codebase/8133/meta/poky/meta/classes/base.bbclass:8)
+DEBUG: Inheriting /worktmp/codebase/8133/meta/poky/meta/classes/utility-tasks.bbclass (from /worktmp/codebase/8133/meta/poky/meta/classes/base.bbclass:9)
+DEBUG: Inheriting /worktmp/codebase/8133/meta/poky/meta/classes/metadata_scm.bbclass (from /worktmp/codebase/8133/meta/poky/meta/classes/base.bbclass:10)
+DEBUG: Inheriting /worktmp/codebase/8133/meta/poky/meta/classes/logging.bbclass (from /worktmp/codebase/8133/meta/poky/meta/classes/base.bbclass:11)
+DEBUG: Inheriting /worktmp/codebase/8133/meta/poky/meta/classes/buildhistory.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /worktmp/codebase/8133/meta/poky/meta/classes/multilib_global.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /worktmp/codebase/8133/meta/poky/meta-poky/classes/poky-sanity.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /worktmp/codebase/8133/meta/poky/meta/classes/package_rpm.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /worktmp/codebase/8133/meta/poky/meta/classes/package.bbclass (from /worktmp/codebase/8133/meta/poky/meta/classes/package_rpm.bbclass:1)
+DEBUG: Inheriting /worktmp/codebase/8133/meta/poky/meta/classes/packagedata.bbclass (from /worktmp/codebase/8133/meta/poky/meta/classes/package.bbclass:41)
+DEBUG: Inheriting /worktmp/codebase/8133/meta/poky/meta/classes/chrpath.bbclass (from /worktmp/codebase/8133/meta/poky/meta/classes/package.bbclass:42)
+DEBUG: Inheriting /worktmp/codebase/8133/meta/poky/meta/classes/insane.bbclass (from /worktmp/codebase/8133/meta/poky/meta/classes/package.bbclass:45)
+DEBUG: Inheriting /worktmp/codebase/8133/meta/poky/meta/classes/buildstats.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /worktmp/codebase/8133/meta/poky/meta/classes/image-mklibs.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /worktmp/codebase/8133/meta/poky/meta/classes/linuxloader.bbclass (from /worktmp/codebase/8133/meta/poky/meta/classes/image-mklibs.bbclass:5)
+DEBUG: Inheriting /worktmp/codebase/8133/meta/poky/meta/classes/image-prelink.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /worktmp/codebase/8133/meta/poky/meta/classes/debian.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /worktmp/codebase/8133/meta/poky/meta/classes/devshell.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /worktmp/codebase/8133/meta/poky/meta/classes/sstate.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /worktmp/codebase/8133/meta/poky/meta/classes/license.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /worktmp/codebase/8133/meta/poky/meta/classes/remove-libtool.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /worktmp/codebase/8133/meta/poky/meta/classes/blacklist.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /worktmp/codebase/8133/meta/poky/meta/classes/sanity.bbclass (from configuration INHERITs:0)
+DEBUG: Clearing SRCREV cache due to cache policy of: clear
+DEBUG: Using cache in '/worktmp/codebase/8133/build/cache/local_file_checksum_cache.dat'
+DEBUG: Using cache in '/worktmp/codebase/8133/build/cache/bb_codeparser.dat'
+Accepting [<socket.socket fd=8, family=AddressFamily.AF_UNIX, type=SocketKind.SOCK_STREAM, proto=0, laddr=bitbake.sock>]
+Connecting Client
+Running command ['setFeatures', [2]]
+Running command ['updateConfig', {'postfile': [], 'prefile': [], 'dump_signatures': [], 'force': False, 'extra_assume_provided': [], 'server_timeout': None, 'verbose': False, 'abort': True, 'invalidate_stamp': 'compile', 'debug_domains': [], 'dry_run': False, 'profile': False, 'debug': 0}, {'GTK_MODULES': 'gail:atk-bridge', 'LSF_LIBDIR': '/mtkeda/LSF/9/9.1/linux2.6-glibc2.3-x86_64/lib', 'MAIL': '/var/mail/mtk20167', 'MTK_INTERNAL': 'TRUE', 'MODULE_VERSION': '3.2.6', 'LANG': 'en_US.UTF-8', 'MTKLSF_IPDESIGNER': 'RH40 RH50', 'LOGNAME': 'mtk20167', '_LMFILES_': '/mtkeda/IPDesigner/modulefiles/IPDesigner/12R1.35-64:/mtkoss/Modules/3.2.6/x86_64/modulefiles/dsptk-md32/8.1.0.27-64', 'LC_ALL': 'en_US.UTF-8', 'BB_ENV_EXTRAWHITE': 'ALL_PROXY BBPATH_EXTRA BB_NO_NETWORK BB_NUMBER_THREADS BB_SETSCENE_ENFORCE BB_SRCREV_POLICY DISTRO FTPS_PROXY FTP_PROXY GIT_PROXY_COMMAND HTTPS_PROXY HTTP_PROXY MACHINE NO_PROXY PARALLEL_MAKE SCREENDIR SDKMACHINE SOCKS5_PASSWD SOCKS5_USER SSH_AGENT_PID SSH_AUTH_SOCK STAMPS_DIR TCLIBC TCMODE all_proxy ftp_proxy ftps_proxy http_proxy https_proxy no_proxy ', 'QT_QPA_PLATFORMTHEME': 'appmenu-qt5', 'MTKCONF': ':/mtkeda/IT/conf/', 'CHESSDIR': '/mtkeda/IPDesigner/12R1.35-64/retargetable-12R1/chessdir', 'XCHESSDIR': '/mtkeda/IPDesigner/12R1.35-64/retargetable-12R1/chessdir/xchessdir', 'BRIDGEDIR': '/mtkeda/IPDesigner/12R1.35-64/retargetable-12R1/chessdir/bridgedir', 'CHESSZIPDIR': '/mtkeda/IPDesigner/12R1.35-64/source/12R1', 'USER': 'mtk20167', 'LSF_SERVERDIR': '/mtkeda/LSF/9/9.1/linux2.6-glibc2.3-x86_64/etc', 'LOADEDMODULES': 'IPDesigner/12R1.35-64:dsptk-md32/8.1.0.27-64', 'LD_LIBRARY_PATH': '/mtkeda/LSF/9/9.1/linux2.6-glibc2.3-x86_64/lib:/mtkoss/tcl/8.4.19/x86_64/lib:/mtkoss/tcl/8.4.19/x86_64/lib/tcl8.4:/mtkoss/tcl/8.4.19/x86_64/lib/tclx8.4:/lib64:/lib:', 'MODULE_ARCH': 'x86_64', 'SSH_CLIENT': '10.17.30.13 50428 22', 'SHELL': '/bin/bash', 'MODULERCFILE': '/mtkoss/Modules/3.2.6/x86_64/etc/rc', 'TERM': 'xterm', 'DISPLAY': 'localhost:11.0', 'LSF_BINDIR': '/mtkeda/LSF/9/9.1/linux2.6-glibc2.3-x86_64/bin', 'BBPATH': '/worktmp/codebase/8133/build', 'LSF_ENVDIR': '/mtkeda/LSF/9/conf', 'PS1': '[\\u@\\h \\W]\\$', 'PATH': '/worktmp/codebase/8133/meta/poky/scripts:/worktmp/codebase/8133/meta/poky/bitbake/bin:/worktmp/codebase/yocto-new/master-aiv/meta/poky/scripts:/worktmp/codebase/yocto-new/master-aiv/meta/poky/bitbake/bin:/mtkeda/LSF/9/9.1/linux2.6-glibc2.3-x86_64/etc:/mtkeda/LSF/9/9.1/linux2.6-glibc2.3-x86_64/bin:/mtkeda/dsptk-md32/8.1.0.27-64:/mtkeda/dsptk-md32/8.1.0.27-64/System:/mtkeda/dsptk-md32/8.1.0.27-64/Md32:/mtkeda/IPDesigner/common/bin:/mtkeda/IPDesigner/12R1.35-64/retargetable-12R1/bin/LNa64bin:/mtkeda/IPDesigner/12R1.35-64/retargetable-12R1/bin:/mtkeda/perforce/linux26x86_64_2014.1:/mtkeda/perforce/linux26x86_64_2014.1/p4v/bin:/mtkoss/go/go1.6.linux-amd64/bin:/mtkoss/arm-2010q1/bin:/mtkoss/audit2allow/0.1-ubuntu-12.04/x86_64/bin:/mtkoss/wine/1.7.21-ubuntu-12.04/x86_64/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/bin:/usr/games:/usr/local/games:/mtkeda/IT/bin:/mtkeda/IT/sbin:/mtkeda/CI/MtkCheckStyle:/mtkeda/CI/MtkCheckStyle/MtkCheckStyle:/mtkeda/apb:/mtkeda/CI/MtkCheckSyntax:/mtkeda/CI/MtkCheckSyntax/MtkCheckSyntax:/mtkeda/CI/MtkCheckStyle:/mtkeda/Utility/LM_daemon/Synopsys/11.6/Linux/amd64/bin:/mtkeda/ado/bin/ubuntu', 'CHESSROOT': '/mtkeda/IPDesigner/12R1.35-64', 'MODULEPATH': '/mtkoss/Modules/$MODULE_VERSION/x86_64/modulefiles:/site/mtkoss/Modules/$MODULE_VERSION/x86_64/modulefiles:/site/rfwsoss/Modules/$MODULE_VERSION/x86_64/modulefiles::/mtkeda/IPDesigner/modulefiles', 'MODULESHOME': '/mtkoss/Modules/3.2.6/x86_64', 'XDG_SESSION_COOKIE': '54d7fe3caa79ba20bf148452557a497e-1557770535.99247-518012051', 'TEMPLATECONF': '/worktmp/codebase/8133/meta/meta-mediatek-mt8133/conf/base/aiv8168m1-rtos', 'MODULE_VERSION_STACK': '3.2.6', 'NMLVIEWDIR': '/mtkeda/IPDesigner/12R1.35-64/retargetable-12R1/chessdir/nmlviewdir', 'BUILDDIR': '/worktmp/codebase/8133/build', 'YCHESSDIR': '/mtkeda/IPDesigner/12R1.35-64/retargetable-12R1/chessdir/ychessdir', '_': '/worktmp/codebase/8133/meta/poky/bitbake/bin/bitbake', 'CHESSBINDIR': '/mtkeda/IPDesigner/12R1.35-64/retargetable-12R1/bin/LNa64bin', 'SSH_CONNECTION': '10.17.30.13 50428 10.17.30.175 22', 'SHLVL': '1', 'LM_LICENSE_FILE': '2800@MTKLC18:2800@10.10.5.78', 'PWD': '/worktmp/codebase/8133/src/kernel/modules/connectivity/adaptor', 'MANPATH': '/mtkeda/LSF/9/9.1/man:', 'OLDPWD': '/worktmp/codebase/8133/build', 'SSH_TTY': '/dev/pts/1', 'BINARY_TYPE_HPC': '', 'CHECKERSDIR': '/mtkeda/IPDesigner/12R1.35-64/retargetable-12R1/chessdir/checkersdir', 'HOME': '/proj/mtk20167'}, ['/worktmp/codebase/8133/meta/poky/bitbake/bin/bitbake', 'mt8133-wmt-cdev-wifi', '-C', 'compile']]
+Running command ['getVariable', 'BBINCLUDELOGS']
+Running command ['getVariable', 'BBINCLUDELOGS_LINES']
+Running command ['getSetVariable', 'BB_CONSOLELOG']
+Running command ['getUIHandlerNum']
+Running command ['setEventMask', 1, 20, {}, ['bb.runqueue.runQueueExitWait', 'bb.event.LogExecTTY', 'logging.LogRecord', 'bb.build.TaskFailed', 'bb.build.TaskBase', 'bb.event.ParseStarted', 'bb.event.ParseProgress', 'bb.event.ParseCompleted', 'bb.event.CacheLoadStarted', 'bb.event.CacheLoadProgress', 'bb.event.CacheLoadCompleted', 'bb.command.CommandFailed', 'bb.command.CommandExit', 'bb.command.CommandCompleted', 'bb.cooker.CookerExit', 'bb.event.MultipleProviders', 'bb.event.NoProvider', 'bb.runqueue.sceneQueueTaskStarted', 'bb.runqueue.runQueueTaskStarted', 'bb.runqueue.runQueueTaskFailed', 'bb.runqueue.sceneQueueTaskFailed', 'bb.event.BuildBase', 'bb.build.TaskStarted', 'bb.build.TaskSucceeded', 'bb.build.TaskFailedSilent', 'bb.build.TaskProgress', 'bb.event.ProcessStarted', 'bb.event.ProcessProgress', 'bb.event.ProcessFinished']]
+Running command ['getVariable', 'BB_DEFAULT_TASK']
+Running command ['setConfig', 'cmd', 'build']
+Running command ['buildTargets', ['mt8133-wmt-cdev-wifi'], 'build']
+fatal: cannot change to '/worktmp/codebase/8133/build/../src/bsp/preloader': No such file or directory
+fatal: cannot change to '/worktmp/codebase/8133/build/../src/bsp/preloader': No such file or directory
+fatal: cannot change to '/worktmp/codebase/8133/build/../src/kernel/linux/upstream': No such file or directory
+fatal: cannot change to '/worktmp/codebase/8133/build/../src/kernel/linux/v4.9': No such file or directory
+fatal: cannot change to '/worktmp/codebase/8133/build/../src/kernel/linux/v4.19': No such file or directory
+fatal: cannot change to '/worktmp/codebase/8133/build/../src/kernel/linux/v3.18': No such file or directory
+fatal: not a git repository (or any parent up to mount point /worktmp)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+fatal: not a git repository (or any parent up to mount point /worktmp)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+fatal: not a git repository (or any parent up to mount point /worktmp)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+fatal: not a git repository (or any parent up to mount point /worktmp)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+fatal: not a git repository (or any parent up to mount point /worktmp)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+fatal: not a git repository (or any parent up to mount point /worktmp)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+fatal: not a git repository (or any parent up to mount point /worktmp)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+fatal: not a git repository (or any parent up to mount point /worktmp)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+fatal: not a git repository (or any parent up to mount point /worktmp)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+fatal: cannot change to '/worktmp/codebase/8133/build/../src/bsp/preloader': No such file or directory
+fatal: not a git repository (or any parent up to mount point /worktmp)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+fatal: not a git repository (or any parent up to mount point /worktmp)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+fatal: not a git repository (or any parent up to mount point /worktmp)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+fatal: cannot change to '/worktmp/codebase/8133/build/../src/bsp/preloader': No such file or directory
+Connecting Client
+Disconnecting Client
+No timeout, exiting.
+Exiting
+--- Starting bitbake server pid 67368 at 2019-05-21 03:21:02.789159 ---
+Started bitbake server pid 67368
+DEBUG: Found bblayers.conf (/worktmp/codebase/8133/build/conf/bblayers.conf)
+DEBUG: Adding layer /worktmp/codebase/8133/meta/poky/meta
+DEBUG: Adding layer /worktmp/codebase/8133/meta/poky/meta-poky
+DEBUG: Adding layer /worktmp/codebase/8133/meta/poky/meta-yocto-bsp
+DEBUG: Adding layer /worktmp/codebase/8133/meta/poky/../meta-gplv2
+DEBUG: Adding layer /worktmp/codebase/8133/meta/poky/../meta-openembedded/meta-filesystems
+DEBUG: Adding layer /worktmp/codebase/8133/meta/poky/../meta-openembedded/meta-python
+DEBUG: Adding layer /worktmp/codebase/8133/meta/poky/../meta-openembedded/meta-networking
+DEBUG: Adding layer /worktmp/codebase/8133/meta/poky/../meta-openembedded/meta-oe
+DEBUG: Adding layer /worktmp/codebase/8133/meta/poky/../meta-mediatek
+DEBUG: Adding layer /worktmp/codebase/8133/meta/poky/../meta-mediatek-gpl
+DEBUG: Adding layer /worktmp/codebase/8133/meta/poky/../meta-mediatek-mt8133
+DEBUG: Adding layer /worktmp/codebase/8133/meta/poky/../meta-mediatek-mt8133-gpl
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/meta/conf/bitbake.conf:741: including conf/abi_version.conf
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/meta/conf/bitbake.conf:742: including conf/site.conf
+DEBUG: CONF file 'conf/site.conf' not found
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/meta/conf/bitbake.conf:743: including conf/auto.conf
+DEBUG: CONF file 'conf/auto.conf' not found
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/meta/conf/bitbake.conf:744: including conf/local.conf
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/meta/conf/bitbake.conf:745: including conf/multiconfig/default.conf
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/meta/conf/bitbake.conf:746: including conf/machine/aiv8168m1-rtos.conf
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/../meta-mediatek-mt8133/conf/machine/aiv8168m1-rtos.conf:7: including /worktmp/codebase/8133/build/../meta/meta-mediatek/conf/machine/arch-arm64-tune-cortexa7-multilib.inc
+DEBUG: CONF /worktmp/codebase/8133/build/../meta/meta-mediatek/conf/machine/arch-arm64-tune-cortexa7-multilib.inc:3: including conf/machine/include/tune-cortexa7.inc
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/meta/conf/machine/include/tune-cortexa7.inc:3: including conf/machine/include/arm/arch-armv7ve.inc
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/meta/conf/machine/include/arm/arch-armv7ve.inc:8: including conf/machine/include/arm/arch-armv7a.inc
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/meta/conf/machine/include/arm/arch-armv7a.inc:8: including conf/machine/include/arm/arch-armv6.inc
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/meta/conf/machine/include/arm/arch-armv6.inc:8: including conf/machine/include/arm/arch-armv5-dsp.inc
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/meta/conf/machine/include/arm/arch-armv5-dsp.inc:4: including conf/machine/include/arm/arch-armv5.inc
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/meta/conf/machine/include/arm/arch-armv5.inc:8: including conf/machine/include/arm/arch-armv4.inc
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/meta/conf/machine/include/arm/arch-armv4.inc:15: including conf/machine/include/arm/arch-arm.inc
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/meta/conf/machine/include/arm/arch-armv4.inc:16: including conf/machine/include/arm/feature-arm-thumb.inc
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/meta/conf/machine/include/arm/arch-armv5.inc:9: including conf/machine/include/arm/feature-arm-vfp.inc
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/meta/conf/machine/include/arm/arch-armv7a.inc:9: including conf/machine/include/arm/feature-arm-neon.inc
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/../meta-mediatek-mt8133/conf/machine/aiv8168m1-rtos.conf:9: including conf/multilib.conf
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/meta/conf/bitbake.conf:747: including conf/machine-sdk/x86_64.conf
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/meta/conf/bitbake.conf:748: including conf/distro/poky-basic-systemd.conf
+Entering server connection loop
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/../meta-mediatek-gpl/conf/distro/poky-basic-systemd.conf:13: including conf/distro/include/default-providers-basic.inc
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/meta/conf/bitbake.conf:749: including conf/distro/defaultsetup.conf
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/meta/conf/distro/defaultsetup.conf:1: including conf/distro/include/default-providers.inc
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/meta/conf/distro/defaultsetup.conf:2: including conf/distro/include/default-versions.inc
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/meta/conf/distro/defaultsetup.conf:3: including conf/distro/include/default-distrovars.inc
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/meta/conf/distro/defaultsetup.conf:4: including conf/distro/include/world-broken.inc
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/meta/conf/distro/defaultsetup.conf:7: including conf/distro/include/tcmode-default.inc
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/meta/conf/distro/include/tcmode-default.inc:71: including conf/distro/include/as-needed.inc
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/meta/conf/distro/defaultsetup.conf:10: including conf/distro/include/tclibc-glibc.inc
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/meta/conf/distro/defaultsetup.conf:12: including conf/distro/include/uninative-flags.inc
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/meta/conf/bitbake.conf:750: including conf/documentation.conf
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/meta/conf/bitbake.conf:751: including conf/licenses.conf
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/meta/conf/bitbake.conf:752: including conf/sanity.conf
+DEBUG: Inheriting /worktmp/codebase/8133/meta/poky/meta/classes/base.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /worktmp/codebase/8133/meta/poky/meta/classes/patch.bbclass (from /worktmp/codebase/8133/meta/poky/meta/classes/base.bbclass:4)
+DEBUG: Inheriting /worktmp/codebase/8133/meta/poky/meta/classes/terminal.bbclass (from /worktmp/codebase/8133/meta/poky/meta/classes/patch.bbclass:11)
+DEBUG: Inheriting /worktmp/codebase/8133/meta/poky/meta/classes/staging.bbclass (from /worktmp/codebase/8133/meta/poky/meta/classes/base.bbclass:5)
+DEBUG: Inheriting /worktmp/codebase/8133/meta/poky/meta/classes/mirrors.bbclass (from /worktmp/codebase/8133/meta/poky/meta/classes/base.bbclass:7)
+DEBUG: Inheriting /worktmp/codebase/8133/meta/poky/meta/classes/utils.bbclass (from /worktmp/codebase/8133/meta/poky/meta/classes/base.bbclass:8)
+DEBUG: Inheriting /worktmp/codebase/8133/meta/poky/meta/classes/utility-tasks.bbclass (from /worktmp/codebase/8133/meta/poky/meta/classes/base.bbclass:9)
+DEBUG: Inheriting /worktmp/codebase/8133/meta/poky/meta/classes/metadata_scm.bbclass (from /worktmp/codebase/8133/meta/poky/meta/classes/base.bbclass:10)
+DEBUG: Inheriting /worktmp/codebase/8133/meta/poky/meta/classes/logging.bbclass (from /worktmp/codebase/8133/meta/poky/meta/classes/base.bbclass:11)
+DEBUG: Inheriting /worktmp/codebase/8133/meta/poky/meta/classes/buildhistory.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /worktmp/codebase/8133/meta/poky/meta/classes/multilib_global.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /worktmp/codebase/8133/meta/poky/meta-poky/classes/poky-sanity.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /worktmp/codebase/8133/meta/poky/meta/classes/package_rpm.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /worktmp/codebase/8133/meta/poky/meta/classes/package.bbclass (from /worktmp/codebase/8133/meta/poky/meta/classes/package_rpm.bbclass:1)
+DEBUG: Inheriting /worktmp/codebase/8133/meta/poky/meta/classes/packagedata.bbclass (from /worktmp/codebase/8133/meta/poky/meta/classes/package.bbclass:41)
+DEBUG: Inheriting /worktmp/codebase/8133/meta/poky/meta/classes/chrpath.bbclass (from /worktmp/codebase/8133/meta/poky/meta/classes/package.bbclass:42)
+DEBUG: Inheriting /worktmp/codebase/8133/meta/poky/meta/classes/insane.bbclass (from /worktmp/codebase/8133/meta/poky/meta/classes/package.bbclass:45)
+DEBUG: Inheriting /worktmp/codebase/8133/meta/poky/meta/classes/buildstats.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /worktmp/codebase/8133/meta/poky/meta/classes/image-mklibs.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /worktmp/codebase/8133/meta/poky/meta/classes/linuxloader.bbclass (from /worktmp/codebase/8133/meta/poky/meta/classes/image-mklibs.bbclass:5)
+DEBUG: Inheriting /worktmp/codebase/8133/meta/poky/meta/classes/image-prelink.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /worktmp/codebase/8133/meta/poky/meta/classes/debian.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /worktmp/codebase/8133/meta/poky/meta/classes/devshell.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /worktmp/codebase/8133/meta/poky/meta/classes/sstate.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /worktmp/codebase/8133/meta/poky/meta/classes/license.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /worktmp/codebase/8133/meta/poky/meta/classes/remove-libtool.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /worktmp/codebase/8133/meta/poky/meta/classes/blacklist.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /worktmp/codebase/8133/meta/poky/meta/classes/sanity.bbclass (from configuration INHERITs:0)
+DEBUG: Clearing SRCREV cache due to cache policy of: clear
+DEBUG: Using cache in '/worktmp/codebase/8133/build/cache/local_file_checksum_cache.dat'
+DEBUG: Using cache in '/worktmp/codebase/8133/build/cache/bb_codeparser.dat'
+Accepting [<socket.socket fd=8, family=AddressFamily.AF_UNIX, type=SocketKind.SOCK_STREAM, proto=0, laddr=bitbake.sock>]
+Connecting Client
+Running command ['setFeatures', [2]]
+Running command ['updateConfig', {'extra_assume_provided': [], 'server_timeout': None, 'profile': False, 'force': False, 'abort': True, 'debug': 0, 'dry_run': False, 'invalidate_stamp': 'compile', 'prefile': [], 'debug_domains': [], 'dump_signatures': [], 'verbose': False, 'postfile': []}, {'PWD': '/worktmp/codebase/8133/src/kernel/modules/connectivity/adaptor', 'CHESSBINDIR': '/mtkeda/IPDesigner/12R1.35-64/retargetable-12R1/bin/LNa64bin', 'CHESSDIR': '/mtkeda/IPDesigner/12R1.35-64/retargetable-12R1/chessdir', 'BUILDDIR': '/worktmp/codebase/8133/build', 'LOGNAME': 'mtk20167', 'SHELL': '/bin/bash', 'OLDPWD': '/worktmp/codebase/8133/build', 'MAIL': '/var/mail/mtk20167', 'USER': 'mtk20167', 'MODULE_VERSION': '3.2.6', 'DISPLAY': 'localhost:11.0', 'SSH_CLIENT': '10.17.30.13 50428 22', 'QT_QPA_PLATFORMTHEME': 'appmenu-qt5', 'CHESSZIPDIR': '/mtkeda/IPDesigner/12R1.35-64/source/12R1', 'TEMPLATECONF': '/worktmp/codebase/8133/meta/meta-mediatek-mt8133/conf/base/aiv8168m1-rtos', 'MODULEPATH': '/mtkoss/Modules/$MODULE_VERSION/x86_64/modulefiles:/site/mtkoss/Modules/$MODULE_VERSION/x86_64/modulefiles:/site/rfwsoss/Modules/$MODULE_VERSION/x86_64/modulefiles::/mtkeda/IPDesigner/modulefiles', 'LC_ALL': 'en_US.UTF-8', 'TERM': 'xterm', 'LD_LIBRARY_PATH': '/mtkeda/LSF/9/9.1/linux2.6-glibc2.3-x86_64/lib:/mtkoss/tcl/8.4.19/x86_64/lib:/mtkoss/tcl/8.4.19/x86_64/lib/tcl8.4:/mtkoss/tcl/8.4.19/x86_64/lib/tclx8.4:/lib64:/lib:', 'HOME': '/proj/mtk20167', 'PATH': '/worktmp/codebase/8133/meta/poky/scripts:/worktmp/codebase/8133/meta/poky/bitbake/bin:/worktmp/codebase/yocto-new/master-aiv/meta/poky/scripts:/worktmp/codebase/yocto-new/master-aiv/meta/poky/bitbake/bin:/mtkeda/LSF/9/9.1/linux2.6-glibc2.3-x86_64/etc:/mtkeda/LSF/9/9.1/linux2.6-glibc2.3-x86_64/bin:/mtkeda/dsptk-md32/8.1.0.27-64:/mtkeda/dsptk-md32/8.1.0.27-64/System:/mtkeda/dsptk-md32/8.1.0.27-64/Md32:/mtkeda/IPDesigner/common/bin:/mtkeda/IPDesigner/12R1.35-64/retargetable-12R1/bin/LNa64bin:/mtkeda/IPDesigner/12R1.35-64/retargetable-12R1/bin:/mtkeda/perforce/linux26x86_64_2014.1:/mtkeda/perforce/linux26x86_64_2014.1/p4v/bin:/mtkoss/go/go1.6.linux-amd64/bin:/mtkoss/arm-2010q1/bin:/mtkoss/audit2allow/0.1-ubuntu-12.04/x86_64/bin:/mtkoss/wine/1.7.21-ubuntu-12.04/x86_64/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/bin:/usr/games:/usr/local/games:/mtkeda/IT/bin:/mtkeda/IT/sbin:/mtkeda/CI/MtkCheckStyle:/mtkeda/CI/MtkCheckStyle/MtkCheckStyle:/mtkeda/apb:/mtkeda/CI/MtkCheckSyntax:/mtkeda/CI/MtkCheckSyntax/MtkCheckSyntax:/mtkeda/CI/MtkCheckStyle:/mtkeda/Utility/LM_daemon/Synopsys/11.6/Linux/amd64/bin:/mtkeda/ado/bin/ubuntu', 'BBPATH': '/worktmp/codebase/8133/build', 'MODULERCFILE': '/mtkoss/Modules/3.2.6/x86_64/etc/rc', 'MODULE_ARCH': 'x86_64', 'PS1': '[\\u@\\h \\W]\\$', 'BINARY_TYPE_HPC': '', 'LANG': 'en_US.UTF-8', '_LMFILES_': '/mtkeda/IPDesigner/modulefiles/IPDesigner/12R1.35-64:/mtkoss/Modules/3.2.6/x86_64/modulefiles/dsptk-md32/8.1.0.27-64', 'MTKCONF': ':/mtkeda/IT/conf/', 'MANPATH': '/mtkeda/LSF/9/9.1/man:', 'LSF_ENVDIR': '/mtkeda/LSF/9/conf', 'YCHESSDIR': '/mtkeda/IPDesigner/12R1.35-64/retargetable-12R1/chessdir/ychessdir', '_': '/worktmp/codebase/8133/meta/poky/bitbake/bin/bitbake', 'CHECKERSDIR': '/mtkeda/IPDesigner/12R1.35-64/retargetable-12R1/chessdir/checkersdir', 'LM_LICENSE_FILE': '2800@MTKLC18:2800@10.10.5.78', 'MTKLSF_IPDESIGNER': 'RH40 RH50', 'NMLVIEWDIR': '/mtkeda/IPDesigner/12R1.35-64/retargetable-12R1/chessdir/nmlviewdir', 'MODULESHOME': '/mtkoss/Modules/3.2.6/x86_64', 'BB_ENV_EXTRAWHITE': 'ALL_PROXY BBPATH_EXTRA BB_NO_NETWORK BB_NUMBER_THREADS BB_SETSCENE_ENFORCE BB_SRCREV_POLICY DISTRO FTPS_PROXY FTP_PROXY GIT_PROXY_COMMAND HTTPS_PROXY HTTP_PROXY MACHINE NO_PROXY PARALLEL_MAKE SCREENDIR SDKMACHINE SOCKS5_PASSWD SOCKS5_USER SSH_AGENT_PID SSH_AUTH_SOCK STAMPS_DIR TCLIBC TCMODE all_proxy ftp_proxy ftps_proxy http_proxy https_proxy no_proxy ', 'BRIDGEDIR': '/mtkeda/IPDesigner/12R1.35-64/retargetable-12R1/chessdir/bridgedir', 'LSF_BINDIR': '/mtkeda/LSF/9/9.1/linux2.6-glibc2.3-x86_64/bin', 'XCHESSDIR': '/mtkeda/IPDesigner/12R1.35-64/retargetable-12R1/chessdir/xchessdir', 'MTK_INTERNAL': 'TRUE', 'SHLVL': '1', 'LSF_SERVERDIR': '/mtkeda/LSF/9/9.1/linux2.6-glibc2.3-x86_64/etc', 'GTK_MODULES': 'gail:atk-bridge', 'CHESSROOT': '/mtkeda/IPDesigner/12R1.35-64', 'LSF_LIBDIR': '/mtkeda/LSF/9/9.1/linux2.6-glibc2.3-x86_64/lib', 'XDG_SESSION_COOKIE': '54d7fe3caa79ba20bf148452557a497e-1557770535.99247-518012051', 'SSH_TTY': '/dev/pts/1', 'LOADEDMODULES': 'IPDesigner/12R1.35-64:dsptk-md32/8.1.0.27-64', 'MODULE_VERSION_STACK': '3.2.6', 'SSH_CONNECTION': '10.17.30.13 50428 10.17.30.175 22'}, ['/worktmp/codebase/8133/meta/poky/bitbake/bin/bitbake', 'mt8133-wmt-cdev-wifi', '-C', 'compile']]
+Running command ['getVariable', 'BBINCLUDELOGS']
+Running command ['getVariable', 'BBINCLUDELOGS_LINES']
+Running command ['getSetVariable', 'BB_CONSOLELOG']
+Running command ['getUIHandlerNum']
+Running command ['setEventMask', 1, 20, {}, ['bb.runqueue.runQueueExitWait', 'bb.event.LogExecTTY', 'logging.LogRecord', 'bb.build.TaskFailed', 'bb.build.TaskBase', 'bb.event.ParseStarted', 'bb.event.ParseProgress', 'bb.event.ParseCompleted', 'bb.event.CacheLoadStarted', 'bb.event.CacheLoadProgress', 'bb.event.CacheLoadCompleted', 'bb.command.CommandFailed', 'bb.command.CommandExit', 'bb.command.CommandCompleted', 'bb.cooker.CookerExit', 'bb.event.MultipleProviders', 'bb.event.NoProvider', 'bb.runqueue.sceneQueueTaskStarted', 'bb.runqueue.runQueueTaskStarted', 'bb.runqueue.runQueueTaskFailed', 'bb.runqueue.sceneQueueTaskFailed', 'bb.event.BuildBase', 'bb.build.TaskStarted', 'bb.build.TaskSucceeded', 'bb.build.TaskFailedSilent', 'bb.build.TaskProgress', 'bb.event.ProcessStarted', 'bb.event.ProcessProgress', 'bb.event.ProcessFinished']]
+Running command ['getVariable', 'BB_DEFAULT_TASK']
+Running command ['setConfig', 'cmd', 'build']
+Running command ['buildTargets', ['mt8133-wmt-cdev-wifi'], 'build']
+fatal: cannot change to '/worktmp/codebase/8133/build/../src/bsp/preloader': No such file or directory
+fatal: cannot change to '/worktmp/codebase/8133/build/../src/bsp/preloader': No such file or directory
+fatal: cannot change to '/worktmp/codebase/8133/build/../src/kernel/linux/upstream': No such file or directory
+fatal: cannot change to '/worktmp/codebase/8133/build/../src/kernel/linux/v3.18': No such file or directory
+fatal: cannot change to '/worktmp/codebase/8133/build/../src/kernel/linux/v4.19': No such file or directory
+fatal: cannot change to '/worktmp/codebase/8133/build/../src/kernel/linux/v4.9': No such file or directory
+fatal: not a git repository (or any parent up to mount point /worktmp)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+fatal: not a git repository (or any parent up to mount point /worktmp)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+fatal: not a git repository (or any parent up to mount point /worktmp)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+fatal: not a git repository (or any parent up to mount point /worktmp)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+fatal: not a git repository (or any parent up to mount point /worktmp)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+fatal: not a git repository (or any parent up to mount point /worktmp)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+fatal: not a git repository (or any parent up to mount point /worktmp)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+fatal: not a git repository (or any parent up to mount point /worktmp)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+fatal: not a git repository (or any parent up to mount point /worktmp)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+fatal: cannot change to '/worktmp/codebase/8133/build/../src/bsp/preloader': No such file or directory
+fatal: not a git repository (or any parent up to mount point /worktmp)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+fatal: not a git repository (or any parent up to mount point /worktmp)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+fatal: cannot change to '/worktmp/codebase/8133/build/../src/bsp/preloader': No such file or directory
+fatal: not a git repository (or any parent up to mount point /worktmp)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+Connecting Client
+Disconnecting Client
+No timeout, exiting.
+Exiting
+--- Starting bitbake server pid 67830 at 2019-05-21 03:34:10.540819 ---
+Started bitbake server pid 67830
+DEBUG: Found bblayers.conf (/worktmp/codebase/8133/build/conf/bblayers.conf)
+DEBUG: Adding layer /worktmp/codebase/8133/meta/poky/meta
+DEBUG: Adding layer /worktmp/codebase/8133/meta/poky/meta-poky
+DEBUG: Adding layer /worktmp/codebase/8133/meta/poky/meta-yocto-bsp
+DEBUG: Adding layer /worktmp/codebase/8133/meta/poky/../meta-gplv2
+DEBUG: Adding layer /worktmp/codebase/8133/meta/poky/../meta-openembedded/meta-filesystems
+DEBUG: Adding layer /worktmp/codebase/8133/meta/poky/../meta-openembedded/meta-python
+DEBUG: Adding layer /worktmp/codebase/8133/meta/poky/../meta-openembedded/meta-networking
+DEBUG: Adding layer /worktmp/codebase/8133/meta/poky/../meta-openembedded/meta-oe
+DEBUG: Adding layer /worktmp/codebase/8133/meta/poky/../meta-mediatek
+DEBUG: Adding layer /worktmp/codebase/8133/meta/poky/../meta-mediatek-gpl
+DEBUG: Adding layer /worktmp/codebase/8133/meta/poky/../meta-mediatek-mt8133
+DEBUG: Adding layer /worktmp/codebase/8133/meta/poky/../meta-mediatek-mt8133-gpl
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/meta/conf/bitbake.conf:741: including conf/abi_version.conf
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/meta/conf/bitbake.conf:742: including conf/site.conf
+DEBUG: CONF file 'conf/site.conf' not found
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/meta/conf/bitbake.conf:743: including conf/auto.conf
+DEBUG: CONF file 'conf/auto.conf' not found
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/meta/conf/bitbake.conf:744: including conf/local.conf
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/meta/conf/bitbake.conf:745: including conf/multiconfig/default.conf
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/meta/conf/bitbake.conf:746: including conf/machine/aiv8168m1-rtos.conf
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/../meta-mediatek-mt8133/conf/machine/aiv8168m1-rtos.conf:7: including /worktmp/codebase/8133/build/../meta/meta-mediatek/conf/machine/arch-arm64-tune-cortexa7-multilib.inc
+DEBUG: CONF /worktmp/codebase/8133/build/../meta/meta-mediatek/conf/machine/arch-arm64-tune-cortexa7-multilib.inc:3: including conf/machine/include/tune-cortexa7.inc
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/meta/conf/machine/include/tune-cortexa7.inc:3: including conf/machine/include/arm/arch-armv7ve.inc
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/meta/conf/machine/include/arm/arch-armv7ve.inc:8: including conf/machine/include/arm/arch-armv7a.inc
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/meta/conf/machine/include/arm/arch-armv7a.inc:8: including conf/machine/include/arm/arch-armv6.inc
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/meta/conf/machine/include/arm/arch-armv6.inc:8: including conf/machine/include/arm/arch-armv5-dsp.inc
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/meta/conf/machine/include/arm/arch-armv5-dsp.inc:4: including conf/machine/include/arm/arch-armv5.inc
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/meta/conf/machine/include/arm/arch-armv5.inc:8: including conf/machine/include/arm/arch-armv4.inc
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/meta/conf/machine/include/arm/arch-armv4.inc:15: including conf/machine/include/arm/arch-arm.inc
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/meta/conf/machine/include/arm/arch-armv4.inc:16: including conf/machine/include/arm/feature-arm-thumb.inc
+Entering server connection loop
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/meta/conf/machine/include/arm/arch-armv5.inc:9: including conf/machine/include/arm/feature-arm-vfp.inc
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/meta/conf/machine/include/arm/arch-armv7a.inc:9: including conf/machine/include/arm/feature-arm-neon.inc
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/../meta-mediatek-mt8133/conf/machine/aiv8168m1-rtos.conf:9: including conf/multilib.conf
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/meta/conf/bitbake.conf:747: including conf/machine-sdk/x86_64.conf
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/meta/conf/bitbake.conf:748: including conf/distro/poky-basic-systemd.conf
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/../meta-mediatek-gpl/conf/distro/poky-basic-systemd.conf:13: including conf/distro/include/default-providers-basic.inc
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/meta/conf/bitbake.conf:749: including conf/distro/defaultsetup.conf
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/meta/conf/distro/defaultsetup.conf:1: including conf/distro/include/default-providers.inc
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/meta/conf/distro/defaultsetup.conf:2: including conf/distro/include/default-versions.inc
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/meta/conf/distro/defaultsetup.conf:3: including conf/distro/include/default-distrovars.inc
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/meta/conf/distro/defaultsetup.conf:4: including conf/distro/include/world-broken.inc
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/meta/conf/distro/defaultsetup.conf:7: including conf/distro/include/tcmode-default.inc
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/meta/conf/distro/include/tcmode-default.inc:71: including conf/distro/include/as-needed.inc
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/meta/conf/distro/defaultsetup.conf:10: including conf/distro/include/tclibc-glibc.inc
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/meta/conf/distro/defaultsetup.conf:12: including conf/distro/include/uninative-flags.inc
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/meta/conf/bitbake.conf:750: including conf/documentation.conf
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/meta/conf/bitbake.conf:751: including conf/licenses.conf
+DEBUG: CONF /worktmp/codebase/8133/meta/poky/meta/conf/bitbake.conf:752: including conf/sanity.conf
+DEBUG: Inheriting /worktmp/codebase/8133/meta/poky/meta/classes/base.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /worktmp/codebase/8133/meta/poky/meta/classes/patch.bbclass (from /worktmp/codebase/8133/meta/poky/meta/classes/base.bbclass:4)
+DEBUG: Inheriting /worktmp/codebase/8133/meta/poky/meta/classes/terminal.bbclass (from /worktmp/codebase/8133/meta/poky/meta/classes/patch.bbclass:11)
+DEBUG: Inheriting /worktmp/codebase/8133/meta/poky/meta/classes/staging.bbclass (from /worktmp/codebase/8133/meta/poky/meta/classes/base.bbclass:5)
+DEBUG: Inheriting /worktmp/codebase/8133/meta/poky/meta/classes/mirrors.bbclass (from /worktmp/codebase/8133/meta/poky/meta/classes/base.bbclass:7)
+DEBUG: Inheriting /worktmp/codebase/8133/meta/poky/meta/classes/utils.bbclass (from /worktmp/codebase/8133/meta/poky/meta/classes/base.bbclass:8)
+DEBUG: Inheriting /worktmp/codebase/8133/meta/poky/meta/classes/utility-tasks.bbclass (from /worktmp/codebase/8133/meta/poky/meta/classes/base.bbclass:9)
+DEBUG: Inheriting /worktmp/codebase/8133/meta/poky/meta/classes/metadata_scm.bbclass (from /worktmp/codebase/8133/meta/poky/meta/classes/base.bbclass:10)
+DEBUG: Inheriting /worktmp/codebase/8133/meta/poky/meta/classes/logging.bbclass (from /worktmp/codebase/8133/meta/poky/meta/classes/base.bbclass:11)
+DEBUG: Inheriting /worktmp/codebase/8133/meta/poky/meta/classes/buildhistory.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /worktmp/codebase/8133/meta/poky/meta/classes/multilib_global.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /worktmp/codebase/8133/meta/poky/meta-poky/classes/poky-sanity.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /worktmp/codebase/8133/meta/poky/meta/classes/package_rpm.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /worktmp/codebase/8133/meta/poky/meta/classes/package.bbclass (from /worktmp/codebase/8133/meta/poky/meta/classes/package_rpm.bbclass:1)
+DEBUG: Inheriting /worktmp/codebase/8133/meta/poky/meta/classes/packagedata.bbclass (from /worktmp/codebase/8133/meta/poky/meta/classes/package.bbclass:41)
+DEBUG: Inheriting /worktmp/codebase/8133/meta/poky/meta/classes/chrpath.bbclass (from /worktmp/codebase/8133/meta/poky/meta/classes/package.bbclass:42)
+DEBUG: Inheriting /worktmp/codebase/8133/meta/poky/meta/classes/insane.bbclass (from /worktmp/codebase/8133/meta/poky/meta/classes/package.bbclass:45)
+DEBUG: Inheriting /worktmp/codebase/8133/meta/poky/meta/classes/buildstats.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /worktmp/codebase/8133/meta/poky/meta/classes/image-mklibs.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /worktmp/codebase/8133/meta/poky/meta/classes/linuxloader.bbclass (from /worktmp/codebase/8133/meta/poky/meta/classes/image-mklibs.bbclass:5)
+DEBUG: Inheriting /worktmp/codebase/8133/meta/poky/meta/classes/image-prelink.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /worktmp/codebase/8133/meta/poky/meta/classes/debian.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /worktmp/codebase/8133/meta/poky/meta/classes/devshell.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /worktmp/codebase/8133/meta/poky/meta/classes/sstate.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /worktmp/codebase/8133/meta/poky/meta/classes/license.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /worktmp/codebase/8133/meta/poky/meta/classes/remove-libtool.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /worktmp/codebase/8133/meta/poky/meta/classes/blacklist.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /worktmp/codebase/8133/meta/poky/meta/classes/sanity.bbclass (from configuration INHERITs:0)
+DEBUG: Clearing SRCREV cache due to cache policy of: clear
+DEBUG: Using cache in '/worktmp/codebase/8133/build/cache/local_file_checksum_cache.dat'
+DEBUG: Using cache in '/worktmp/codebase/8133/build/cache/bb_codeparser.dat'
+Accepting [<socket.socket fd=8, family=AddressFamily.AF_UNIX, type=SocketKind.SOCK_STREAM, proto=0, laddr=bitbake.sock>]
+Connecting Client
+Running command ['setFeatures', [2]]
+Running command ['updateConfig', {'verbose': False, 'server_timeout': None, 'debug': 0, 'extra_assume_provided': [], 'invalidate_stamp': 'compile', 'force': False, 'profile': False, 'debug_domains': [], 'abort': True, 'postfile': [], 'dry_run': False, 'prefile': [], 'dump_signatures': []}, {'QT_QPA_PLATFORMTHEME': 'appmenu-qt5', 'BUILDDIR': '/worktmp/codebase/8133/build', 'XCHESSDIR': '/mtkeda/IPDesigner/12R1.35-64/retargetable-12R1/chessdir/xchessdir', 'BBPATH': '/worktmp/codebase/8133/build', 'MODULEPATH': '/mtkoss/Modules/$MODULE_VERSION/x86_64/modulefiles:/site/mtkoss/Modules/$MODULE_VERSION/x86_64/modulefiles:/site/rfwsoss/Modules/$MODULE_VERSION/x86_64/modulefiles::/mtkeda/IPDesigner/modulefiles', 'NMLVIEWDIR': '/mtkeda/IPDesigner/12R1.35-64/retargetable-12R1/chessdir/nmlviewdir', 'CHECKERSDIR': '/mtkeda/IPDesigner/12R1.35-64/retargetable-12R1/chessdir/checkersdir', 'BRIDGEDIR': '/mtkeda/IPDesigner/12R1.35-64/retargetable-12R1/chessdir/bridgedir', 'LC_ALL': 'en_US.UTF-8', 'MTKLSF_IPDESIGNER': 'RH40 RH50', 'MODULE_VERSION_STACK': '3.2.6', 'PS1': '[\\u@\\h \\W]\\$', 'LOADEDMODULES': 'IPDesigner/12R1.35-64:dsptk-md32/8.1.0.27-64', 'CHESSZIPDIR': '/mtkeda/IPDesigner/12R1.35-64/source/12R1', 'SSH_CLIENT': '10.17.30.13 50428 22', 'LSF_ENVDIR': '/mtkeda/LSF/9/conf', 'BB_ENV_EXTRAWHITE': 'ALL_PROXY BBPATH_EXTRA BB_NO_NETWORK BB_NUMBER_THREADS BB_SETSCENE_ENFORCE BB_SRCREV_POLICY DISTRO FTPS_PROXY FTP_PROXY GIT_PROXY_COMMAND HTTPS_PROXY HTTP_PROXY MACHINE NO_PROXY PARALLEL_MAKE SCREENDIR SDKMACHINE SOCKS5_PASSWD SOCKS5_USER SSH_AGENT_PID SSH_AUTH_SOCK STAMPS_DIR TCLIBC TCMODE all_proxy ftp_proxy ftps_proxy http_proxy https_proxy no_proxy ', 'LSF_BINDIR': '/mtkeda/LSF/9/9.1/linux2.6-glibc2.3-x86_64/bin', 'GTK_MODULES': 'gail:atk-bridge', 'USER': 'mtk20167', 'MODULERCFILE': '/mtkoss/Modules/3.2.6/x86_64/etc/rc', 'LD_LIBRARY_PATH': '/mtkeda/LSF/9/9.1/linux2.6-glibc2.3-x86_64/lib:/mtkoss/tcl/8.4.19/x86_64/lib:/mtkoss/tcl/8.4.19/x86_64/lib/tcl8.4:/mtkoss/tcl/8.4.19/x86_64/lib/tclx8.4:/lib64:/lib:', 'MODULE_ARCH': 'x86_64', 'XDG_SESSION_COOKIE': '54d7fe3caa79ba20bf148452557a497e-1557770535.99247-518012051', 'MTKCONF': ':/mtkeda/IT/conf/', 'SHLVL': '1', 'DISPLAY': 'localhost:11.0', 'MAIL': '/var/mail/mtk20167', 'SSH_CONNECTION': '10.17.30.13 50428 10.17.30.175 22', 'TERM': 'xterm', 'CHESSBINDIR': '/mtkeda/IPDesigner/12R1.35-64/retargetable-12R1/bin/LNa64bin', 'CHESSROOT': '/mtkeda/IPDesigner/12R1.35-64', 'TEMPLATECONF': '/worktmp/codebase/8133/meta/meta-mediatek-mt8133/conf/base/aiv8168m1-rtos', 'MODULE_VERSION': '3.2.6', 'LSF_SERVERDIR': '/mtkeda/LSF/9/9.1/linux2.6-glibc2.3-x86_64/etc', 'CHESSDIR': '/mtkeda/IPDesigner/12R1.35-64/retargetable-12R1/chessdir', 'SSH_TTY': '/dev/pts/1', 'PWD': '/worktmp/codebase/8133/src/kernel/modules/connectivity/adaptor', 'OLDPWD': '/worktmp/codebase/8133/build', 'LSF_LIBDIR': '/mtkeda/LSF/9/9.1/linux2.6-glibc2.3-x86_64/lib', '_': '/worktmp/codebase/8133/meta/poky/bitbake/bin/bitbake', 'LM_LICENSE_FILE': '2800@MTKLC18:2800@10.10.5.78', 'BINARY_TYPE_HPC': '', 'YCHESSDIR': '/mtkeda/IPDesigner/12R1.35-64/retargetable-12R1/chessdir/ychessdir', 'PATH': '/worktmp/codebase/8133/meta/poky/scripts:/worktmp/codebase/8133/meta/poky/bitbake/bin:/worktmp/codebase/yocto-new/master-aiv/meta/poky/scripts:/worktmp/codebase/yocto-new/master-aiv/meta/poky/bitbake/bin:/mtkeda/LSF/9/9.1/linux2.6-glibc2.3-x86_64/etc:/mtkeda/LSF/9/9.1/linux2.6-glibc2.3-x86_64/bin:/mtkeda/dsptk-md32/8.1.0.27-64:/mtkeda/dsptk-md32/8.1.0.27-64/System:/mtkeda/dsptk-md32/8.1.0.27-64/Md32:/mtkeda/IPDesigner/common/bin:/mtkeda/IPDesigner/12R1.35-64/retargetable-12R1/bin/LNa64bin:/mtkeda/IPDesigner/12R1.35-64/retargetable-12R1/bin:/mtkeda/perforce/linux26x86_64_2014.1:/mtkeda/perforce/linux26x86_64_2014.1/p4v/bin:/mtkoss/go/go1.6.linux-amd64/bin:/mtkoss/arm-2010q1/bin:/mtkoss/audit2allow/0.1-ubuntu-12.04/x86_64/bin:/mtkoss/wine/1.7.21-ubuntu-12.04/x86_64/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/bin:/usr/games:/usr/local/games:/mtkeda/IT/bin:/mtkeda/IT/sbin:/mtkeda/CI/MtkCheckStyle:/mtkeda/CI/MtkCheckStyle/MtkCheckStyle:/mtkeda/apb:/mtkeda/CI/MtkCheckSyntax:/mtkeda/CI/MtkCheckSyntax/MtkCheckSyntax:/mtkeda/CI/MtkCheckStyle:/mtkeda/Utility/LM_daemon/Synopsys/11.6/Linux/amd64/bin:/mtkeda/ado/bin/ubuntu', 'MTK_INTERNAL': 'TRUE', '_LMFILES_': '/mtkeda/IPDesigner/modulefiles/IPDesigner/12R1.35-64:/mtkoss/Modules/3.2.6/x86_64/modulefiles/dsptk-md32/8.1.0.27-64', 'LOGNAME': 'mtk20167', 'MODULESHOME': '/mtkoss/Modules/3.2.6/x86_64', 'SHELL': '/bin/bash', 'LANG': 'en_US.UTF-8', 'MANPATH': '/mtkeda/LSF/9/9.1/man:', 'HOME': '/proj/mtk20167'}, ['/worktmp/codebase/8133/meta/poky/bitbake/bin/bitbake', 'mt8133-wmt-cdev-wifi', '-C', 'compile']]
+Running command ['getVariable', 'BBINCLUDELOGS']
+Running command ['getVariable', 'BBINCLUDELOGS_LINES']
+Running command ['getSetVariable', 'BB_CONSOLELOG']
+Running command ['getUIHandlerNum']
+Running command ['setEventMask', 1, 20, {}, ['bb.runqueue.runQueueExitWait', 'bb.event.LogExecTTY', 'logging.LogRecord', 'bb.build.TaskFailed', 'bb.build.TaskBase', 'bb.event.ParseStarted', 'bb.event.ParseProgress', 'bb.event.ParseCompleted', 'bb.event.CacheLoadStarted', 'bb.event.CacheLoadProgress', 'bb.event.CacheLoadCompleted', 'bb.command.CommandFailed', 'bb.command.CommandExit', 'bb.command.CommandCompleted', 'bb.cooker.CookerExit', 'bb.event.MultipleProviders', 'bb.event.NoProvider', 'bb.runqueue.sceneQueueTaskStarted', 'bb.runqueue.runQueueTaskStarted', 'bb.runqueue.runQueueTaskFailed', 'bb.runqueue.sceneQueueTaskFailed', 'bb.event.BuildBase', 'bb.build.TaskStarted', 'bb.build.TaskSucceeded', 'bb.build.TaskFailedSilent', 'bb.build.TaskProgress', 'bb.event.ProcessStarted', 'bb.event.ProcessProgress', 'bb.event.ProcessFinished']]
+Running command ['getVariable', 'BB_DEFAULT_TASK']
+Running command ['setConfig', 'cmd', 'build']
+Running command ['buildTargets', ['mt8133-wmt-cdev-wifi'], 'build']
+fatal: cannot change to '/worktmp/codebase/8133/build/../src/bsp/preloader': No such file or directory
+fatal: cannot change to '/worktmp/codebase/8133/build/../src/bsp/preloader': No such file or directory
+fatal: cannot change to '/worktmp/codebase/8133/build/../src/kernel/linux/upstream': No such file or directory
+fatal: cannot change to '/worktmp/codebase/8133/build/../src/kernel/linux/v4.9': No such file or directory
+fatal: cannot change to '/worktmp/codebase/8133/build/../src/kernel/linux/v4.19': No such file or directory
+fatal: cannot change to '/worktmp/codebase/8133/build/../src/kernel/linux/v3.18': No such file or directory
+fatal: not a git repository (or any parent up to mount point /worktmp)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+fatal: not a git repository (or any parent up to mount point /worktmp)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+fatal: not a git repository (or any parent up to mount point /worktmp)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+fatal: not a git repository (or any parent up to mount point /worktmp)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+fatal: not a git repository (or any parent up to mount point /worktmp)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+fatal: not a git repository (or any parent up to mount point /worktmp)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+fatal: not a git repository (or any parent up to mount point /worktmp)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+fatal: not a git repository (or any parent up to mount point /worktmp)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+fatal: not a git repository (or any parent up to mount point /worktmp)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+fatal: not a git repository (or any parent up to mount point /worktmp)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+fatal: not a git repository (or any parent up to mount point /worktmp)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+fatal: cannot change to '/worktmp/codebase/8133/build/../src/bsp/preloader': No such file or directory
+fatal: not a git repository (or any parent up to mount point /worktmp)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+fatal: cannot change to '/worktmp/codebase/8133/build/../src/bsp/preloader': No such file or directory
+Connecting Client
+Disconnecting Client
+No timeout, exiting.
+Exiting

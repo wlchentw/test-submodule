@@ -1,0 +1,1412 @@
+/*
+ * Copyright (c) 2019 MediaTek Inc.
+ *
+ * SPDX-License-Identifier: (GPL-2.0 OR MIT)
+ */
+
+/dts-v1/;
+#include "mt8110.dtsi"
+
+/ {
+	model = "MediaTek MT8110 board";
+	compatible = "mediatek,mt8110", "mediatek,mt8512";
+
+	aliases {
+		serial0 = &uart0;
+	};
+
+	memory@40000000 {
+		device_type = "memory";
+		reg = <0 0x40000000 0 0x20000000>;
+	};
+	chosen {
+		bootargs = "console=ttyS0,921600n1 \
+		rootwait skip_initramfs \
+		earlycon=uart8250,mmio32,0x11002000 \
+		initcall_debug androidboot.hardware=mt8512 \
+		firmware_class.path=/vendor/firmware \
+		no_console_suspend" ;
+	};
+	extcon_usb: extcon_iddig {
+		compatible = "linux,extcon-usb-gpio";
+	};
+
+	leds {
+		compatible = "gpio-leds";
+		pinctrl-names = "default";
+		pinctrl-0 = <&pinctrl_led>;
+
+		green {
+			label = "LED";
+			gpios = <&pio 0 0>;
+			linux,default-trigger = "timer";
+		};
+
+	};
+
+	gpio_keys: gpio-keys {
+		compatible = "gpio-keys";
+		pinctrl-names = "active","sleep","deepsleep";
+		pinctrl-0 = <&hall_key &pgdw_key_active &pgup_key_active>;
+		pinctrl-1 = <&pgdw_key_active &pgup_key_active>;
+		pinctrl-2 = <&pgdw_key_inactive &pgup_key_inactive>;
+		status = "okay";
+		autorepeat;
+
+		button@0 {
+			debounce_interval = <50>;
+			wakeup-source;
+			gpio-key,wakeup = <1>;
+			gpios = <&pio 30 1>;
+			label = "Hall";
+			linux,input-type = <0x1>;
+			linux,code = <35>; //KEY_H
+		};
+
+		pageup {
+			debounce_interval = <50>;
+			wakeup-source;
+			gpio-key,wakeup = <1>;
+			gpios = <&pio 28 1>;
+			label = "PageUp";
+			linux,input-type = <0x1>;
+			linux,code = <193>; //KEY_F23
+		};
+
+		pagedown {
+			debounce_interval = <50>;
+			wakeup-source;
+			gpio-key,wakeup = <1>;
+			gpios = <&pio 29 1>;
+			label = "PageDown";
+			linux,input-type = <0x1>;
+			linux,code = <194>; //KEY_F24
+		};
+
+	};
+
+
+	usb_plug {
+		compatible = "usb_plug" ;
+	};
+
+	ntx_event0: ntx_event0 {
+		compatible = "ntx_event0";
+	};
+
+	ntx_bl: ntx_bl {
+		compatible = "ntx_bl";
+	};
+
+	ntx_led: ntx_led {
+		compatible = "ntx_led";
+	};
+
+	mmc_fixed_3v3: fixedregulator@0 {
+		compatible = "regulator-fixed";
+		regulator-name = "mmc_power";
+		regulator-min-microvolt = <3300000>;
+		regulator-max-microvolt = <3300000>;
+		enable-active-high;
+		regulator-always-on;
+	};
+
+	mmc_fixed_1v8_io: fixedregulator@1 {
+		compatible = "regulator-fixed";
+		regulator-name = "mmc_io";
+		regulator-min-microvolt = <1800000>;
+		regulator-max-microvolt = <1800000>;
+		enable-active-high;
+		regulator-always-on;
+	};
+
+	reserved-memory {
+		optee-reserved-memory@43030000 {
+			compatible = "mediatek,mt8512-optee-reserved-memory";
+			no-map;
+			reg = <0 0x43030000 0 0x3d0000>;
+		};
+		optee-shared-memory@43400000 {
+			compatible = "mediatek,mt8512-optee-shared-memory";
+			no-map;
+			reg = <0 0x43400000 0 0x100000>;
+		};
+		hwtcon_reserved: pipeline_region {
+			compatible = "mediatek,pipeline-reserved-memory";
+			no-map;
+			reg = <0 0x50000000 0 0x003EA600>; /* panel wb size */
+		};
+	};
+	usb_p0_vbus: regulator@0 {
+		compatible = "regulator-fixed";
+		regulator-name = "vbus";
+		regulator-min-microvolt = <5000000>;
+		regulator-max-microvolt = <5000000>;
+		gpio = <&pio 27 0>;
+		enable-active-high;
+	};
+	tboard_thermistor: thermal-sensor {
+		compatible = "generic-adc-thermal";
+		#thermal-sensor-cells = <0>;
+		io-channels = <&auxadc 0>;
+		io-channel-names = "sensor-channel";
+	};
+
+	firmware {
+		optee {
+			compatible = "linaro,optee-tz";
+			method = "smc";
+		};
+	};
+
+	power_solution: power_solution {
+		compatible = "mt8512,power-solution";
+		power-states = <&VCORE_CORE_SRAM &VPROC_PROC_SRAM>;
+		device-names = <0>;
+		clk-on = <0>;
+
+		VCORE_CORE_SRAM: vcore-core-sram {
+			compatible = "mt8512,vcore-core-sram";
+			merge = <0>;
+			bucks = <&VCORE &VCORE_SRAM>;
+
+			VCORE: vcore {
+				compatible = "vcore-solution";
+				type = "i2c";
+				channel = <1>;
+				latency = <100>;
+				voltage-fix = <0>;
+			};
+
+			VCORE_SRAM: vcore_sram {
+				compatible = "vcore-sram-solution";
+				voltage-fix = <1>;
+			};
+		};
+
+		VPROC_PROC_SRAM: vproc-proc-sram {
+			compatible = "mt8512,vproc-proc-sram";
+			merge = <1>;
+			fix = <1>;
+		};
+	};
+};
+
+&cluster0_opp {
+	opp00 {
+		opp-hz = /bits/ 64 <600000000>;
+		opp-microvolt = <650000>;
+	};
+	opp01 {
+		opp-hz = /bits/ 64 <666000000>;
+		opp-microvolt = <662500>;
+	};
+	opp02 {
+		opp-hz = /bits/ 64 <733000000>;
+		opp-microvolt = <675000>;
+	};
+	opp03 {
+		opp-hz = /bits/ 64 <833000000>;
+		opp-microvolt = <693750>;
+	};
+	opp04 {
+		opp-hz = /bits/ 64 <1000000000>;
+		opp-microvolt = <725000>;
+	};
+};
+
+&auxadc {
+	status = "okay";
+};
+
+&cpu0 {
+	proc-supply = <&bd71828_buck_vproc>;
+	sram-supply = <&bd71828_buck_vsram_proc>;
+};
+
+&cpu1 {
+       status = "disabled";
+};
+
+/delete-node/ &cpu1;
+/delete-node/ &{/cpus/cpu-map/cluster0/core1};
+
+
+
+&dramc {
+	freq-list = <3200 2400 1200>;
+};
+
+&consys {
+	pinctrl-names = "default",
+		"consys_pins_tcxo_en",
+		"consys_pins_tcxo_dis";
+	pinctrl-0 = <&consys_pins_default>;
+	pinctrl-1 = <&consys_pins_tcxo_en>;
+	pinctrl-2 = <&consys_pins_tcxo_dis>;
+	1v8_en = <&pio 57 0>;	/* 1.8V */
+	3v3_en = <&pio 56 0>;	/* 3.3V */
+	vcn28-supply = <&bd71828_ldo_vosnvs>;
+	status = "okay";
+};
+
+&dvfsrc {
+	status = "okay";
+	dvfsrc-pwr-index = <6>;
+};
+
+
+&i2c0 {
+	status = "okay";
+	clock-frequency = <400000>;
+
+	pinctrl-names = "active", "deepsleep" , "sleep" , "init" , "gpio";
+	pinctrl-0 = <&i2c0_pins_active> ;
+	pinctrl-1 = <&i2c0_pins_inactive>;
+	pinctrl-2 = <&i2c0_pins_inactive>;
+	pinctrl-3 = <&epd_pmic_pins_active>;
+	pinctrl-4 = <&i2c0_pins_gpio>;
+	gpio_scl = <&pio 65 1>;
+	gpio_sda = <&pio 64 1>;
+
+	/*fitipmic: fp@48 {
+		compatible = "fiti,pmic";
+		reg = <0x18>;
+		vcom_setting = <2770>;
+		vpos = <15000>;
+		vneg = <15000>;
+		epd-pmic-en = <&bd71828 1 0>;
+		epd-pmic-op = <&pio 9 0>;
+		epd-pmic-nm = <&pio 8 0>;
+		interrupt-parent = <&pio>;
+		interrupts = <10 IRQ_TYPE_LEVEL_HIGH>;
+		deb-gpios = <&pio 5 0>;
+		debounce = <16>;
+		epd-supply = <&bd71828_ldo_dvcc_epd>;
+		pinctrl-names = "active", "inactive";
+		pinctrl-0 = <&fiti_pins_active>;
+		pinctrl-1 = <&fiti_pins_inactive>;
+		status = "disabled";
+	};*/
+
+        MAX20342: MAX20342-i2c@35 {
+                compatible = "maxiam,max20342";
+                reg = <0x35>;
+
+                pinctrl-names = "default";
+		pinctrl-0 = <&max20342_int_pins>;	//	/* CD_IN# --gpio39*/ /* 0A5_FAULT# --gpio19 */
+
+                host_power =<1>;
+                int_port = <&pio 39 1>;
+                otg_5v_en = <&pio 38 0>;
+                0a5_fault = <&pio 19 1>;
+                status = "disabled";
+        };
+
+	jd9930@18 {
+		compatible = "Fiti,jd9930";
+		reg = <0x18>;
+
+		/*
+		 * power on delay for JD9930
+		 * 0x0 : 0ms
+		 * 0x1 : 1ms
+		 * 0x2 : 2ms
+		 * 0x3 : 4ms
+		 * chip default is 0ms .
+		 */
+		on_delay1 = <0x1>;
+		on_delay2 = <0x1>;
+		on_delay3 = <0x1>;
+		on_delay4 = <0x1>;
+
+		/*
+		 * VGH Extension Time (5bits) (VGH_EXT)
+		 * 0x0 : 0ms
+		 * 0x1 : 50ms
+		 * 0x2 : 100ms
+		 * ...
+		 * 0x15 : 1050ms
+		 * chip default is 0ms .
+		 */
+		vgh_ext = <0x0>;
+
+		/*
+		 * VGL Extension Time (7bits)(VGL_EXT)
+		 * 0x0 : 0ms
+		 * 0x1 : 50ms
+		 * 0x2 : 100ms
+		 * ...
+		 * 0x7e : 6300ms
+		 * chip default is 0ms .
+		 */
+		vgl_ext = <0xa>; // 500ms
+
+		/*
+		 * VGHNM Extension Time (7bits)(VGHNM_EXT)
+		 * 0x0 : 0ms
+		 * 0x1 : 50ms
+		 * 0x2 : 100ms
+		 * ...
+		 * 0x7e : 6300ms
+		 * chip default is 0ms .
+		 */
+		vghnm_ext = <0x20>; // 1600ms
+		
+		/*
+		 * VGHNM Output Voltage (6bits)(VGHNM)
+		 * 0x0 : 5%
+		 * 0x1 : 6%
+		 * 0x2 : 7%
+		 * 0x3 : 8%
+		 * ...
+		 * 0x2d : 50%
+		 * chip default is 5% .
+		 */
+		vghnm = <0x6>; // 28*11% := 3.08V
+
+		/*
+		 * Disable Delay Time (4bits)(DISA_DELAY)
+		 * 0x0 : 0ms
+		 * 0x1 : 5ms
+		 * 0x2 : 10ms
+		 * 0x3 : 15ms
+		 * ...
+		 * 0xe : 70ms
+		 * 0xf : 75ms
+		 * chip default is 0ms .
+		 */
+		disa_delay = <0x1>;
+
+		/*
+		 * XON Delay Time (5bits)(XON_DELAY)
+		 * 0x0 : 0ms
+		 * 0x1 : 10ms
+		 * 0x2 : 20ms
+		 * 0x3 : 30ms
+		 * ...
+		 * 0x1e : 300ms
+		 * 0x1f : 310ms
+		 * chip default is 0ms .
+		 */
+		xon_delay = <0xf>; // 150ms
+
+		/*
+		 * XON LEN Time (8bits)(XON_LEN)
+		 * 0x0 : 0ms
+		 * 0x1 : 10ms
+		 * 0x2 : 20ms
+		 * 0x3 : 30ms
+		 * ...
+		 * 0x1e : 300ms
+		 * ...
+		 * 0xfa : 2500ms
+		 * chip default is 0ms .
+		 */
+		xon_len = <0x96>; // 1500ms .
+
+
+		
+
+		gpio_pmic_pwrgood = <&pio 10 0>;
+		//gpio_pmic_xon_ctrl = <&pio 100 0>;
+		gpio_pmic_ts_en = <&pio 9 0>;
+		gpio_pmic_powerup = <&pio 11 0>;
+
+		/* gpio_pmic_v3p3 = <&gpio2 14 GPIO_ACTIVE_HIGH>; */
+		gpio_pmic_pwrall = <&pio 13 0>;
+		regulators {
+			DISPLAY_JD9930_reg: DISPLAY_JD9930 {
+				regulator-name = "DISPLAY_JD9930";
+			};
+
+			VCOM_JD9930_reg: VCOM_JD9930 {
+				regulator-name = "VCOM_JD9930";
+				/* 2's-compliment, -4325000 */
+				regulator-min-microvolt = <0xffbe0178>;
+				/* 2's-compliment, -500000 */
+				regulator-max-microvolt = <0xfff85ee0>;
+			};
+
+			VPOSNEG_JD9930_reg: VPOSNEG_JD9930 {
+				regulator-name = "VPOSNEG_JD9930";
+				// 2's-compliment, -15060000 
+				// regulator-min-microvolt = <0xff1a33e0>;
+
+				// 2's-compliment, 15060000 
+				regulator-min-microvolt = <0xe5cc20>;
+				// 2's-compliment, 15060000 
+				regulator-max-microvolt = <0xe5cc20>;
+			};
+
+			V3P3_JD9930_reg: V3P3_JD9930 {
+				regulator-name = "V3P3_JD9930";
+			};
+
+			TMST_JD9930_reg: TMST_JD9930 {
+				regulator-name = "TMST_JD9930";
+			};
+		};
+	};
+
+	sy7636@62 {
+		compatible = "Silergy,sy7636";
+		reg = <0x62>;
+
+		epd-supply = <&bd71828_ldo_dvcc_epd>;
+		/*
+		 * power on delay for SY7636
+		 * 0x0 : 0ms
+		 * 0x1 : 1ms
+		 * 0x2 : 2ms
+		 * 0x3 : 4ms
+		 * chip default is 2ms .
+		 */
+		on_delay1 = <0x2>;
+		on_delay2 = <0x2>;
+		on_delay3 = <0x2>;
+		on_delay4 = <0x2>;
+
+
+		/*
+		 * VLDO Voltage Adjustment Control 
+		 * 0x0 = reserved
+		 * 0x1 = +/-18V
+		 * 0x2 = +/-15.25V
+		 * 0x3 = +/-15V (default)
+		 * 0x4 = +/-14.75V
+		 * 0x5 = +/-14.5V
+		 * 0x6 = +/-14.25V
+		 * 0x7 = reserved
+		 */
+		VLDO = <0x3>;
+
+		/*
+		 * VPDD : vpdd voltaget setting at lightness mode .
+		 * 0x00 = 2V
+		 * 0x01 = 2.5V
+		 * 0x02 = 3V
+		 * 0x03 = 3.5V
+		 * ...
+		 * 0x06 = 5V (default)
+		 * ...
+		 * 0x10 = 10V
+		*/
+		VPDD = <0x2>;
+
+		/*
+		 * VDDH EXT Control : delay setting at lightness mode .
+		 * 0x0 = 0ms 
+		 * 0x1 = 125ms
+		 * 0x2 = 250ms
+		 * 0x3 = 375ms
+		 * 0x4 = 500ms
+		 * 0x5 = 625ms
+		 * 0x6 = 750ms
+		 * 0x7 = 825ms
+		 * 0x8 = 1000ms
+		 */
+		vddh_ext = <0x0>;
+
+		/*
+		 * VPDD_LEN Control : delay setting at lightness mode .
+		 * 0x0 = 0 s 
+		 * 0x1 = 0.350 s
+		 * 0x2 = 0.700 s
+		 * ...
+		 * 0x7 = 2.45 s
+		 * ...
+		 * 0x11 = 5.95 s
+		 * 0x12 = 6.3 s
+		 */
+		vpdd_len = <0x5>;
+		/*
+		 * VPOS delay times 
+		 * VP_EXT Control : delay setting at lightness mode .
+		 * 0x0 = 0 s 
+		 * 0x1 = 250ms
+		 * 0x2 = 500ms
+		 */
+		vp_ext = <0x1>;
+		/*
+		 * VEE_EXT Control : delay setting at lightness mode .
+		 * 0x0 = 0 s 
+		 * 0x1 = 0.35 s
+		 * 0x2 = 0.70 s
+		 * ...
+		 * 0x6 = 2.10 s
+		 * ...
+		 * 0x11 = 5.95 s
+		 * 0x12 = 6.30 s
+		 */
+		vee_ext = <0x1>;
+
+		
+	
+		
+		gpio_pmic_pwrgood = <&pio 10 1>;
+		gpio_pmic_vcom_ctrl = <&pio 9 0>;
+		gpio_pmic_powerup = <&pio 11 0>;
+
+		/* gpio_pmic_v3p3 = <&gpio2 14 GPIO_ACTIVE_HIGH>; */
+		gpio_pmic_pwrall = <&pio 13 0>;
+
+		regulators {
+			DISPLAY_SY7636_reg: DISPLAY_SY7636 {
+				regulator-name = "DISPLAY_SY7636";
+	//regulator-always-on;
+			};
+
+			VCOM_SY7636_reg: VCOM_SY7636 {
+				regulator-name = "VCOM_SY7636";
+				/* 2's-compliment, -4325000 */
+				regulator-min-microvolt = <0xffbe0178>;
+				/* 2's-compliment, -500000 */
+				regulator-max-microvolt = <0xfff85ee0>;
+	//regulator-always-on;
+			};
+
+			V3P3_SY7636_reg: V3P3_SY7636 {
+				regulator-name = "V3P3_SY7636";
+			};
+
+			TMST_SY7636_reg: TMST_SY7636 {
+				regulator-name = "TMST_SY7636";
+			};
+
+		};
+
+	};
+	/*tsu6111: tsu6111@25 {
+		compatible = "tsu6111";
+		interrupt-parent = <&pio>;
+		interrupts = <29 IRQ_TYPE_EDGE_FALLING>;
+		reg = <0x25>;
+		status = "okay";
+	};*/
+};
+
+&i2c1 {
+	status = "okay";
+	clock-frequency = <400000>;
+
+	pinctrl-names = "active", "deepsleep" , "sleep" , "init" , "gpio";
+	pinctrl-0 = <&i2c1_pins_active>;
+	pinctrl-1 = <&i2c1_pins_inactive>;
+	pinctrl-2 = <&i2c1_pins_inactive>;
+	pinctrl-3 = <&bd71828_pins_in_1_default>;
+	pinctrl-4 = <&i2c1_pins_gpio>;
+	gpio_scl = <&pio 67 1>;
+	gpio_sda = <&pio 66 1>;
+
+	bd71828: bd71828@4b {
+		compatible = "rohm,bd71828";
+		interrupt-parent = <&pio>;
+		interrupts = <62 IRQ_TYPE_EDGE_FALLING>;
+		interrupt-controller;
+		#interrupt-cells = <2>;
+/*
+		pinctrl-names = "default";
+		pinctrl-0 = <&bd71828_pins_default>;
+*/
+		reg = <0x4b>;
+		status = "okay";
+		rohm,charger-sense-resistor = <27000000>;
+	};
+
+	lm3630a: lm3630a-i2c@36 {
+	    reg = <0x36>;
+	    compatible = "ti,lm3630a_bl";
+		flpwron = <&pio 15 1>;
+		flen = <&pio 16 1>;
+	};
+
+/*
+	aw99703: aw99703-bl@36 {
+		status = "disabled";
+           compatible = "awinic,aw99703-bl";
+           reg = <0x36>;
+           aw99703,hwen-gpio = <&pio 15 1>;
+           aw99703,fl_gpio = <&pio 16 1>;
+           aw99703,pwm-mode = <0>;  //0 pwm disable,1 PWM enable
+           aw99703,using-lsb;
+           aw99703,bl-fscal-led = <0>; //default 20mA
+           aw99703,turn-on-ramp = <0>;
+           aw99703,turn-off-ramp = <0>;
+           aw99703,pwm-trans-dim = <0>;
+           aw99703,i2c-trans-dim = <0x0>;
+           aw99703,bl-channel = <2>;
+           aw99703,bl-map = <3>; // brightness map level 1:256,2:1024,3:2048
+           aw99703,label = "FL1";
+	};
+*/
+};
+
+&i2c2 {
+	status = "okay";
+	clock-frequency = <400000>;
+
+	pinctrl-names = "active", "deepsleep"  , "init" , "gpio";
+	pinctrl-0 = <&i2c2_pins_active &tp_pins_active &gsensor_pins_active>;
+	pinctrl-1 = <&i2c2_pins_inactive &tp_pins_inactive>;
+	pinctrl-2 = <&tp_pins_active &gsensor_pins_active>;
+	pinctrl-3 = <&i2c2_pins_gpio>;
+	gpio_scl = <&pio 69 1>;
+	gpio_sda = <&pio 68 1>;
+
+	tsc@24 {
+		status = "disabled";
+		compatible = "cy,cyttsp5_i2c_adapter";
+		reg = <0x24>;
+
+		/* GPIO 1, high-to-low edge triggered */
+		interrupts = <1 2>;
+		interrupt-parent = <&pio>;
+		cy,adapter_id = "cyttsp5_i2c_adapter";
+
+		cy,core {
+			cy,name = "cyttsp5_core";
+
+			cy,irq_gpio = <&pio 1 0>;
+			//cy,rst_gpio = <&pio 0 0>;
+			cy,hid_desc_register = <1>;
+			/*CY_CORE_FLAG_RESTORE_PARAMETERS */
+			cy,flags = <4>;
+			/* CY_CORE_EWG_NONE */
+			cy,easy_wakeup_gesture = <0>;
+			cy,btn_keys = <172 /* KEY_HOMEPAGE */
+	/* previously was KEY_HOME, new Android versions use KEY_HOMEPAGE */
+				       139 /* KEY_MENU */
+				       158 /* KEY_BACK */
+				       217 /* KEY_SEARCH */
+				       114 /* KEY_VOLUMEDOWN */
+				       115 /* KEY_VOLUMEUP */
+				       212 /* KEY_CAMERA */
+				       116>; /* KEY_POWER */
+			cy,btn_keys-tag = <0>;
+
+			cy,mt {
+				cy,name = "cyttsp5_mt";
+
+				cy,inp_dev_name = "cyttsp5_mt";
+	/* CY_MT_FLAG_FLIP | CY_MT_FLAG_INV_X | CY_MT_FLAG_INV_Y */
+				cy,flags = <0x38>;
+				cy,abs =
+	/* ABS_MT_POSITION_X, CY_ABS_MIN_X, CY_ABS_MAX_X, 0, 0 */
+					<0x35 0 880 0 0
+	/* ABS_MT_POSITION_Y, CY_ABS_MIN_Y, CY_ABS_MAX_Y, 0, 0 */
+					0x36 0 1280 0 0
+	/* ABS_MT_PRESSURE, CY_ABS_MIN_P, CY_ABS_MAX_P, 0, 0 */
+					0x3a 0 255 0 0
+	/* CY_IGNORE_VALUE, CY_ABS_MIN_W, CY_ABS_MAX_W, 0, 0 */
+					0xffff 0 255 0 0
+	/* ABS_MT_TRACKING_ID, CY_ABS_MIN_T, CY_ABS_MAX_T, 0, 0 */
+					0x39 0 15 0 0
+	/* ABS_MT_TOUCH_MAJOR, 0, 255, 0, 0 */
+					0x30 0 255 0 0
+	/* ABS_MT_TOUCH_MINOR, 0, 255, 0, 0 */
+					0x31 0 255 0 0
+	/* ABS_MT_ORIENTATION, -127, 127, 0, 0 */
+					0x34 0xffffff81 127 0 0
+	/* ABS_MT_TOOL_TYPE, 0, MT_TOOL_MAX, 0, 0 */
+					0x37 0 1 0 0
+	/* ABS_MT_DISTANCE, 0, 255, 0, 0 */
+					0x3b 0 255 0 0>;
+
+				cy,vkeys_x = <720>;
+				cy,vkeys_y = <1280>;
+
+				cy,virtual_keys =
+				/* KeyCode CenterX CenterY Width Height */
+					/* KEY_BACK */
+					<158 1360 90 160 180
+					/* KEY_MENU */
+					139 1360 270 160 180
+					/* KEY_HOMEPAGE */
+					172 1360 450 160 180
+					/* KEY SEARCH */
+					217 1360 630 160 180>;
+			};
+
+			cy,btn {
+				cy,name = "cyttsp5_btn";
+
+				cy,inp_dev_name = "cyttsp5_btn";
+			};
+
+			cy,proximity {
+				cy,name = "cyttsp5_proximity";
+
+				cy,inp_dev_name = "cyttsp5_proximity";
+				cy,abs =
+					<0x19 0 1 0 0>;
+			};
+		};
+	};
+	elan_ts@10 {
+		compatible = "elan,ekth3500";
+		reg = <0x10>;
+
+/*
+		pinctrl-names = "active", "inactive";
+		pinctrl-0 = <&tp_pins_active>;
+		pinctrl-1 = <&tp_pins_inactive>;
+*/
+
+		vcc33-supply = <&bd71828_ldo_avcc_touch>;
+		vccio-supply = <&bd71828_ldo_dvcc_touch>;
+		gpio_intr = <&pio 20 0>;
+		gpio_elan_rst = <&pio 14 0>;
+		screen_max_x = <1680>;
+		screen_max_y = <1264>;
+		revert_x_flag = <0>;
+		revert_y_flag = <1>;
+		exchange_x_y_flag = <0>;
+		status = "okay";
+	};
+
+	aw99704: aw99703-bl@36 {
+		status = "disabled";
+           compatible = "awinic,aw99703-bl";
+           reg = <0x36>;
+           aw99703,hwen-gpio = <&pio 15 1>;
+           aw99703,fl_gpio = <&pio 16 1>;
+           aw99703,pwm-mode = <0>;  //0 pwm disable,1 PWM enable
+           aw99703,using-lsb;
+           aw99703,bl-fscal-led = <0>; //default 20mA
+           aw99703,turn-on-ramp = <0>;
+           aw99703,turn-off-ramp = <0>;
+           aw99703,pwm-trans-dim = <0>;
+           aw99703,i2c-trans-dim = <0x0>;
+           aw99703,bl-channel = <2>;
+           aw99703,bl-map = <3>; // brightness map level 1:256,2:1024,3:2048
+           aw99703,label = "FL2";
+        };
+
+
+	kx122@1e {
+		compatible = "kx122";
+		reg = <0x1e>;
+		vdd-supply = <&bd71828_ldo_dvdd18>;
+		vio-supply = <&bd71828_ldo_dvdd18>;
+		//interrupt-parent = <&gpio3>;
+		//interrupts = <27 0>;
+		//gpio_intr = <&gpio3 27 1>;
+		//interrupt-names = "INT1";
+		kionix,gpio-int1= <&pio 17 1>;    // <&gpio3 27 0>;91
+		kionix,gpio-int2= <&pio 18 1>;    // <&gpio3 25 0>;89
+		kionix,x-negate = <0> ;
+		kionix,use-drdy-int = <1>;
+	};
+
+
+
+};
+
+&keypad {
+	pinctrl-names = "default";
+	pinctrl-0 = <&kpd_pins_default>;
+	status = "okay";
+	mediatek,kpd-key-debounce = <1024>;
+	mediatek,kpd-sw-pwrkey = <116>;
+	mediatek,kpd-hw-pwrkey = <1>;
+	mediatek,kpd-sw-rstkey  = <114>;
+	mediatek,kpd-hw-rstkey = <3>;
+	mediatek,kpd-use-extend-type = <0>;
+	/*HW Keycode [0~3] -> Linux Keycode*/
+	mediatek,kpd-hw-map-num = <72>;
+	mediatek,kpd-hw-init-map =
+			<115 0 0 0 0 0 0 0 0 0 0 0 0
+			 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+			 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+			 0 0 0 0 0 0 0 0 0 0 0 >;
+	mediatek,kpd-pwrkey-eint-gpio = <0>;
+	mediatek,kpd-pwkey-gpio-din  = <0>;
+	mediatek,kpd-hw-dl-key0 = <0>;
+	mediatek,kpd-hw-dl-key1 = <3>;
+	mediatek,kpd-hw-dl-key2 = <1>;
+	mediatek,kpd-hw-recovery-key = <0>;
+	mediatek,kpd-hw-factory-key  = <3>;
+};
+
+&mmc0 {
+	status = "okay";
+	pinctrl-names = "default", "state_uhs", "sleep";
+	pinctrl-0 = <&mmc0_pins_default>;
+	pinctrl-1 = <&mmc0_pins_uhs>;
+	pinctrl-2 = <&mmc0_pins_sleep>;
+	bus-width = <8>;
+	max-frequency = <200000000>;
+	cap-mmc-highspeed;
+	mmc-hs200-1_8v;
+	cap-cqe;
+	cap-cqe_dcmd;
+	vmmc-supply = <&mmc_fixed_3v3>;
+	// vmmc-supply = <&bd71828_buck_vio33>;
+	vqmmc-supply = <&mmc_fixed_1v8_io>;
+	assigned-clocks = <&topckgen CLK_TOP_MSDC50_0_SEL>;
+	assigned-clock-parents = <&topckgen CLK_TOP_MSDCPLL_D2>;
+	non-removable;
+	no-sd;
+	no-sdio;
+};
+
+&hwtcon {
+	memory-region = <&hwtcon_reserved>;
+	status = "okay";
+	pinctrl-names = "active","inactive";
+	pinctrl-0 = <&hwtcon_pins_active>;
+	pinctrl-1 = <&hwtcon_pins_inactive>;
+	specified_vcore = <800000>;
+	specified_mmsysclk = <416000000>;
+
+	// night mode xon .
+	gpio_xon = <&pio 100 0> ;
+
+	off_xon_0_delay_us = <160000>;
+	off_xon_1_delay_us = <1650000>;
+	off_xon_0_day_delay_us = <2750000>;
+	
+	nm_xon_on_with_vcom = <0>; /* night mode xon trun on with vcom */
+
+	epd{
+		panel_width = <1448>;
+		panel_height = <1072>;
+		panel_output_8bit = <1>;
+
+		panel_waveform_type = <4>;
+		panel_area_w = <107>;
+		panel_area_h = <107>;
+		panel_dpi_clk = <80000000>;
+		panel_tcon0 = <5 1077 67 77 0 1 0 0>;
+		panel_tcon1 = <5 1077 7 43 0 0 0 0>;
+        panel_tcon2 = <5 1077 7 7 4 0 1 7>;
+		panel_tcon3 = <1 1088 211 667 0 0 0 0>;
+		panel_tcon4 = <3 1077 7 7 4 0 1 7>;
+		panel_tcon5 = <2 3 256 256 4 1 1 7>;
+		panel_dpi = <18 40 12 1 12 2 1>;
+		panel_hflip = <0>;
+
+		modify_wf_mode_counter = <800>;
+		status = "okay";
+	};
+};
+
+&pio {
+	pinctrl-names = "default";
+
+	bd71828_pins_out_1_default: bd71828_o1_default {
+		pins_cmd_dat {
+			pinmux = <MT8512_PIN_59_PMIC_DVS_REQ0__FUNC_GPIO59>,
+				 <MT8512_PIN_60_PMIC_DVS_REQ1__FUNC_GPIO60>;
+			output-high;
+		};
+	};
+	bd71828_pins_in_1_default: bd71828_i1_default {
+		pins_cmd_dat {
+			// PMIC_INT 
+			pinmux = <MT8512_PIN_62_PMIC_INT__FUNC_GPIO62>; 
+			bias-pull-up = <MTK_PUPD_SET_R1R0_10>;
+			input-enable;
+		};
+	};
+
+	/* OTG_5V_EN */
+	s_max20342_pins: s_max20342_pins {
+		pins_cmd_dat {
+			pinmux = <MT8512_PIN_38_WAN_VBAT_EN__FUNC_GPIO38>;
+			bias-pull-down = <MTK_PUPD_SET_R1R0_01>;
+			output-high;
+		};
+        };
+
+	/* CD_IN# */ /* 0A5_FAULT# */ /* CD_DB# */
+	max20342_int_pins: max20342_int_pins {
+		pins_cmd_dat {
+			pinmux = <MT8512_PIN_39_WAN_PWR_EN__FUNC_GPIO39>,
+				<MT8512_PIN_36_WAN_DIS__FUNC_GPIO36>,
+				 <MT8512_PIN_19_GPIO19__FUNC_GPIO19>;
+
+			bias-pull-up = <MTK_PUPD_SET_R1R0_01>;
+			input-enable;
+		};
+	};
+
+	/*max20342_int_pins_b: max20342_int_pins@1 {
+		pins_cmd_dat {
+			pinmux = <MT8512_PIN_39_WAN_PWR_EN__FUNC_GPIO39>;
+			bias-pull-down = <MTK_PUPD_SET_R1R0_01>;
+			input-disable;
+		};
+	};*/
+
+
+	pinctrl_led:ledgrp {
+		pins_cmd_dat {
+			pinmux = <MT8512_PIN_0_GPIO0__FUNC_GPIO0>;
+			//slew-rate = <1>;
+			//bias-pull-up = <MTK_PUPD_SET_R1R0_01>;
+			input-enable;
+		};
+	};
+
+	hall_key:hallkey {
+		pins_cmd_dat {
+			pinmux = <MT8512_PIN_30_CHG_OTG__FUNC_GPIO30>;
+			//slew-rate = <0>;
+			bias-disable;
+			input-enable;
+		};
+	};
+
+	pgup_key_active:pgupactive {
+		pins_cmd_dat {
+			pinmux = <MT8512_PIN_28_EINT_GAUGEING__FUNC_GPIO28>;
+			//slew-rate = <0>;
+			bias-pull-up = <MTK_PUPD_SET_R1R0_01>;
+			input-enable;
+		};
+	};
+
+	pgdw_key_active:pgwnactive {
+		pins_cmd_dat {
+			pinmux = <MT8512_PIN_29_CHG_IRQ__FUNC_GPIO29>;
+			//slew-rate = <0>;
+			bias-pull-up = <MTK_PUPD_SET_R1R0_01>;
+			input-enable;
+		};
+	};
+
+	pgup_key_inactive:pgupinactive {
+		pins_cmd_dat {
+			pinmux = <MT8512_PIN_28_EINT_GAUGEING__FUNC_GPIO28>;
+		output-low;
+		};
+	};
+
+	pgdw_key_inactive:pgwninactive {
+		pins_cmd_dat {
+			pinmux = <MT8512_PIN_29_CHG_IRQ__FUNC_GPIO29>;
+			output-low;
+		};
+	};
+
+	fiti_pins_active: fitiactive {
+		pins_cmd_dat {
+			pinmux = <MT8512_PIN_10_GPIO10__FUNC_GPIO10>;
+			input-enable;
+		};
+	};
+
+	fiti_pins_inactive: fitiinactive {
+		pins_cmd_dat {
+			pinmux = <MT8512_PIN_10_GPIO10__FUNC_GPIO10>;
+			input-disable;
+		};
+	};
+
+	i2c2_pins_active: i2c2active {
+		pins_cmd_dat {
+			pinmux = <MT8512_PIN_68_SDA2__FUNC_SDA2_0>,
+				<MT8512_PIN_69_SCL2__FUNC_SCL2_0>;
+			bias-pull-up = <MTK_PUPD_SET_R1R0_10>;
+		};
+	};
+
+	i2c2_pins_inactive: i2c2inactive {
+		pins_cmd_dat {
+			pinmux = <MT8512_PIN_68_SDA2__FUNC_GPIO68>,
+				<MT8512_PIN_69_SCL2__FUNC_GPIO69>;
+			output-low;
+		};
+	};
+
+	i2c2_pins_gpio: i2c2gpio {
+		pins_cmd_dat {
+			pinmux = <MT8512_PIN_68_SDA2__FUNC_GPIO68>,
+				<MT8512_PIN_69_SCL2__FUNC_GPIO69>;
+			bias-pull-up = <MTK_PUPD_SET_R1R0_10>;
+			input-enable;
+		};
+	};
+
+	i2c1_pins_active: i2c1active {
+		pins_cmd_dat {
+			pinmux = <MT8512_PIN_66_SDA1__FUNC_SDA1_0>,
+				<MT8512_PIN_67_SCL1__FUNC_SCL1_0>;
+			bias-pull-up = <MTK_PUPD_SET_R1R0_10>;
+		};
+	};
+	i2c1_pins_inactive: i2c1inactive {
+		pins_cmd_dat {
+			pinmux = <MT8512_PIN_66_SDA1__FUNC_GPIO66>,
+				<MT8512_PIN_67_SCL1__FUNC_GPIO67>;
+			output-low;
+		};
+	};
+
+	i2c1_pins_gpio: i2c1gpio {
+		pins_cmd_dat {
+			pinmux = <MT8512_PIN_66_SDA1__FUNC_GPIO66>,
+				<MT8512_PIN_67_SCL1__FUNC_GPIO67>;
+			bias-pull-up = <MTK_PUPD_SET_R1R0_10>;
+			input-enable;
+		};
+	};
+
+	i2c0_pins_active: i2c0active {
+		pins_cmd_dat {
+			pinmux = <MT8512_PIN_64_SDA0__FUNC_SDA0_0>,
+				<MT8512_PIN_65_SCL0__FUNC_SCL0_0>;
+			bias-pull-up = <MTK_PUPD_SET_R1R0_10>;
+		};
+	};
+
+	i2c0_pins_inactive: i2c0inactive {
+		pins_cmd_dat {
+			pinmux = <MT8512_PIN_64_SDA0__FUNC_GPIO64>,
+				<MT8512_PIN_65_SCL0__FUNC_GPIO65>;
+			output-low;
+		};
+	};
+
+	i2c0_pins_gpio: i2c0gpio {
+		pins_cmd_dat {
+			pinmux = <MT8512_PIN_64_SDA0__FUNC_GPIO64>,
+				<MT8512_PIN_65_SCL0__FUNC_GPIO65>;
+			bias-pull-up = <MTK_PUPD_SET_R1R0_10>;
+			input-enable;
+		};
+	};
+
+	tp_pins_active: tp_active {
+		pins_cmd_dat {
+			pinmux = <MT8512_PIN_20_GPIO20__FUNC_GPIO20>;
+			bias-pull-up = <MTK_PUPD_SET_R1R0_10>;
+			input-enable;
+		};
+	};
+
+	tp_pins_inactive: tp_inactive {
+		pins_cmd_dat {
+			pinmux = <MT8512_PIN_20_GPIO20__FUNC_GPIO20>; 
+			output-low;
+		};
+	};
+
+	gsensor_pins_active: gsensor_active {
+		pins_cmd_dat {
+			pinmux = <MT8512_PIN_17_GPIO17__FUNC_GPIO17>,
+				<MT8512_PIN_18_GPIO18__FUNC_GPIO18>;
+			bias-pull-up = <MTK_PUPD_SET_R1R0_10>;
+			input-enable;
+		};
+	};
+
+	gsensor_pins_inactive: gsensor_inactive {
+		pins_cmd_dat {
+			pinmux = <MT8512_PIN_17_GPIO17__FUNC_GPIO17>,
+				<MT8512_PIN_18_GPIO18__FUNC_GPIO18>;
+			output-low;
+		};
+	};
+
+
+	epd_pmic_pins_active:epd_pmic_pins_active {
+		pins_cmd_dat {
+			pinmux = <MT8512_PIN_10_GPIO10__FUNC_GPIO10>;
+			bias-pull-up = <MTK_PUPD_SET_R1R0_10>;
+			input-enable;
+		};
+		pin_xon {
+			pinmux = <MT8512_PIN_100_DMIC0_DAT0__FUNC_GPIO100>;
+			//output-high;
+			drive-strength = <MTK_DRIVE_6mA>;
+			bias-pull-down = <MTK_PUPD_SET_R1R0_01>;
+		};
+	};
+	epd_pmic_pins_inactive:epd_pmic_pins_inactive {
+		pins_cmd_dat {
+			pinmux = <MT8512_PIN_10_GPIO10__FUNC_GPIO10>; 
+			output-low;
+		};
+	};
+
+
+	consys_pins_default: consys_default {
+	};
+
+	consys_pins_tcxo_en: consystcxoen {
+		pins_cmd_dat {
+			pinmux = <MT8512_PIN_54_URXD1__FUNC_CONN_TCXO_REQ>;
+		};
+	};
+
+	consys_pins_tcxo_dis: consystcxodis {
+		pins_cmd_dat {
+			pinmux = <MT8512_PIN_54_URXD1__FUNC_GPIO54>;
+			bias-disable;
+		};
+	};
+
+	hwtcon_pins_active: hwtconactive {
+		pins_cmd_dat {
+			pinmux = <MT8512_PIN_4_GPIO4__FUNC_EPDC_D0>,
+				 <MT8512_PIN_109_I2SO_DAT1__FUNC_EPDC_D1>,
+				 <MT8512_PIN_5_GPIO5__FUNC_EPDC_D2>,
+				 <MT8512_PIN_108_I2SO_DAT0__FUNC_EPDC_D3>,
+				 <MT8512_PIN_6_GPIO6__FUNC_EPDC_D4>,
+				 <MT8512_PIN_105_I2SO_BCK__FUNC_EPDC_D5>,
+				 <MT8512_PIN_98_I2SIN_DAT3__FUNC_EPDC_D6>,
+				 <MT8512_PIN_106_I2SO_LRCK__FUNC_EPDC_D7>,
+				 <MT8512_PIN_97_I2SIN_DAT2__FUNC_EPDC_D8>,
+				 <MT8512_PIN_87_SPDIF__FUNC_EPDC_D9>,
+				 <MT8512_PIN_96_I2SIN_DAT1__FUNC_EPDC_D10>,
+				 <MT8512_PIN_2_GPIO2__FUNC_EPDC_D11>,
+				 <MT8512_PIN_95_I2SIN_DAT0__FUNC_EPDC_D12>,
+				 <MT8512_PIN_3_GPIO3__FUNC_EPDC_D13>,
+				 <MT8512_PIN_101_DMIC0_DAT1__FUNC_EPDC_D14>,
+				 <MT8512_PIN_92_I2SIN_MCLK__FUNC_EPDC_D15>,
+				 <MT8512_PIN_7_GPIO7__FUNC_EPDC_SDOE>,
+				 <MT8512_PIN_94_I2SIN_BCK__FUNC_EPDC_GDSP>,
+				 <MT8512_PIN_99_DMIC0_CLK__FUNC_EPDC_GDCLK>,
+				 <MT8512_PIN_107_I2SO_MCLK__FUNC_EPDC_SDCLK>,
+				 <MT8512_PIN_110_I2SO_DAT2__FUNC_EPDC_SDCE0>,
+				 <MT8512_PIN_111_I2SO_DAT3__FUNC_EPDC_SDLE>;
+				output-low;
+
+
+		};
+/*
+		pin_xon {
+			pinmux = <MT8512_PIN_100_DMIC0_DAT0__FUNC_GPIO100>;
+			output-high;
+		};
+*/
+
+		pin_oe {
+			pinmux = <MT8512_PIN_93_I2SIN_LRCK__FUNC_GPIO93>;
+				 output-high;
+		};
+	};
+
+	hwtcon_pins_inactive: hwtconinactive {
+		pin_oe {
+			pinmux = <MT8512_PIN_93_I2SIN_LRCK__FUNC_GPIO93>;
+				 input-enable;
+		};
+/*
+		pin_xon {
+			pinmux = <MT8512_PIN_100_DMIC0_DAT0__FUNC_GPIO100>;
+			output-low;
+		};
+*/
+
+		pins_cmd_dat {
+			pinmux = <MT8512_PIN_4_GPIO4__FUNC_GPIO4>,
+				 <MT8512_PIN_109_I2SO_DAT1__FUNC_GPIO109>,
+				 <MT8512_PIN_5_GPIO5__FUNC_GPIO5>,
+				 <MT8512_PIN_108_I2SO_DAT0__FUNC_GPIO108>,
+				 <MT8512_PIN_6_GPIO6__FUNC_GPIO6>,
+				 <MT8512_PIN_105_I2SO_BCK__FUNC_GPIO105>,
+				 <MT8512_PIN_98_I2SIN_DAT3__FUNC_GPIO98>,
+				 <MT8512_PIN_106_I2SO_LRCK__FUNC_GPIO106>,
+				 <MT8512_PIN_97_I2SIN_DAT2__FUNC_GPIO97>,
+				 <MT8512_PIN_87_SPDIF__FUNC_GPIO87>,
+				 <MT8512_PIN_96_I2SIN_DAT1__FUNC_GPIO96>,
+				 <MT8512_PIN_2_GPIO2__FUNC_GPIO2>,
+				 <MT8512_PIN_95_I2SIN_DAT0__FUNC_GPIO95>,
+				 <MT8512_PIN_3_GPIO3__FUNC_GPIO3>,
+				 <MT8512_PIN_101_DMIC0_DAT1__FUNC_GPIO101>,
+				 <MT8512_PIN_92_I2SIN_MCLK__FUNC_GPIO92>,
+				 <MT8512_PIN_7_GPIO7__FUNC_GPIO7>,
+				 <MT8512_PIN_94_I2SIN_BCK__FUNC_GPIO94>,
+				 <MT8512_PIN_99_DMIC0_CLK__FUNC_GPIO99>,
+				 <MT8512_PIN_110_I2SO_DAT2__FUNC_GPIO110>,
+				 <MT8512_PIN_111_I2SO_DAT3__FUNC_GPIO111>;
+				input-enable;
+
+		};
+
+		pin_sdck {
+			pinmux = <MT8512_PIN_107_I2SO_MCLK__FUNC_GPIO107>;
+			output-low;
+		};
+
+	};
+
+
+	kpd_pins_default: kpddefault {
+		pins_cols {
+			pinmux = <MT8512_PIN_42_KPCOL0__FUNC_KPCOL0>,
+				 <MT8512_PIN_43_KPCOL1__FUNC_KPCOL1>;
+			input-enable;
+			bias-pull-up = <MTK_PUPD_SET_R1R0_01>;
+		};
+
+		pins_rows {
+			pinmux = <MT8512_PIN_41_KPROW1__FUNC_KPROW1>,
+				 <MT8512_PIN_41_KPROW1__FUNC_KPROW1>;
+			output-low;
+			bias-disable;
+		};
+	};
+
+	mmc0_pins_default: mmc0default {
+		pins_clk {
+			pinmux = <MT8512_PIN_82_MSDC0_CLK__FUNC_MSDC0_CLK>;
+			bias-pull-down;
+		};
+
+		pins_cmd_dat {
+			pinmux = <MT8512_PIN_86_MSDC0_DAT0__FUNC_MSDC0_DAT0>,
+				 <MT8512_PIN_85_MSDC0_DAT1__FUNC_MSDC0_DAT1>,
+				 <MT8512_PIN_84_MSDC0_DAT2__FUNC_MSDC0_DAT2>,
+				 <MT8512_PIN_83_MSDC0_DAT3__FUNC_MSDC0_DAT3>,
+				 <MT8512_PIN_79_MSDC0_DAT4__FUNC_MSDC0_DAT4>,
+				 <MT8512_PIN_78_MSDC0_DAT5__FUNC_MSDC0_DAT5>,
+				 <MT8512_PIN_77_MSDC0_DAT6__FUNC_MSDC0_DAT6>,
+				 <MT8512_PIN_76_MSDC0_DAT7__FUNC_MSDC0_DAT7>,
+				 <MT8512_PIN_81_MSDC0_CMD__FUNC_MSDC0_CMD>;
+			input-enable;
+			bias-pull-up;
+		};
+
+		pins_rst {
+			pinmux = <MT8512_PIN_80_MSDC0_RSTB__FUNC_MSDC0_RSTB>;
+			bias-pull-up;
+		};
+	};
+
+	mmc0_pins_uhs: mmc0 {
+		pins_clk {
+			pinmux = <MT8512_PIN_82_MSDC0_CLK__FUNC_MSDC0_CLK>;
+			drive-strength = <MTK_DRIVE_6mA>;
+			bias-pull-down = <MTK_PUPD_SET_R1R0_01>;
+		};
+
+		pins_cmd_dat {
+			pinmux = <MT8512_PIN_86_MSDC0_DAT0__FUNC_MSDC0_DAT0>,
+				 <MT8512_PIN_85_MSDC0_DAT1__FUNC_MSDC0_DAT1>,
+				 <MT8512_PIN_84_MSDC0_DAT2__FUNC_MSDC0_DAT2>,
+				 <MT8512_PIN_83_MSDC0_DAT3__FUNC_MSDC0_DAT3>,
+				 <MT8512_PIN_79_MSDC0_DAT4__FUNC_MSDC0_DAT4>,
+				 <MT8512_PIN_78_MSDC0_DAT5__FUNC_MSDC0_DAT5>,
+				 <MT8512_PIN_77_MSDC0_DAT6__FUNC_MSDC0_DAT6>,
+				 <MT8512_PIN_76_MSDC0_DAT7__FUNC_MSDC0_DAT7>,
+				 <MT8512_PIN_81_MSDC0_CMD__FUNC_MSDC0_CMD>;
+			input-enable;
+			drive-strength = <MTK_DRIVE_6mA>;
+			bias-pull-up = <MTK_PUPD_SET_R1R0_01>;
+		};
+
+		pins_rst {
+			pinmux = <MT8512_PIN_80_MSDC0_RSTB__FUNC_MSDC0_RSTB>;
+			bias-pull-up;
+		};
+	};
+
+	mmc0_pins_sleep: mmc0sleep {
+		pins_clk {
+			pinmux = <MT8512_PIN_82_MSDC0_CLK__FUNC_GPIO82>;
+			bias-disable;
+			input-disable;
+		};
+
+		pins_cmd_dat {
+			pinmux = <MT8512_PIN_86_MSDC0_DAT0__FUNC_GPIO86>,
+				 <MT8512_PIN_85_MSDC0_DAT1__FUNC_GPIO85>,
+				 <MT8512_PIN_84_MSDC0_DAT2__FUNC_GPIO84>,
+				 <MT8512_PIN_83_MSDC0_DAT3__FUNC_GPIO83>,
+				 <MT8512_PIN_79_MSDC0_DAT4__FUNC_GPIO79>,
+				 <MT8512_PIN_78_MSDC0_DAT5__FUNC_GPIO78>,
+				 <MT8512_PIN_77_MSDC0_DAT6__FUNC_GPIO77>,
+				 <MT8512_PIN_76_MSDC0_DAT7__FUNC_GPIO76>,
+				 <MT8512_PIN_81_MSDC0_CMD__FUNC_GPIO81>;
+			bias-disable;
+			input-disable;
+		};
+
+		pins_rst {
+			pinmux = <MT8512_PIN_80_MSDC0_RSTB__FUNC_GPIO80>;
+			bias-disable;
+			input-disable;
+		};
+	};
+
+
+};
+
+&pwm {
+	status = "okay";
+	led6 {
+		compatible = "mediatek,lcd-backlight";
+		led_mode = <1>;
+		data = <0>;
+		pwm_config = <0 0 0 0 0>;
+	};
+};
+
+&ssusb {
+	vbus-supply = <&usb_p0_vbus>;
+	extcon = <&extcon_usb>;
+	dr_mode = "otg";
+	phys = <&u2port0 PHY_TYPE_USB2>;
+	mediatek,force_vbus = "true";
+	status="okay";
+};
+
+&u3phy0 {
+	status = "okay";
+};
+
+&uart0 {
+	status = "okay";
+};
+
+&mdp_rdma0 {
+	vcore-supply = <&bd71828_buck_vcore>;
+};
+
+&svs_cpu_little {
+	proc-supply = <&bd71828_buck_vproc>;
+};
+
+#include "bd71828.dtsi"
+
+&bd71828_ldo_avcc_touch {
+	regulator-min-microvolt = <3300000>;
+	regulator-max-microvolt = <3300000>;
+	regulator-always-on;
+};
+
+
+&bd71828_ldo_dvcc_touch {
+	regulator-min-microvolt = <1800000>;
+	regulator-max-microvolt = <1800000>;
+	regulator-always-on;
+};
+
+&bd71828_buck_vio33 {
+	//regulator-min-microvolt = <1800000>;
+	regulator-min-microvolt = <3300000>;
+	regulator-max-microvolt = <3300000>;
+	//regulator-always-on;
+};
+
+&bd71828_ldo_dvcc_epd {
+//	regulator-always-on;
+	regulator-min-microvolt = <1800000>;
+	regulator-max-microvolt = <1800000>;
+};
+&bd71828_ldo_dvdd18 {
+	regulator-always-on;
+};
+
+&bd71828_buck_vcore {
+	rohm,dvs-runlevel3-voltage = <800000>;
+};
+
+&bd71828_buck_vsram_core {
+	rohm,dvs-runlevel3-voltage = <900000>;
+};

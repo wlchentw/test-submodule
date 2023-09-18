@@ -1,0 +1,4 @@
+service mdpd /vendor/bin/mdpd -f
+    class main
+    user media
+    group system media

@@ -1,0 +1,8 @@
+dhcpcli= 
+mac= 00:C0:26:C3:81:96  
+ipaddr=192.168.1.150  Bcast
+bcast=192.168.1.255  Mask
+mask=255.255.255.0
+nameserver 172.21.100.88
+nameserver 172.21.100.66
+nameserver 172.21.120.6

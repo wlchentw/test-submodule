@@ -1,0 +1,16 @@
+*.o
+*.IAB
+*.IAD
+*.IMB
+*.IMD
+*.PFI
+*.PO
+*.PR
+*.PRI
+*.PS
+*.out
+tags
+.nfs*
+/hostapd/.nfs0000000002217beb0000002b
+*.SearchResults
+*.patch

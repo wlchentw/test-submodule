@@ -1,0 +1,54 @@
+PREFIX = ../install
+CROSS = arm-linux-
+CROSS_COMPILER = $(CROSS:%-=%)
+ROOT = ../install/$(CROSS_COMPILER)
+DEP_LIBS =
+INSTALL = _install
+CLEAN =
+NAME = NvRAMUtils
+CODEBASE=DEFAULT
+CONFIG = -I ./src \
+	-Ilibfile_op \
+	-Ilibnvram \
+	-I../libnvram_custom/CFG/$(PRJ_FILENAME)/cgen/cfgfileinc \
+	-I../libnvram_custom/CFG/$(PRJ_FILENAME)/cgen/cfgdefault \
+	-I../libnvram_custom/CFG/$(PRJ_FILENAME)/cgen/inc \
+	-I../libnvram_custom/CFG/$(PRJ_FILENAME)/cgen \
+	-I$(ROOT)/include/custom/$(PRJ_FILENAME)/cgen/cfgfileinc \
+	-I$(ROOT)/include/custom/$(PRJ_FILENAME)/cgen/cfgdefault \
+	-I$(ROOT)/include/custom/$(PRJ_FILENAME)/cgen/inc \
+	-I$(ROOT)/include/custom/$(PRJ_FILENAME)/cgen \
+	-I$(ROOT)/include/custom/$(CODEBASE)/cgen/cfgfileinc \
+	-I$(ROOT)/include/custom/$(CODEBASE)/cgen/cfgdefault \
+	-I$(ROOT)/include/custom/$(CODEBASE)/cgen/inc \
+	-I$(ROOT)/include/custom/$(CODEBASE)/cgen \
+	-I$(ROOT)/include/file_op \
+	-I$(ROOT)/include/nvram
+CFLAGS = -O2 -fPIC
+
+LIB = lib$(NAME).a lib$(NAME).so
+
+VPATH = $(NAME)
+LOBJ = $(patsubst %.S,%.o, \
+       $(patsubst %.s,%.o, \
+       $(patsubst %.c,%.o, \
+       $(patsubst %.cpp, %.o, \
+       $(notdir $(foreach DIR,$(VPATH),\
+       $(wildcard $(DIR)/*.S)  \
+       $(wildcard $(DIR)/*.s)  \
+       $(wildcard $(DIR)/*.c)  \
+       $(wildcard $(DIR)/*.cpp)))))))
+
+ALL = $(LIB)
+
+include bin/Makefile.config
+include bin/Makefile.template
+
+_install:
+	mkdir -p $(ROOT)/${base_libdir}
+	cp lib$(NAME).so $(ROOT)/${base_libdir}
+	mkdir -p $(ROOT)/include/$(NAME)
+	cp -af $(NAME)/*.h $(ROOT)/include/$(NAME)
+
+_clean:
+	rm -rf $(ROOT)/include/$(NAME)

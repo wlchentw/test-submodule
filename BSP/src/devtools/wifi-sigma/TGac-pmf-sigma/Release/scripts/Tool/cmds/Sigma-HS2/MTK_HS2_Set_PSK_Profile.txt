@@ -1,0 +1,12 @@
+### Add WPA2_PSK Profile
+
+info!Add WPA2_PSK Profile!
+
+define!$DUT_IF!wlan0!
+define!$SSID!Enter_Your_SSID!
+define!$PskPassphrase!Enter_PskPassPhrase!
+define!$TTLSPassword!Enter_User_Password!
+define!$trustedRootCACertName!Enter_CACert_Name!
+define!$PskPrefer!Must_Be_0_or_1!
+
+wfa_control_agent_dut!sta_set_psk,interface,$DUT_IF,ssid,$SSID,passphrase,$PskPassphrase,encpType,aes-ccmp,keymgmttype,wpa2,prefer,$PskPrefer!DEFAULT

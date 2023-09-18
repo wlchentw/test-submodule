@@ -1,0 +1,53 @@
+#test
+#define!$Sigma_ControlAgent_Support!1!
+#
+#info![Verify MediaTek Inc. Testbed <MT662x HS2.0>]!
+#
+#wfa_control_agent_dut!ca_get_version!DEFAULT
+#wfa_control_agent_dut!device_get_info!DEFAULT
+#wfa_control_agent_dut!sta_get_mac_address,interface,wlan0!DEFAULT
+
+#
+#info![Verify Successfully]!
+
+# Reset the STA
+info![Reset STA1]!
+#wfa_control_agent_dut!ca_get_version!DEFAULT
+#wfa_control_agent_dut!device_get_info!DEFAULT
+#wfa_control_agent_dut!device_list_interfaces,interfaceType,802.11!INTERFACEID,$STA1_IF
+wfa_control_agent_dut!sta_reset_default,interface,wlan0,prog,HS2!DEFAULT
+#wfa_control_agent_dut!sta_bssid_pool,interface,$STA1_IF,bssid_filter,1,bssid_list,$BSSID_POOL!DEFAULT
+#wfa_control_agent_dut!sta_get_mac_address,interface,$STA1_IF!ID,$STA1_MAC_ADDRESS
+
+#wfa_control_agent_dut!sta_preset_testparameters,interface,wlan0,program,HS2-R2,FileType,PPSMO,FileName,puff.xml,FilePath,http://10.123.123.123!DEFAULT
+
+#wfa_control_agent_dut!sta_set_ip_config,interface,wlan0,dhcp,0,Type,1,ip,192.165.100.11,mask,255.255.255.0,primary-dns,192.168.1.1,secondary-dns,192.168.1.2!DEFAULT
+
+#wfa_control_agent_dut!dev_send_frame,program,HS2-R2,interface,wlan0,srcmac,00:0c:e7:66:66:66,framename,ARPAnnounce!DEFAULT
+
+#wfa_control_agent_dut!dev_set_parameter,program,HS2-R2,interface,wlan0,dev,STA,ClearARP,1!DEFAULT
+
+#wfa_control_agent_dut!sta_reset_parm,interface,wlan0,arp,all!DEFAULT
+
+#wfa_control_agent_dut!sta_bssid_pool,interface,wlan0,bssid_filter,0,bssid_list,00:0c:43:44:09:08!DEFAULT
+
+#wfa_control_agent_dut!sta_reset_default,interface,wlan0,prog,HS2-R2!DEFAULT
+
+#wfa_control_agent_dut!sta_bssid_pool,interface,wlan0,bssid_filter,1,bssid_list,8c:0c:90:3b:48:1c!DEFAULT       
+
+#wfa_control_agent_dut!sta_add_credential,interface,wlan0,type,uname_pwd,realm,wi-fi.org,Home_FQDN,wi-fi.org,username,wifi-user,password,test%11!DEFAULT
+
+
+#wfa_control_agent_dut!sta_set_ip_config,interface,wlan0,dhcp,0,type,2,ip,fe01::1234,mask,64!DEFAULT 
+
+#wfa_control_agent_dut!sta_hs2_associate,interface,wlan0!DEFAULT
+
+#wfa_control_agent_dut!sta_preset_testparameters,interface,wlan0,program,HS2-R2,FileType,PPSMO,FileName,pps-mo-id34-v0.10.xml,FilePath,http://mobile.mediatek.com/home!DEFAULT
+
+#wfa_control_agent_dut!sta_scan,interface,wlan0,hessid,AA:BB:CC:DD:EE:FF,ACCS_NET_TYPE,2!DEFAULT
+
+wfa_control_agent_dut!sta_set_ip_config,interface,wlan0,dhcp,1!DEFAULT
+
+wfa_control_agent_dut!sta_add_credential,interface,wlan0,type,uname_pwd,realm,mail.example.com,username,wifi-user,password,test%11,prefer,0!DEFAULT
+
+wfa_control_agent_dut!sta_hs2_associate,interface,wlan0!DEFAULT

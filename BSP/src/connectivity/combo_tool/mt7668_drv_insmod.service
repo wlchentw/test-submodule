@@ -1,0 +1,10 @@
+[Unit]
+Description=mt7668_drv_insmod
+
+
+[Service]
+Type=simple
+ExecStart=/bin/sh /etc/mt7668_drv_insmod.sh
+
+[Install]
+WantedBy=multi-user.target

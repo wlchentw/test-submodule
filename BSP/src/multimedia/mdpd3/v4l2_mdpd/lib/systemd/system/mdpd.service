@@ -1,0 +1,14 @@
+[Unit]
+Description=MDP Daemon
+DefaultDependencies=no
+After=systemd-udevd.service
+Before=sysinit.target
+
+[Service]
+ExecStart=/usr/bin/mdpd -f
+Restart=always
+StandardOutput=tty
+StandardError=tty
+
+[Install]
+WantedBy=sysinit.target

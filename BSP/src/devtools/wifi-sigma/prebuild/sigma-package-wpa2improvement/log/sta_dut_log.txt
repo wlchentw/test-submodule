@@ -1,0 +1,203 @@
+03-07 11:07:03.327 wfa_wmm_thread: wait signal
+03-07 11:07:03.327 wfa_wmm_thread: wait signal
+03-07 11:07:03.327 wfa_wmm_thread: wait signal
+03-07 11:07:03.327 wfa_wmm_thread: wait signal
+03-07 11:07:03.327 wfa_wmm_thread: wait signal
+03-07 11:07:03.327 wfa_wmm_thread: wait signal
+03-07 11:07:03.328 wfa_wmm_thread: wait signal
+03-07 11:07:03.328 wfa_wmm_thread: wait signal
+03-07 11:07:03.319 Dut started successfully DUT Build: 20161027.16
+File wfa_tlv.c, Line 136: 03-07 11:07:37.833 invalid *pval_len (0), must between 0~1024
+03-07 11:07:37.835 entering agtCmdProcGetVersion ...
+File wfa_tlv.c, Line 136: 03-07 11:07:38.855 invalid *pval_len (0), must between 0~1024
+03-07 11:07:38.857 Entering wfaDeviceGetInfo ...
+03-07 11:07:40.046 Entering wfaDeviceListIF ...
+03-07 11:07:41.068 Inside wfaStaPresetParameters function ...
+03-07 11:07:43.095 wpa_cli -i wlan0 -p /tmp/wpa_supplicant add_network
+03-07 11:07:43.096 mtk_run_shell_cmd running cmd: wpa_cli -i wlan0 -p /tmp/wpa_supplicant add_network
+03-07 11:07:43.144 popen reply: 0
+
+03-07 11:07:43.149 wpa_cli -i wlan0 -p /tmp/wpa_supplicant set_network 0 ssid \"wpa2wpa2\"
+03-07 11:07:43.149 mtk_run_shell_cmd running cmd: wpa_cli -i wlan0 -p /tmp/wpa_supplicant set_network 0 ssid \"wpa2wpa2\"
+03-07 11:07:43.182 popen reply: OK
+
+03-07 11:07:43.187 wfaStaSetPSK 2247 wpa2
+03-07 11:07:43.187 wpa_cli -i wlan0 -p /tmp/wpa_supplicant set_network 0 key_mgmt WPA-PSK
+03-07 11:07:43.187 mtk_run_shell_cmd running cmd: wpa_cli -i wlan0 -p /tmp/wpa_supplicant set_network 0 key_mgmt WPA-PSK
+03-07 11:07:43.228 popen reply: OK
+
+03-07 11:07:43.230 wpa_cli -i wlan0 -p /tmp/wpa_supplicant set_network 0 psk \"wpa2wpa2\"
+03-07 11:07:43.231 mtk_run_shell_cmd running cmd: wpa_cli -i wlan0 -p /tmp/wpa_supplicant set_network 0 psk \"wpa2wpa2\"
+03-07 11:07:43.347 popen reply: OK
+
+03-07 11:07:43.348 wpa_cli -i wlan0 -p /tmp/wpa_supplicant select_network 0
+03-07 11:07:43.349 mtk_run_shell_cmd running cmd: wpa_cli -i wlan0 -p /tmp/wpa_supplicant select_network 0
+03-07 11:07:43.373 popen reply: OK
+
+03-07 11:07:44.392 entering wfaStaSetIpConfig ...
+03-07 11:07:44.392 mtk_config_ip ipconfig with manual
+03-07 11:07:44.393 mtk_run_shell_cmd running cmd: ifconfig wlan0 192.165.100.102 netmask 255.255.0.0
+03-07 11:07:45.451 entering wfaStaAssociate ...
+03-07 11:07:45.451 wpa_cli -i wlan0 -p /tmp/wpa_supplicant reconnect
+03-07 11:07:45.451 mtk_run_shell_cmd running cmd: wpa_cli -i wlan0 -p /tmp/wpa_supplicant reconnect
+03-07 11:07:45.485 popen reply: OK
+
+03-07 11:08:00.513 Entering isConnected ...
+03-07 11:08:00.513 wpa_cli -i wlan0 -p /tmp/wpa_supplicant status
+03-07 11:08:00.513 mtk_run_shell_cmd running cmd: wpa_cli -i wlan0 -p /tmp/wpa_supplicant status
+03-07 11:08:00.545 popen reply: bssid=ce:2d:83:5f:ba:68
+freq=2437
+ssid=wpa2wpa2
+id=0
+mode=station
+pairwise_cipher=CCMP
+group_cipher=CCMP
+key_mgmt=WPA2-PSK
+wpa_state=COMPLETED
+ip_address=192.165.100.102
+address=00:08:22:84:a3:fb
+uuid=ce376ba8-0206-57bb-8318-2230fb1f5d37
+
+03-07 11:08:00.550 argv[0]: bssid=ce:2d:83:5f:ba:68
+03-07 11:08:00.550 bssid: ce:2d:83:5f:ba:68
+03-07 11:08:00.550 argv[1]: freq=2437
+03-07 11:08:00.551 freq: 2437
+03-07 11:08:00.551 argv[2]: ssid=wpa2wpa2
+03-07 11:08:00.551 ssid: wpa2wpa2
+03-07 11:08:00.551 argv[3]: id=0
+03-07 11:08:00.551 id: 0
+03-07 11:08:00.551 argv[4]: mode=station
+03-07 11:08:00.551 mode: station
+03-07 11:08:00.552 argv[5]: pairwise_cipher=CCMP
+03-07 11:08:00.552 pairwise_cipher: CCMP
+03-07 11:08:00.552 argv[6]: group_cipher=CCMP
+03-07 11:08:00.552 group_cipher: CCMP
+03-07 11:08:00.552 argv[7]: key_mgmt=WPA2-PSK
+03-07 11:08:00.552 key_mgmt: WPA2-PSK
+03-07 11:08:00.553 argv[8]: wpa_state=COMPLETED
+03-07 11:08:00.553 wpa_state: COMPLETED
+03-07 11:08:00.553 argv[9]: ip_address=192.165.100.102
+03-07 11:08:00.553 ip_address: 192.165.100.102
+03-07 11:08:00.553 argv[10]: address=00:08:22:84:a3:fb
+03-07 11:08:00.558 address: 00:08:22:84:a3:fb
+03-07 11:08:00.560 argv[11]: uuid=ce376ba8-0206-57bb-8318-2230fb1f5d37
+03-07 11:08:00.565 uuid: ce376ba8-0206-57bb-8318-2230fb1f5d37
+03-07 11:08:01.582 Entering wfaStaGetBSSID ...
+03-07 11:08:01.582 wpa_cli -i wlan0 -p /tmp/wpa_supplicant status
+03-07 11:08:01.582 mtk_run_shell_cmd running cmd: wpa_cli -i wlan0 -p /tmp/wpa_supplicant status
+03-07 11:08:01.613 popen reply: bssid=ce:2d:83:5f:ba:68
+freq=2437
+ssid=wpa2wpa2
+id=0
+mode=station
+pairwise_cipher=CCMP
+group_cipher=CCMP
+key_mgmt=WPA2-PSK
+wpa_state=COMPLETED
+ip_address=192.165.100.102
+address=00:08:22:84:a3:fb
+uuid=ce376ba8-0206-57bb-8318-2230fb1f5d37
+
+03-07 11:08:01.618 argv[0]: bssid=ce:2d:83:5f:ba:68
+03-07 11:08:01.619 bssid: ce:2d:83:5f:ba:68
+03-07 11:08:01.619 argv[1]: freq=2437
+03-07 11:08:01.619 freq: 2437
+03-07 11:08:01.619 argv[2]: ssid=wpa2wpa2
+03-07 11:08:01.619 ssid: wpa2wpa2
+03-07 11:08:01.619 argv[3]: id=0
+03-07 11:08:01.620 id: 0
+03-07 11:08:01.620 argv[4]: mode=station
+03-07 11:08:01.620 mode: station
+03-07 11:08:01.620 argv[5]: pairwise_cipher=CCMP
+03-07 11:08:01.620 pairwise_cipher: CCMP
+03-07 11:08:01.620 argv[6]: group_cipher=CCMP
+03-07 11:08:01.620 group_cipher: CCMP
+03-07 11:08:01.621 argv[7]: key_mgmt=WPA2-PSK
+03-07 11:08:01.621 key_mgmt: WPA2-PSK
+03-07 11:08:01.621 argv[8]: wpa_state=COMPLETED
+03-07 11:08:01.621 wpa_state: COMPLETED
+03-07 11:08:01.621 argv[9]: ip_address=192.165.100.102
+03-07 11:08:01.621 ip_address: 192.165.100.102
+03-07 11:08:01.622 argv[10]: address=00:08:22:84:a3:fb
+03-07 11:08:01.625 address: 00:08:22:84:a3:fb
+03-07 11:08:01.629 argv[11]: uuid=ce376ba8-0206-57bb-8318-2230fb1f5d37
+03-07 11:08:01.629 uuid: ce376ba8-0206-57bb-8318-2230fb1f5d37
+03-07 11:08:02.645 mtk_run_shell_cmd running cmd: ip addr show wlan0
+03-07 11:08:02.696 popen reply: 7: wlan0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq qlen 1000
+    link/ether 00:08:22:84:a3:fb brd ff:ff:ff:ff:ff:ff
+    inet 192.165.100.102/16 brd 192.165.255.255 scope global wlan0
+       valid_lft forever preferred_lft forever
+
+03-07 11:08:02.698 mtk_get_ipconfig argv[0]: 7: wlan0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq qlen 1000
+03-07 11:08:02.698 mtk_get_ipconfig found mtu
+03-07 11:08:02.699 mtk_get_ipconfig found qdisc
+03-07 11:08:02.699 mtk_get_ipconfig found qlen
+03-07 11:08:02.699 mtk_get_ipconfig argv[1]:     link/ether 00:08:22:84:a3:fb brd ff:ff:ff:ff:ff:ff
+03-07 11:08:02.699 mtk_get_ipconfig found ether
+03-07 11:08:02.699 mtk_get_ipconfig argv[2]:     inet 192.165.100.102/16 brd 192.165.255.255 scope global wlan0
+03-07 11:08:02.699 mtk_get_ipconfig found inet
+03-07 11:08:02.700 mtk_get_ipconfig argv[3]:        valid_lft forever preferred_lft forever
+03-07 11:08:02.700 mtk_run_shell_cmd running cmd: ifconfig wlan0
+03-07 11:08:02.757 popen reply: wlan0     Link encap:Ethernet  HWaddr 00:08:22:84:A3:FB  
+          inet addr:192.165.100.102  Bcast:192.165.255.255  Mask:255.255.0.0
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:3 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:3 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:427 (427.0 B)  TX bytes:361 (361.0 B)
+
+
+03-07 11:08:02.758 debug: mtk_get_ipconfig argv[0]: wlan0     Link encap:Ethernet  HWaddr 00:08:22:84:A3:FB  
+03-07 11:08:02.758 debug: mtk_get_ipconfig argv[1]:           inet addr:192.165.100.102  Bcast:192.165.255.255  Mask:255.255.0.0
+03-07 11:08:02.758 debug: mtk_get_ipconfig argv[2]:           UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+03-07 11:08:02.758 debug: mtk_get_ipconfig argv[3]:           RX packets:3 errors:0 dropped:0 overruns:0 frame:0
+03-07 11:08:02.758 debug: mtk_get_ipconfig argv[4]:           TX packets:3 errors:0 dropped:0 overruns:0 carrier:0
+03-07 11:08:02.759 debug: mtk_get_ipconfig argv[5]:           collisions:0 txqueuelen:1000 
+03-07 11:08:02.759 debug: mtk_get_ipconfig argv[6]:           RX bytes:427 (427.0 B)  TX bytes:361 (361.0 B)
+03-07 11:08:02.759 debug: mtk_get_ipconfig argv[7]: 
+03-07 11:08:02.759 ipaddr 192.165.100.102
+03-07 11:08:02.759 ipaddr6 
+03-07 11:08:02.760 ipaddr_brd 192.165.255.255
+03-07 11:08:02.760 mask 
+03-07 11:08:02.760 dns0 
+03-07 11:08:02.760 dns1 
+03-07 11:08:02.761 mac 00:08:22:84:a3:fb
+03-07 11:08:02.762 mac_brd ff:ff:ff:ff:ff:ff
+03-07 11:08:02.762 mtu 1500
+03-07 11:08:02.762 qdisc mq
+03-07 11:08:02.762 state 
+03-07 11:08:02.762 qlen 1000
+03-07 11:08:03.783 Entering wfaTSendPing ...
+framerate 3
+TG: interval 0.333333
+The steam ID is:1 
+03-07 11:08:03.788 CS : The Stream ID is 1
+03-07 11:08:03.788 wfaSendPing Creating pthread for ping
+03-07 11:08:03.789 wfaSendPing Ping cmd: ping    -i 0.333333 -c 30 -s 1000 192.165.100.1 2>&1 streamid: 1
+03-07 11:08:03.789 wfaSendPing Create pthread for ping success, pthread_id:0x99e4b0a0
+03-07 11:08:03.811 start_ping_child:p_thread:0x99e4b0a0, exit_req:0
+03-07 11:08:03.811 buf: ping: invalid option -- 'i'
+
+03-07 11:08:03.812 start_ping_child:p_thread:0x99e4b0a0, exit_req:0
+03-07 11:08:03.812 buf: BusyBox v1.24.1 (2018-03-07 11:08:56 CST) multi-call binary.
+
+03-07 11:08:03.812 start_ping_child:p_thread:0x99e4b0a0, exit_req:0
+03-07 11:08:03.812 buf: 
+
+03-07 11:08:03.812 start_ping_child:p_thread:0x99e4b0a0, exit_req:0
+03-07 11:08:03.813 buf: Usage: ping [OPTIONS] HOST
+
+03-07 11:08:03.816 streamid 1
+03-07 11:08:03.816 streamid 1
+03-07 11:08:03.816 transmitted 
+03-07 11:08:03.816 received 
+03-07 11:08:03.817 loss 
+CS: The length 4
+ and the command buff is 
+ 1  0  0  0  31  36  35  2e 
+the stream id is 1Ping stop id 1
+03-07 11:08:16.814 target pingstatus found for streamid:1
+03-07 11:08:16.815 wfaStopPing child ppid:0x99e4b0a0, exit_req:1
+03-07 11:08:16.815 wfaStopPing p->transmitted: 
+03-07 11:08:16.815 wfaStopPing p->received: 
+03-07 11:08:16.815 wfaStopPing p->loss: 

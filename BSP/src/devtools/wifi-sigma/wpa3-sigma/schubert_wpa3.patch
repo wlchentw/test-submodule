@@ -1,0 +1,143 @@
+diff --git a/Linux_STA.sh b/Linux_STA.sh
+index f663d44..156f2aa 100644
+--- a/Linux_STA.sh
++++ b/Linux_STA.sh
+@@ -1,5 +1,5 @@
+ # If wts is going to be run on ARM platform, please uncomment the line below
+-#make clean;make TOOL_CHAIN=CORTEX_A9 TOOL_VERSION=STA_PMF
++make clean;make TOOL_CHAIN=CORTEX_A9 TOOL_VERSION=STA_PMF
+ 
+ # Build for host machine by default, instead of ARM platform.
+-make clean;make TOOL_VERSION=STA_PMF
++#make clean;make TOOL_VERSION=STA_PMF
+diff --git a/Makefile.inc b/Makefile.inc
+index a4ac51f..c8b5682 100644
+--- a/Makefile.inc
++++ b/Makefile.inc
+@@ -70,8 +70,9 @@ endif
+ ##### Change the following for your environment: ############ 
+ #***************** cortex-a9-rhel4 PATH  ********************
+ ifeq "$(TOOL_CHAIN)" "CORTEX_A9"
+-    #CROSS_COMPILER=/mtkoss/gnuarm/vfp_4.5.1_2.6.27_cortex-a9-rhel4/i686/bin/armv7a-mediatek451_001_vfp-linux-gnueabi-
+-    CROSS_COMPILER=/mtkoss/gnuarm/neon_4.8.2_2.6.35_cortex-a9-ubuntu/x86_64/bin/armv7a-mediatek482_001_neon-linux-gnueabi-
++    CROSS_COMPILER=/mtkoss/gnuarm/vfp_4.5.1_2.6.27_cortex-a9-rhel4/i686/bin/armv7a-mediatek451_001_vfp-linux-gnueabi-
++    #CROSS_COMPILER=cortexa7-vfp-neon-poky-linux-
++    #CROSS_COMPILER=/mtkoss/gnuarm/neon_4.8.2_2.6.35_cortex-a9-ubuntu/x86_64/bin/armv7a-mediatek482_001_neon-linux-gnueabi-
+ endif
+ 
+ ifeq "$(PLATFORM)" "BDP"
+diff --git a/inc/wfa_portall.h b/inc/wfa_portall.h
+index 879fd2e..89bbc1f 100755
+--- a/inc/wfa_portall.h
++++ b/inc/wfa_portall.h
+@@ -48,7 +48,7 @@ char DHCPD_CONFIG_FILE_PATH[100];
+ char ctrl_if[100];
+ char WPA_SUPPLICANT_CTRL_IFACE_PATH[100];
+ #else
+-char ctrl_if[2];
++char ctrl_if[100];
+ #endif
+ 
+ char MTK_WPA_CLI_OUTPUT_BUFFER_PATH[100];
+diff --git a/lib/mtk_ini.c b/lib/mtk_ini.c
+index bed8a00..0753b10 100755
+--- a/lib/mtk_ini.c
++++ b/lib/mtk_ini.c
+@@ -74,7 +74,7 @@ void mtk_parser_ini(void)
+     sprintf(ctrl_if, "-p %s", WPA_SUPPLICANT_CTRL_IFACE_PATH);
+     printf ("ctrl_if = %s.\r\n", ctrl_if);
+ #else
+-    sprintf(ctrl_if, " ");
++    sprintf(ctrl_if, "-p/tmp/wpa_supplicant");
+ #endif
+ 
+ #ifdef MTK_11N_AP_SIGMA
+diff --git a/lib/wfa_ca_resp.c b/lib/wfa_ca_resp.c
+index be6d2b5..be39c23 100755
+--- a/lib/wfa_ca_resp.c
++++ b/lib/wfa_ca_resp.c
+@@ -736,9 +736,11 @@ int wfaDeviceGetInfoResp(BYTE *cmdBuf)
+         break;
+ 
+     case STATUS_COMPLETE:
++#if 0
+         if(dinfo->firmware[0] != '\0' || dinfo->firmware[0] != '\n')
+             sprintf(gRespStr, "status,COMPLETE,firmware,%s\r\n", dinfo->firmware);
+         else
++#endif
+             sprintf(gRespStr, "status,COMPLETE,vendor,%s,model,%s,version,%s\r\n",
+                     dinfo->vendor, dinfo->model, dinfo->version);
+         DPRINT_INFO(WFA_OUT, "%s\n", gRespStr);
+diff --git a/lib/wfa_cs.c b/lib/wfa_cs.c
+index adf0f5f..042a2f1 100755
+--- a/lib/wfa_cs.c
++++ b/lib/wfa_cs.c
+@@ -144,7 +144,7 @@ extern int wfdMtkWfdCheckP2pAndTdlsConnResult(unsigned char *retcode, unsigned c
+ #endif /* MTK_WFD_SIGMA */
+ 
+ #define MTK_HS20_CMD(supp_cmd_fmt, ... ) \
+-    sprintf(gCmdStr, "wpa_cli " supp_cmd_fmt, ##__VA_ARGS__); \
++    sprintf(gCmdStr, "wpa_cli -p/tmp/wpa_supplicant " supp_cmd_fmt, ##__VA_ARGS__); \
+     puts("\n\t"); \
+     puts(gCmdStr); \
+     if (system(gCmdStr)) printf("\t\tSYSYTEM MTK_HS20_CMD FAIL: \n\t\t\t%s \n", gCmdStr);
+@@ -292,7 +292,7 @@ int wfaStaAssociate(int len, BYTE *caCmdBuf, int *respLen, BYTE *respBuf)
+     printf("system: %s\n",gCmdStr);
+     //make sure connection
+     for (i = 0; i < 20; i++){
+-        MTK_HS20_CMD("-i %s status | grep ^wpa_state= | cut -f2- -d= > %s \n",
++        MTK_HS20_CMD("-i %s status | busybox grep ^wpa_state= | cut -f2- -d= > %s \n",
+                         ifname, tmpfilename3);
+ 
+         tmpfile3 = fopen(tmpfilename3, "r+");
+@@ -528,7 +528,7 @@ int wfaStaIsConnected(int len, BYTE *caCmdBuf, int *respLen, BYTE *respBuf)
+      * none, scanning or complete (wpa_supplicant specific)
+      */
+ 
+-    sprintf(gCmdStr, "wpa_cli -i%s %s status | grep ^wpa_state= | busybox cut -f2- -d= > ./sigma_isConnected.txt", WFA_STAUT_IF, ctrl_if);
++    sprintf(gCmdStr, "wpa_cli -i%s %s status | busybox grep ^wpa_state= | busybox cut -f2- -d= > ./sigma_isConnected.txt", WFA_STAUT_IF, ctrl_if);
+ 
+     sret = system(gCmdStr);
+     DPRINT_INFO(WFA_OUT, "%s: cmd=[%s]\n", __FUNCTION__, gCmdStr);
+@@ -1556,7 +1556,7 @@ SET_PSK3:
+             MTK_WPA3_CMD("-i %s set_network %d owe_group %s", setSecurity->intf, idx_i, setSecurity->ecGroupID);
+         } else if (fgIsSAE == TRUE) {
+             DPRINT_INFO(WFA_WNG, "Set SAE ecGroupID %s\n", setSecurity->ecGroupID);  /* your supplicant needs patch CL404517 at DaVanci server for SAE_GROUPS. */
+-            MTK_WPA3_CMD("-i %s sae_groups %s", setSecurity->intf, setSecurity->ecGroupID);
++            MTK_WPA3_CMD("-i %s set sae_groups %s", setSecurity->intf, setSecurity->ecGroupID);
+         }
+     }
+ 
+@@ -4260,12 +4260,12 @@ void wfaSendPing(tgPingStart_t *staPing, float *interval, int streamid)
+             sprintf(cmdStr, "echo streamid=%i > /tmp/spout_%d.txt;wfaping.sh %s -i %f -c %i  -Q %d -s %i -q %s>> /tmp/spout_%d.txt 2>/dev/null",
+                     streamid,streamid,bflag, *interval, totalpkts, tos, staPing->frameSize, staPing->dipaddr, streamid);
+         else
+-            sprintf(cmdStr, "echo streamid=%i > /tmp/spout_%d.txt;wfaping.sh %s -i %f -c %i -s %i -q %s>> /tmp/spout_%d.txt 2>/dev/null",
++            sprintf(cmdStr, "echo streamid=%i > /tmp/spout_%d.txt;./scripts/wfaping.sh %s -i %f -c %i -s %i %s>> /tmp/spout_%d.txt 2>/dev/null",
+                     streamid,streamid,bflag, *interval, totalpkts, staPing->frameSize, staPing->dipaddr, streamid);
+         sret = system(cmdStr);
+         printf("\nCS : The command string is [%s]\n",cmdStr);
+     }
+-    sprintf(cmdStr, "updatepid.sh /tmp/spout_%d.txt",streamid);
++    sprintf(cmdStr, "./scripts/updatepid.sh /tmp/spout_%d.txt",streamid);
+     sret = system(cmdStr);
+     printf("\nCS : The command string is [%s]\n",cmdStr);
+ 
+@@ -4277,14 +4277,14 @@ int wfaStopPing(dutCmdResponse_t *stpResp, int streamid)
+     FILE *tmpfile = NULL;
+     char cmdStr[128];
+     printf("\nwfa_cs.c wfaStopPing:: stream id=%d\n", streamid);
+-    sprintf(cmdStr, "getpid.sh /tmp/spout_%d.txt /tmp/pid.txt",streamid);
++    sprintf(cmdStr, "./scripts/getpid.sh /tmp/spout_%d.txt /tmp/pid.txt",streamid);
+     sret = system(cmdStr);
+ 
+     printf("\nCS : The command string is [%s]\n",cmdStr);
+ 
+-    sret = system("stoping.sh /tmp/pid.txt ; sleep 2");
++    sret = system("./scripts/stoping.sh /tmp/pid.txt ; sleep 2");
+ 
+-    sprintf(cmdStr, "getpstats.sh /tmp/spout_%d.txt",streamid);
++    sprintf(cmdStr, "./scripts/getpstats.sh /tmp/spout_%d.txt",streamid);
+     sret = system(cmdStr);
+ 
+     printf("\nCS : The command string is [%s]\n",cmdStr);

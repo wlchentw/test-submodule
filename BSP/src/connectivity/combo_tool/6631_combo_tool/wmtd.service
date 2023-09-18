@@ -1,0 +1,15 @@
+[Unit]
+Description=WMT Daemon
+After=network.target
+Requires=nvram_daemon.service
+After=nvram_daemon.service
+
+[Service]
+ExecStart=/usr/bin/wmt_loader > ttyS0
+Type=oneshot
+StandardOutput=tty
+StandardError=tty
+
+[Install]
+Alias=wmtd
+WantedBy=multi-user.target

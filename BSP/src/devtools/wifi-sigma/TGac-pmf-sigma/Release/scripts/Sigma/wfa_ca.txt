@@ -1,0 +1,3 @@
+File wfa_sock.c, Line 134: bind() failedFile wfa_sock.c, Line 228: accept() failedCA Build: 20151031.16
+Control Agent started successfully CA Build: 20151031.16
+new event 

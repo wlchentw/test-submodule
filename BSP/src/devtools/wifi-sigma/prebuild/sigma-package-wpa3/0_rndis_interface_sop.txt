@@ -1,0 +1,4 @@
+#adb push rndis_adb.sh /data
+adb shell
+cd /data
+nohup ./rndis_adb.sh &

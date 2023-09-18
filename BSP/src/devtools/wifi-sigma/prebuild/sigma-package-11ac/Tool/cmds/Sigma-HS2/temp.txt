@@ -1,0 +1,72 @@
+#test
+define!$Sigma_ControlAgent_Support!1!
+
+info![Verify MediaTek Inc. Testbed <MT662x HS2.0>]!
+#wfa_control_agent_dut!dev_send_frame,program,HS2,interface,wlan0,dest,ff:ff:ff:ff:ff:ff,FrameName,NeighAdv!DEFAULT
+#wfa_control_agent_dut!dev_send_frame,program,HS2,interface,wlan0,dest,ff:ff:ff:ff:ff:ff,FrameName,GARPReq!DEFAULT
+#wfa_control_agent_dut!dev_send_frame,program,HS2,interface,wlan0,dest,ff:ff:ff:ff:ff:ff,FrameName,GARPRes!DEFAULT
+#wfa_control_agent_dut!traffic_send_ping,destination,fe80::020c:e7ff:fe09:3216,framesize,1000,frameRate,3,duration,5,type,2!STREAMID,$PING1
+#wfa_control_agent_dut!sta_set_ip_config,interface,wlan0,dhcp,1,type,2!DEFAULT
+#wfa_control_agent_dut!sta_get_ip_config,interface,wlan0,type,2!ID,$STA2_Wireless_IPv6_Address
+#wfa_control_agent_dut!sta_get_ip_config,interface,wlan0,!DEFAULT
+#wfa_control_agent_dut!sta_get_ip_config,interface,wlan0,type,1!DEFAULT
+wfa_control_agent_dut!ca_get_version!DEFAULT
+wfa_control_agent_dut!device_get_info!DEFAULT
+#wfa_control_agent_dut!sta_get_mac_address,interface,wlan0!DEFAULT
+#wfa_control_agent_dut!sta_is_connected,interface,wlan0!DEFAULT
+#wfa_control_agent_dut!sta_get_bssid,interface,wlan0!DEFAULT
+#wfa_control_agent_dut!device_list_interfaces,interfaceType,802.11!DEFAULT
+#
+#
+#wfa_control_agent_dut!sta_get_info,interface,wlan0!DEFAULT
+#wfa_control_agent_dut!sta_get_ip_config,interface,wlan0!DEFAULT
+#wfa_control_agent_dut!sta_get_ip_config,interface,wlan0,type,2!DEFAULT
+#wfa_control_agent_dut!sta_get_key,interface,wlan0,KeyType,GTK!DEFAULT
+
+#wfa_control_agent_dut!sta_bssid_pool,interface,wlan0,bssid_filter,1,bssid_list,00:11:22:33:44:55 11:22:33:44:55:66!DEFAULT
+
+#wfa_control_agent_dut!sta_set_encryption,interface,wlan0,ssid,plpl,encpType,wep,key1,12345678901234567890123456!DEFAULT
+
+#wfa_control_agent_dut!sta_set_psk,interface,wlan0,ssid,plpl,passPhrase,123456789,keyMgmtType,wpa-psk,encpType,aes-ccmp,prefer,1,prog,HS2!DEFAULT
+
+#wfa_control_agent_dut!sta_set_eapsim,interface,wlan0,ssid,plpl,username,console,password,azimuth,encpType,tkip,keyMgmtType,wpa!DEFAULT
+
+#wfa_control_agent_dut!sta_reset_parm,interface,wlan0,arp,all,HS2_Cache_Profile,all!DEFAULT
+wfa_control_agent_dut!sta_set_eapttls,interface,wlan0,ssid,QQQ_QQQ,username,console,password,azimuth,trustedRootCA,Azimuth CA,encpType,aes-ccmp,keymgmttype,wpa2,prefer,1!DEFAULT
+
+#wfa_control_agent_dut!sta_set_eaptls,interface,wlan0,ssid,plpl,trustedRootCA,Azimuth CA,clientCertificate,console-cert,encpType,tkip,keyMgmtType,wpa!DEFAULT
+
+#wfa_control_agent_dut!sta_set_ip_config,interface,wlan0,dhcp,0,ip,192.168.100.177,mask,255.255.255.0,primary-dns,192.168.100.151,secondary-dns,192.168.100.152!DEFAULT
+#wfa_control_agent_dut!sta_verify_ip_connection,interface,wlan0,destination,192.168.100.211,timeout,10!DEFAULT
+
+#wfa_control_agent_dut!traffic_send_ping,destination,192.168.100.200,frameSize,64,frameRate,1,duration,20!DEFAULT
+#wfa_control_agent_dut!sta_associate,interface,wlan0,ssid,plpl,wps,0!DEFAULT
+
+#wfa_control_agent_dut!sta_reset_default,interface,wlan0,prog,HS2!DEFAULT
+#wfa_control_agent_dut!sta_reset_parm,interface,wlan0,arp,all,HS2_Cache_Profile,all!DEFAULT
+
+#wfa_control_agent_dut!sta_reset_parm,interface,wlan0,arp,all,HS2_Cache_Profile,all!DEFAULT
+#wfa_control_agent_dut!sta_set_psk,interface,wlan0,ssid,ra_hotspot2.0,passPhrase,12345678,keyMgmtType,wpa2-psk,encpType,aes-ccmp!DEFAULT
+#wfa_control_agent_dut!sta_associate,interface,wlan0,ssid,ra_hotspot2.0,wps,0!DEFAULT
+#wfa_control_agent_dut!sta_get_key,interface,wlan0,KeyType,GTK!DEFAULT
+
+#wfa_control_agent_dut!sta_reassoc,interface,wlan0,bssid,e0:cb:4e:25:03:d5!DEFAULT
+#wfa_control_agent_dut!sta_hs2_associate,interface,wlan0!DEFAULT
+
+#wfa_control_agent_dut!dev_send_frame,program,HS2,interface,wlan0,dest,00:0c:43:44:0b:44,Type,query,NAI_REALM_LIST,1,3GPP_INFO,1,DOMAIN_LIST,1!DEFAULT
+#wfa_control_agent_dut!dev_send_frame,program,HS2,interface,wlan0,dest,00:0c:43:44:0b:44,Type,query,HS_Cap_List,1!DEFAULT
+#wfa_control_agent_dut!dev_send_frame,program,HS2,interface,wlan0,dest,00:0c:43:44:0b:44,Type,dls!DEFAULT
+#wfa_control_agent_dut!dev_send_frame,program,TDLS,interface,wlan0,dest,00:0c:43:44:0b:44,Type,setup!DEFAULT
+
+#wfa_control_agent_dut!sta_disconnect,interface,wlan!DEFAULT
+
+#wfa_control_agent_dut!sta_add_credential,interface,wlan0,type,uname_pwd,realm,mail.example.com,username,wifiuser,password,test%11,root_ca,ca.pem,prefer,1!DEFAULT
+#wfa_control_agent_dut!sta_add_credential,interface,wlan0,type,uname_pwd,realm,mail.example.com,username,wifiuser,password,test%11,root_ca,ca.pem,prefer,1,Home_FQDN,mail.example.com!DEFAULT
+#wfa_control_agent_dut!sta_add_credential,interface,wlan0,type,sim,plmn_mcc,310,plmn_mnc,026,imsi,1232010000000000,password,90dca4eda45b53cf0f12d7c9c3bc6a89:cb9cccc4b9258e6dca4760379fb82581:000000000123!DEFAULT
+
+#wfa_control_agent_dut!sta_bssid_pool,interface,wlan0,bssid_filter,1,bssid_list,00:0c:43:44:0b:44 00:0c:43:44:0b:45 00:0c:43:44:0b:46 00:0c:43:44:0b:47!DEFAULT
+#wfa_control_agent_dut!sta_hs2_associate,interface,wlan0!DEFAULT
+
+info![Verify Successfully]!
+
+

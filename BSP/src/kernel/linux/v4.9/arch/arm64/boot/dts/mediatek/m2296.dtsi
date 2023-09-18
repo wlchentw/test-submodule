@@ -1,0 +1,132 @@
+/*
+ * Copyright (c) 2018 MediaTek Inc.
+ *
+ * SPDX-License-Identifier: (GPL-2.0 OR MIT)
+ */
+
+&m2296 {
+	regulators {
+		m2296_ldo_vold01: m2296_ldo1 {
+			regulator-compatible = "m2296_ldo1";
+			regulator-name = "m2296_ldo1";
+			regulator-min-microvolt = <725000>;
+			regulator-max-microvolt = <1100000>;
+		};
+
+		m2296_ldo_vold02: m2296_ldo2 {
+			regulator-compatible = "m2296_ldo2";
+			regulator-name = "m2296_ldo2";
+			regulator-min-microvolt = <750000>;
+			regulator-max-microvolt = <3300000>;
+			regulator-ramp-delay = <50000>;
+			regulator-boot-on;
+			regulator-always-on;
+		};
+
+		m2296_ldo_vold03: m2296_ldo3 {
+			regulator-compatible = "m2296_ldo3";
+			regulator-name = "m2296_ldo3";
+			regulator-min-microvolt = <750000>;
+			regulator-max-microvolt = <3300000>;
+			regulator-ramp-delay = <50000>;
+			regulator-boot-on;
+			regulator-always-on;
+		};
+
+		m2296_ldo_vold04: m2296_ldo4 {
+			regulator-compatible = "m2296_ldo4";
+			regulator-name = "m2296_ldo4";
+			regulator-min-microvolt = <1400000>;
+			regulator-max-microvolt = <3000000>;
+			regulator-ramp-delay = <100000>;
+			regulator-boot-on;
+			regulator-always-on;
+		};
+
+		m2296_ldo_vold05: m2296_ldo5 {
+			regulator-compatible = "m2296_ldo5";
+			regulator-name = "m2296_ldo5";
+			regulator-min-microvolt = <1800000>;
+			regulator-max-microvolt = <3300000>;
+			regulator-ramp-delay = <150000>;
+			regulator-boot-on;
+			regulator-always-on;
+		};
+
+		m2296_ldo_vold06: m2296_ldo6 {
+			regulator-compatible = "m2296_ldo6";
+			regulator-name = "m2296_ldo6";
+			regulator-min-microvolt = <1400000>;
+			regulator-max-microvolt = <3000000>;
+			regulator-ramp-delay = <100000>;
+		};
+
+		m2296_ldo_vold07: m2296_ldo7 {
+			regulator-compatible = "m2296_ldo7";
+			regulator-name = "m2296_ldo7";
+			regulator-min-microvolt = <1400000>;
+			regulator-max-microvolt = <3000000>;
+			regulator-ramp-delay = <100000>;
+			regulator-boot-on;
+			regulator-always-on;
+		};
+
+		m2296_ldo_vold08: m2296_ldo8 {
+			regulator-compatible = "m2296_ldo8";
+			regulator-name = "m2296_ldo8";
+			regulator-min-microvolt = <1400000>;
+			regulator-max-microvolt = <3000000>;
+			regulator-ramp-delay = <100000>;
+			regulator-boot-on;
+			regulator-always-on;
+		};
+
+		m2296_ldo_vold09: m2296_ldo9 {
+			regulator-compatible = "m2296_ldo9";
+			regulator-name = "m2296_ldo9";
+			regulator-min-microvolt = <725000>;
+			regulator-max-microvolt = <1100000>;
+			regulator-ramp-delay = <25000>;
+		};
+
+		m2296_ldo_vold10: m2296_ldo10 {
+			regulator-compatible = "m2296_ldo10";
+			regulator-name = "m2296_ldo10";
+			regulator-min-microvolt = <725000>;
+			regulator-max-microvolt = <1100000>;
+			regulator-ramp-delay = <25000>;
+		};
+
+		m2296_dcdc1: m2296_dcdc1 {
+			regulator-compatible = "m2296_dcdc1";
+			regulator-name = "m2296_dcdc1";
+			regulator-min-microvolt = <675000>;
+			regulator-max-microvolt = <1450000>;
+			regulator-boot-on;
+			regulator-always-on;
+		};
+
+		m2296_dcdc2: m2296_dcdc2 {
+			regulator-compatible = "m2296_dcdc2";
+			regulator-name = "m2296_dcdc2";
+			regulator-min-microvolt = <850000>;
+			regulator-max-microvolt = <1600000>;
+			regulator-boot-on;
+			regulator-always-on;
+		};
+
+		m2296_dcdc3: m2296_dcdc3 {
+			regulator-compatible = "m2296_dcdc3";
+			regulator-name = "m2296_dcdc3";
+			regulator-boot-on;
+			regulator-always-on;
+		};
+
+		m2296_dcdc4: m2296_dcdc4 {
+			regulator-compatible = "m2296_dcdc4";
+			regulator-name = "m2296_dcdc4";
+			regulator-boot-on;
+			regulator-always-on;
+		};
+	};
+};

@@ -1,0 +1,12 @@
+[Unit]
+Description=wifi_bt_mac_write
+After=data-ubi-mnt.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=no
+ExecStart=/usr/sbin/wifi_bt_mac_write
+
+[Install]
+Alias=pwrwifid
+WantedBy=multi-user.target

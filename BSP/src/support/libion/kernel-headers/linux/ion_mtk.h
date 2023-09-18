@@ -1,0 +1,300 @@
+/*
+* Copyright (C) 2017 MediaTek.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*      http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+#ifndef _MTK_MM_ION_H
+#define _MTK_MM_ION_H
+
+#include <linux/ion.h>
+
+enum mtk_ion_heap_type {
+	ION_HEAP_TYPE_DMA_MTK = 9,
+	ION_HEAP_TYPE_MULTIMEDIA = 10,
+	ION_HEAP_TYPE_FB = 11,
+	ION_HEAP_TYPE_MULTIMEDIA_FOR_CAMERA = 12,
+	ION_HEAP_TYPE_MULTIMEDIA_SEC = 13,
+	ION_HEAP_TYPE_MULTIMEDIA_MAP_MVA = 14,
+};
+
+#define ION_HEAP_DMA_MTK_MASK		(1 << ION_HEAP_TYPE_DMA_MTK)
+#define ION_HEAP_MULTIMEDIA_MASK	(1 << ION_HEAP_TYPE_MULTIMEDIA)
+#define ION_HEAP_FB_MASK		(1 << ION_HEAP_TYPE_FB)
+#define ION_HEAP_CAMERA_MASK		(1 << ION_HEAP_TYPE_MULTIMEDIA_FOR_CAMERA)
+#define ION_HEAP_MULTIMEDIA_SEC_MASK	(1 << ION_HEAP_TYPE_MULTIMEDIA_SEC)
+#define ION_HEAP_MULTIMEDIA_MAP_MVA_MASK (1 << ION_HEAP_TYPE_MULTIMEDIA_MAP_MVA)
+
+
+enum ION_CMDS {
+	ION_CMD_SYSTEM,
+	ION_CMD_MULTIMEDIA,
+	ION_CMD_MULTIMEDIA_SEC
+};
+
+enum ION_MM_CMDS {
+	ION_MM_CONFIG_BUFFER,
+	ION_MM_SET_DEBUG_INFO,
+	ION_MM_GET_DEBUG_INFO,
+	ION_MM_SET_SF_BUF_INFO,
+	ION_MM_GET_SF_BUF_INFO,
+	ION_MM_CONFIG_BUFFER_EXT,
+	ION_MM_ACQ_CACHE_POOL,
+	ION_MM_QRY_CACHE_POOL,
+	ION_MM_GET_IOVA,
+	ION_MM_GET_IOVA_EXT,
+};
+
+enum ION_SYS_CMDS {
+	ION_SYS_CACHE_SYNC,
+	ION_SYS_GET_PHYS,
+	ION_SYS_GET_CLIENT,
+	ION_SYS_SET_HANDLE_BACKTRACE,
+	ION_SYS_SET_CLIENT_NAME,
+	ION_SYS_DMA_OP,
+};
+
+enum ION_CACHE_SYNC_TYPE {
+	ION_CACHE_CLEAN_BY_RANGE,
+	ION_CACHE_INVALID_BY_RANGE,
+	ION_CACHE_FLUSH_BY_RANGE,
+	ION_CACHE_CLEAN_BY_RANGE_USE_VA,
+	ION_CACHE_INVALID_BY_RANGE_USE_VA,
+	ION_CACHE_FLUSH_BY_RANGE_USE_VA,
+	ION_CACHE_CLEAN_ALL,
+	ION_CACHE_INVALID_ALL,
+	ION_CACHE_FLUSH_ALL
+};
+
+enum ION_ERRORE {
+	ION_ERROR_CONFIG_LOCKED = 0x10000
+};
+
+/* mm or mm_sec heap flag which is do not conflist with ION_HEAP_FLAG_DEFER_FREE */
+#define ION_FLAG_MM_HEAP_INIT_ZERO (1 << 16)
+#define ION_FLAG_MM_HEAP_SEC_PA (1 << 18)
+
+#define ION_FLAG_GET_FIXED_PHYS 0x103
+
+struct ion_sys_cache_sync_param {
+	union {
+		ion_user_handle_t handle;
+		void *kernel_handle;
+	};
+	void *va;
+	unsigned int size;
+	enum ION_CACHE_SYNC_TYPE sync_type;
+};
+
+enum ION_DMA_TYPE {
+	ION_DMA_MAP_AREA,
+	ION_DMA_UNMAP_AREA,
+	ION_DMA_MAP_AREA_VA,
+	ION_DMA_UNMAP_AREA_VA,
+	ION_DMA_FLUSH_BY_RANGE,
+	ION_DMA_FLUSH_BY_RANGE_USE_VA,
+	ION_DMA_CACHE_FLUSH_ALL
+};
+
+enum ION_DMA_DIR {
+	ION_DMA_FROM_DEVICE,
+	ION_DMA_TO_DEVICE,
+	ION_DMA_BIDIRECTIONAL,
+};
+
+struct ion_dma_param {
+	union {
+		ion_user_handle_t handle;
+		void *kernel_handle;
+	};
+	void *va;
+	unsigned int size;
+	enum ION_DMA_TYPE dma_type;
+	enum ION_DMA_DIR dma_dir;
+};
+
+struct ion_sys_get_phys_param {
+	union {
+		ion_user_handle_t handle;
+		void *kernel_handle;
+	};
+	unsigned int phy_addr;
+	unsigned long len;
+};
+
+#define ION_MM_DBG_NAME_LEN 48
+#define ION_MM_SF_BUF_INFO_LEN 16
+
+struct ion_sys_client_name {
+	char name[ION_MM_DBG_NAME_LEN];
+};
+
+struct ion_sys_get_client_param {
+	unsigned int client;
+};
+
+#define BACKTRACE_SIZE 10
+
+struct ion_sys_record_param {
+	pid_t group_id;
+	pid_t pid;
+	unsigned int action;
+	unsigned int address_type;
+	unsigned int address;
+	unsigned int length;
+	unsigned int backtrace[BACKTRACE_SIZE];
+	unsigned int backtrace_num;
+	struct ion_handle *handle;
+	struct ion_client *client;
+	struct ion_buffer *buffer;
+	struct file *file;
+	int fd;
+};
+
+struct ion_sys_data {
+	enum ION_SYS_CMDS sys_cmd;
+	union {
+		struct ion_sys_cache_sync_param cache_sync_param;
+		struct ion_sys_get_phys_param get_phys_param;
+		struct ion_sys_get_client_param get_client_param;
+		struct ion_sys_client_name client_name_param;
+		struct ion_sys_record_param record_param;
+		struct ion_dma_param dma_param;
+	};
+};
+
+/* Only for debug. */
+enum mtk_ion_module_id {
+	MTK_ION_MOD_ID_MIN = 10,
+	MTK_ION_MOD_ID_OVL = MTK_ION_MOD_ID_MIN,
+	MTK_ION_MOD_ID_VDEC,
+	MTK_ION_MOD_ID_VDEC_LAT,
+	MTK_ION_MOD_ID_MDP,
+	MTK_ION_MOD_ID_CAMERA,
+	MTK_ION_MOD_ID_ISP,
+	MTK_ION_MOD_ID_VENC,
+	MTK_ION_MOD_ID_JPG,
+	MTK_ION_MOD_ID_DISP0 = 20,
+	MTK_ION_MOD_ID_DISP1,
+	MTK_ION_MOD_ID_DISP2,
+	MTK_ION_MOD_ID_DISP3,
+	MTK_ION_MOD_ID_MDP1,
+	MTK_ION_MOD_ID_MDP2,
+	MTK_ION_MOD_ID_MDP3,
+	MTK_ION_MOD_ID_RDMA,
+	MTK_ION_MOD_ID_WDMA,
+	MTK_ION_MOD_ID_VDO = 30,
+	MTK_ION_MOD_ID_VDO2,
+	MTK_ION_MOD_ID_VDO3,
+	MTK_ION_MOD_ID_OSD,
+	MTK_ION_MOD_ID_NR,
+	MTK_ION_MOD_ID_WRITE_CHANNEL,
+	MTK_ION_MOD_ID_DOBLY,
+	MTK_ION_MOD_ID_IMGRESZ = 40,
+	MTK_ION_MOD_ID_IRT,
+	MTK_ION_MOD_ID_TVD,
+	MTK_ION_MOD_ID_TVE,
+	MTK_ION_MOD_ID_MUX = 50,
+	MTK_ION_MOD_ID_DEMUX,
+	MTK_ION_MOD_ID_WRAPA,
+	MTK_ION_MOD_ID_WRAPB,
+	MTK_ION_MOD_ID_DEP,
+	MTK_ION_MOD_ID_WPE,
+	MTK_ION_MOD_ID_FM,
+	MTK_ION_MOD_ID_TMP1 = 60,
+	MTK_ION_MOD_ID_TMP2,
+	MTK_ION_MOD_ID_TMP3,
+	MTK_ION_MOD_ID_TMP4,
+	MTK_ION_MOD_ID_MAX = 70,
+};
+
+struct ion_mm_config_buffer_param {
+	union {
+		ion_user_handle_t handle;
+		void *kernel_handle;
+	};
+	enum mtk_ion_module_id module_id;
+	unsigned int security;
+	unsigned int coherent;
+	unsigned int reserve_iova_start;
+	unsigned int reserve_iova_end;
+};
+
+struct ion_mm_buf_debug_info {
+	union {
+		ion_user_handle_t handle;
+		void *kernel_handle;
+	};
+	char dbg_name[ION_MM_DBG_NAME_LEN];
+	unsigned int value1;
+	unsigned int value2;
+	unsigned int value3;
+	unsigned int value4;
+};
+
+struct ion_mm_sf_buf_info {
+	union {
+		ion_user_handle_t handle;
+		void *kernel_handle;
+	};
+	unsigned int info[ION_MM_SF_BUF_INFO_LEN];
+};
+
+struct ion_mm_cache_pool_info {
+	size_t len;
+	size_t align;
+	unsigned int heap_id_mask;
+	unsigned int flags;
+	unsigned int ret;
+};
+struct ion_mm_get_iova_param {
+	union {
+		ion_user_handle_t handle;
+		void *kernel_handle;
+	};
+	enum mtk_ion_module_id module_id;
+	unsigned int security;
+	unsigned int coherent;
+	unsigned int reserve_iova_start;
+	unsigned int reserve_iova_end;
+	unsigned long long phy_addr;
+	unsigned long len;
+};
+
+struct ion_mm_data {
+	enum ION_MM_CMDS mm_cmd;
+	union {
+		struct ion_mm_config_buffer_param config_buffer_param;
+		struct ion_mm_buf_debug_info buf_debug_info_param;
+		struct ion_mm_cache_pool_info cache_pool_info_param;
+		struct ion_mm_get_iova_param get_phys_param;
+	};
+};
+
+/* MediaTek implementment specially. */
+static inline int ion_mtk_custom_ioctl(int fd, unsigned int cmd, void* arg)
+{
+	struct ion_custom_data custom_data;
+	int ret;
+
+	custom_data.cmd = cmd;
+	custom_data.arg = (unsigned long) arg;
+
+	ret = ioctl(fd, ION_IOC_CUSTOM, &custom_data);
+
+	return ret;
+}
+
+#define ion_custom_ioctl ion_mtk_custom_ioctl
+
+#endif

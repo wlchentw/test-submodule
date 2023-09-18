@@ -1,0 +1,14 @@
+#Loading Enviornment
+info![Start verification...]!
+
+define!$Sigma_ControlAgent_Support!1!
+
+######### DUT (Device Under Test) #########################
+
+
+info!Connecting to DUT Control Agent!
+
+wfa_control_agent_dut!ipaddr=127.0.0.1,port=9000!
+
+
+#################

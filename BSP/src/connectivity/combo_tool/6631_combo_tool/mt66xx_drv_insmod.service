@@ -1,0 +1,10 @@
+[Unit]
+Description=mt66xx_drv_insmod
+After=ubi-data-mnt.service
+
+[Service]
+Type=simple
+ExecStart=/bin/sh /etc/mt66xx_drv_insmod.sh
+
+[Install]
+WantedBy=multi-user.target

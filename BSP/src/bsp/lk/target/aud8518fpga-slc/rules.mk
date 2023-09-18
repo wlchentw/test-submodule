@@ -1,0 +1,59 @@
+LOCAL_DIR := $(GET_LOCAL_DIR)
+MODULE := ${LOCAL_DIR}
+
+GLOBAL_INCLUDES += \
+    $(LOCAL_DIR)/include
+
+MODULE_SRCS += \
+    $(LOCAL_DIR)/target.c
+
+PLATFORM := mt8518
+
+TZ_PART_NAME := tee_a
+RECOVERY_TZ_PART_NAME = tee_b
+DTBO_PART_NAME := dtbo
+BOOT_PART_NAME := boot_a
+RECOVERY_BOOT_PART_NAME = boot_b
+
+ifeq ($(WITH_KERNEL_VM),1)
+# The physical dram address is 0x40000000 and its virtual address 0xffff00000d600000
+# The CACHED_MEMPOOL_ADDR virtual address would be 0xffff00000d600000 + 0x4000000 = 0xffff000011600000
+# The BL33_ADDR virtual address would be 0xffff00000d600000 + 0x1e00000 = 0xffff00000f400000
+CACHED_MEMPOOL_ADDR     := 0xffff000011600000UL
+BL33_ADDR               := 0xffff00000f400000UL
+NAND_BUF_ADDR           := 0xffff00000fa00000UL
+else
+CACHED_MEMPOOL_ADDR     := 0x44000000
+BL33_ADDR               := 0x41e00000
+NAND_BUF_ADDR           := 0x4e300000
+endif
+CACHED_MEMPOOL_SIZE     := 0x0AA00000 # 170MB
+
+SCRATCH_SIZE		:= 0x06000000 # 96MB
+
+MAX_TEE_DRAM_SIZE	:= 0x04000000 # 64M
+MAX_KERNEL_SIZE		:= 0x02000000 # 32M
+MAX_DTB_SIZE		:= 0x00200000 # 2M
+MAX_LZ4_BUF_SIZE	:= 0x00100000 # 1M
+MAX_NAND_BUF_SIZE       := 0x00100000 # 1M
+
+# CACHED_MEMPOOL_ADDR + CACHED_MEMPOOL_SIZE for upgrade
+# CACHED_MEMPOOL_ADDR + MAX_TEE_DRAM_SIZE + MAX_KERNEL_SIZE
+# + MAX_DTB_SIZE + MAX_LZ4_BUF_SIZE for boot
+
+GLOBAL_CFLAGS +=  -DTZ_PART_NAME=\"$(TZ_PART_NAME)\" \
+                  -DDTBO_PART_NAME=\"$(DTBO_PART_NAME)\" \
+                  -DBOOT_PART_NAME=\"$(BOOT_PART_NAME)\" \
+                  -DRECOVERY_BOOT_PART_NAME=\"$(RECOVERY_BOOT_PART_NAME)\" \
+                  -DRECOVERY_TZ_PART_NAME=\"$(RECOVERY_TZ_PART_NAME)\" \
+
+GLOBAL_DEFINES += CACHED_MEMPOOL_ADDR=$(CACHED_MEMPOOL_ADDR) \
+                  CACHED_MEMPOOL_SIZE=$(CACHED_MEMPOOL_SIZE) \
+                  BL33_ADDR=$(BL33_ADDR) \
+                  SCRATCH_SIZE=$(SCRATCH_SIZE) \
+                  NAND_BUF_ADDR=$(NAND_BUF_ADDR)
+
+MODULE_DEPS += \
+	platform/$(PLATFORM)/drivers/nand
+
+include make/module.mk

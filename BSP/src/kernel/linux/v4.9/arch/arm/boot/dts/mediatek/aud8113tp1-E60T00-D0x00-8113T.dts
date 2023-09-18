@@ -1,0 +1,83 @@
+/*
+ * Copyright (c) 2019 MediaTek Inc.
+ *
+ * SPDX-License-Identifier: (GPL-2.0 OR MIT)
+ */
+
+#include "aud8113tp1-E60T00-D0x00-base.dts"
+
+&cluster0_opp {
+	opp05 {
+		opp-hz = /bits/ 64 <1133000000>;
+		opp-microvolt = <750000>;
+	};
+	opp06 {
+		opp-hz = /bits/ 64 <1266000000>;
+		opp-microvolt = <775000>;
+	};
+	opp07 {
+		opp-hz = /bits/ 64 <1400000000>;
+		opp-microvolt = <800000>;
+	};
+	opp08 {
+		opp-hz = /bits/ 64 <1467000000>;
+		opp-microvolt = <825000>;
+	};
+	opp09 {
+		opp-hz = /bits/ 64 <1534000000>;
+		opp-microvolt = <850000>;
+	};
+	opp10 {
+		opp-hz = /bits/ 64 <1588000000>;
+		opp-microvolt = <868750>;
+	};
+	opp11 {
+		opp-hz = /bits/ 64 <1702000000>;
+		opp-microvolt = <912500>;
+	};
+	opp12 {
+		opp-hz = /bits/ 64 <1786000000>;
+		opp-microvolt = <943750>;
+	};
+	opp13 {
+		opp-hz = /bits/ 64 <1870000000>;
+		opp-microvolt = <975000>;
+	};
+	opp14 {
+		opp-hz = /bits/ 64 <1938000000>;
+		opp-microvolt = <1000000>;
+	};
+	opp15 {
+		opp-hz = /bits/ 64 <2000000000>;
+		opp-microvolt = <1025000>;
+	};
+};
+
+&tsc {
+	status = "okay";
+};
+&elan_ts {
+	status = "disabled";
+};
+&focaltech{
+	status = "disabled";
+};
+&svs {
+   compatible = "mediatek,mt8110t-svs";
+};
+
+
+/*
+		cfa_panel 0: B/W, 1: cfa 
+		cfa_rotate 1:rotate 90, 2:rotate 180 , 3:rotate 270
+*/
+/*
+&hwtcon {
+	epd{
+		cfa_panel = <1>;		
+		cfa_rotate = <3>;
+	};
+};
+*/
+
+
